@@ -56,7 +56,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
 
 
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
@@ -76,7 +76,7 @@
   
 
 
-  <link rel="alternate" href="/atom.xml" title="Pengcheng's Blog" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="DPC's Blog" type="application/atom+xml" />
 
 
 
@@ -87,10 +87,10 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="about">
 <meta property="og:url" content="http://yoursite.com/about/index.html">
-<meta property="og:site_name" content="Pengcheng&#39;s Blog">
+<meta property="og:site_name" content="DPC&#39;s Blog">
 <meta property="og:description" content="夫君子之行，静以修身，俭以养德，非淡泊无以明志，非宁静无以致远。夫学须静也，才须学也，非学无以广才，非志无以成学。淫慢则不能励精，险躁则不能冶性。年与时驰，意与日去，遂成枯落，多不接世，悲守穷庐，将复何及！—— 诸葛亮">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-12T10:32:07.918Z">
+<meta property="og:updated_time" content="2018-01-13T06:10:49.237Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="about">
 <meta name="twitter:description" content="夫君子之行，静以修身，俭以养德，非淡泊无以明志，非宁静无以致远。夫学须静也，才须学也，非学无以广才，非志无以成学。淫慢则不能励精，险躁则不能冶性。年与时驰，意与日去，遂成枯落，多不接世，悲守穷庐，将复何及！—— 诸葛亮">
@@ -129,7 +129,7 @@
 
 
 
-  <title>about | Pengcheng's Blog</title>
+  <title>about | DPC's Blog</title>
   
 
 
@@ -159,7 +159,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Pengcheng's Blog</span>
+        <span class="site-title">DPC's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -281,7 +281,10 @@
       <div class="post-body">
         
         
-          <p>夫君子之行，静以修身，俭以养德，非淡泊无以明志，非宁静无以致远。<br>夫学须静也，才须学也，非学无以广才，非志无以成学。<br>淫慢则不能励精，险躁则不能冶性。<br>年与时驰，意与日去，遂成枯落，多不接世，悲守穷庐，将复何及！<br>—— 诸葛亮</p>
+          <blockquote class="blockquote-center"><br><br>夫君子之行，静以修身，俭以养德，非淡泊无以明志，非宁静无以致远。<br>夫学须静也，才须学也，非学无以广才，非志无以成学。<br>淫慢则不能励精，险躁则不能冶性。<br>年与时驰，意与日去，遂成枯落，多不接世，悲守穷庐，将复何及！<br>—— 诸葛亮<br></blockquote>
+
+
+<iframe src="//music.163.com/outchain/player?type=2&id=25867002&auto=1&height=66" width="[180]" height="[86]" frameborder="0" allowfullscreen></iframe>
 
         
       </div>
@@ -379,6 +382,22 @@
             </div>
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/dpcfury" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:dpcspark@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
           
 
           
@@ -578,6 +597,28 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'OKFVMdpRBgmwiwV45Muiamn4-gzGzoHsz',
+        appKey: 'GDDN79LXua3VhpCOIy4jpj9e',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 

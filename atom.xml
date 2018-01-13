@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Pengcheng&#39;s Blog</title>
-  
+  <title>DPC&#39;s Blog</title>
+  <icon>https://www.gravatar.com/avatar/bfa2adcbfd5883f9905426b1399816ee</icon>
   
   <link href="/atom.xml" rel="self"/>
   
@@ -11,7 +11,7 @@
   
   <author>
     <name>杜鹏程</name>
-    
+    <email>dpcspark@gmail.com</email>
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>

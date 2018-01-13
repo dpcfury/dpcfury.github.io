@@ -56,7 +56,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
 
 
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
@@ -74,7 +74,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Pengcheng's Blog" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="DPC's Blog" type="application/atom+xml" />
 
 
 
@@ -83,13 +83,13 @@
 
 <meta name="description" content="live life to the fullest">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Pengcheng&#39;s Blog">
+<meta property="og:title" content="DPC&#39;s Blog">
 <meta property="og:url" content="http://yoursite.com/archives/2018/index.html">
-<meta property="og:site_name" content="Pengcheng&#39;s Blog">
+<meta property="og:site_name" content="DPC&#39;s Blog">
 <meta property="og:description" content="live life to the fullest">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Pengcheng&#39;s Blog">
+<meta name="twitter:title" content="DPC&#39;s Blog">
 <meta name="twitter:description" content="live life to the fullest">
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>归档 | Pengcheng's Blog</title>
+  <title>归档 | DPC's Blog</title>
   
 
 
@@ -156,7 +156,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Pengcheng's Blog</span>
+        <span class="site-title">DPC's Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -488,6 +488,22 @@
           
 
           
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/dpcfury" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:dpcspark@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
 
           
           
@@ -682,6 +698,28 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'OKFVMdpRBgmwiwV45Muiamn4-gzGzoHsz',
+        appKey: 'GDDN79LXua3VhpCOIy4jpj9e',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 
