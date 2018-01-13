@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-01-12T10:20:31.567Z</updated>
+  <updated>2018-01-13T11:43:02.061Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,17 +21,13 @@
     <link href="http://yoursite.com/2018/01/12/%E6%B5%8B%E8%AF%95hexo/"/>
     <id>http://yoursite.com/2018/01/12/测试hexo/</id>
     <published>2018-01-12T05:52:38.000Z</published>
-    <updated>2018-01-12T10:20:31.567Z</updated>
+    <updated>2018-01-13T11:43:02.061Z</updated>
     
-    <content type="html"><![CDATA[<p>这是一个奇奇怪怪的时间段，仅此测试一下hexo</p>]]></content>
+    <content type="html"><![CDATA[<p>这是一个奇奇怪怪的时间段，仅此测试一下hexo<br><a id="more"></a></p><p>之前用的是多说，但是多说在2017年6月1日就关闭评论服务了= =，很忧伤，于是转到了网易云跟帖。由于最新版（5.1）版本的next已经集成了网易云跟帖，所以只需要在主题的设置文件中配置你的productKey就可以了。获取productKey也很简单，在官网网易云跟帖中注册，然后在获取代码&gt;通用代码中拿到productKey，之后在你的主题配置文件中的gentie_productKey字段后添加即可~</p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;这是一个奇奇怪怪的时间段，仅此测试一下hexo&lt;/p&gt;
-
-      
+      &lt;p&gt;这是一个奇奇怪怪的时间段，仅此测试一下hexo&lt;br&gt;
     
     </summary>
     
