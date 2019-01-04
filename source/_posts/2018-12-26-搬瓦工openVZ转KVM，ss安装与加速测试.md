@@ -1,6 +1,9 @@
 ---
 title: 搬瓦工openVZ转KVM，ss安装与加速测试
 date: 2018-12-26 20:04:24
+categories: 
+- 科学上网
+- VPS优化
 tags: ss安装
 toc: true
 ---

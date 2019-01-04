@@ -1,6 +1,9 @@
 ---
 title: 搬瓦工KVM安装FinalSpeed优化测试
 date: 2019-01-02 10:08:43
+categories: 
+- 科学上网
+- VPS优化
 tags: KVM优化
 ---
 
