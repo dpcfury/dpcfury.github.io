@@ -1,5 +1,6 @@
 ---
 title: hexo permalink 设置为英文
+urlname: hexo_permalink
 date: 2019-01-04 21:04:07
 categories:
 - hexo
@@ -24,6 +25,36 @@ permalink_defaults:
 
 ```
 permalink: :category/:urlname.html/
+```
+
+加上.html的缘故是为了优化SEO
+
+之后再每篇文章的Front-matter中加入urlname，取你认为合适的英文就可以，在以前发布的文章还使用和title相同的urlname即可：
+
+```
+title: 搬瓦工CN2 手动安装bbr加速
+urlname: 搬瓦工CN2 手动安装bbr加速
+date: 2019-01-03 19:09:17
+categories: 
+- 科学上网
+- VPS优化
+tags: bbr加速安装
+```
+
+>ps: title中的空格会被转义为%20，也可能转义为其它字符，所以最好再后续检查一下
+
+
+
+我们可以在scaffolds/post.md中加上urlname这个变量，这样每次hexo new 创建文章的时候既可以自动添加urlname变量：
+
+```
+---
+title: {{ title }}
+urlname: 
+date: {{ date }}
+tags:
+categories:
+---
 ```
 
 

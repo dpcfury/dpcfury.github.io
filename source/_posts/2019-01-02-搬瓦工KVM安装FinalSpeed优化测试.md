@@ -1,5 +1,6 @@
 ---
 title: 搬瓦工KVM安装FinalSpeed优化测试
+urlname: KVM_FinalSpeed
 date: 2019-01-02 10:08:43
 categories: 
 - 科学上网
