@@ -12,7 +12,7 @@ tags: hexo 优化
 >
 >其主要原因是文章的title为中文，被转义之后成为了上面的编码。
 
-
+<!--more-->
 
 于是查找到通过永久链接（[Permalink](https://hexo.io/zh-cn/docs/permalinks.html "Permalink")）的方式修改文章的url为英文，在hexo站点配置文件_config.yml中修改文章链接配置：
 
