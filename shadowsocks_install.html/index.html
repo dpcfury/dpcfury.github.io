@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="ss安装," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DPC's Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="VPS购买与系统安装 更换新的vps原因是搬瓦工前天发出公告宣布 OpenVZ 系列的所有 VPS 都已经不支持续费了 ,原先有一台LA基于openVZ架构的VPS，安装shadowSocks-libev与finalspeed加速使用起来还不错，缺陷就是不能在内核加速，这次顺势调整到KVM架构的主机。">
+<meta name="keywords" content="ss安装">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搬瓦工openVZ转KVM，ss安装与加速测试">
+<meta property="og:url" content="https://dpcfury.github.io/shadowsocks_install.html/index.html">
+<meta property="og:site_name" content="DPC&#39;s Blog">
+<meta property="og:description" content="VPS购买与系统安装 更换新的vps原因是搬瓦工前天发出公告宣布 OpenVZ 系列的所有 VPS 都已经不支持续费了 ,原先有一台LA基于openVZ架构的VPS，安装shadowSocks-libev与finalspeed加速使用起来还不错，缺陷就是不能在内核加速，这次顺势调整到KVM架构的主机。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://dpcfury.github.io/shadowsocks_install.html/vps.png">
+<meta property="og:image" content="https://dpcfury.github.io/shadowsocks_install.html/vps_list.png">
+<meta property="og:image" content="https://dpcfury.github.io/shadowsocks_install.html/install_os.png">
+<meta property="og:image" content="https://dpcfury.github.io/shadowsocks_install.html/ls_bbr.png">
+<meta property="og:image" content="https://dpcfury.github.io/shadowsocks_install.html/select_version.png">
+<meta property="og:image" content="https://dpcfury.github.io/shadowsocks_install.html/set_pwd.png">
+<meta property="og:image" content="https://dpcfury.github.io/shadowsocks_install.html/set_port.png">
+<meta property="og:image" content="https://dpcfury.github.io/shadowsocks_install.html/set_method.png">
+<meta property="og:image" content="https://dpcfury.github.io/shadowsocks_install.html/speed_bbr.png">
+<meta property="og:image" content="https://dpcfury.github.io/shadowsocks_install.html/speed_ovz.png">
+<meta property="og:image" content="https://dpcfury.github.io/shadowsocks_install.html/speed_mobile.jpg">
+<meta property="og:updated_time" content="2019-12-29T11:26:05.303Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="搬瓦工openVZ转KVM，ss安装与加速测试">
+<meta name="twitter:description" content="VPS购买与系统安装 更换新的vps原因是搬瓦工前天发出公告宣布 OpenVZ 系列的所有 VPS 都已经不支持续费了 ,原先有一台LA基于openVZ架构的VPS，安装shadowSocks-libev与finalspeed加速使用起来还不错，缺陷就是不能在内核加速，这次顺势调整到KVM架构的主机。">
+<meta name="twitter:image" content="https://dpcfury.github.io/shadowsocks_install.html/vps.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://dpcfury.github.io/shadowsocks_install.html/"/>
+
+
+
+
+
+  <title>搬瓦工openVZ转KVM，ss安装与加速测试 | DPC's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DPC's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://dpcfury.github.io/shadowsocks_install.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="杜鹏程">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DPC's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">搬瓦工openVZ转KVM，ss安装与加速测试</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-26T20:04:24+08:00">
+                2018-12-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/科学上网/" itemprop="url" rel="index">
+                    <span itemprop="name">科学上网</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/科学上网/VPS优化/" itemprop="url" rel="index">
+                    <span itemprop="name">VPS优化</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/shadowsocks_install.html/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/shadowsocks_install.html/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/shadowsocks_install.html/" class="leancloud_visitors" data-flag-title="搬瓦工openVZ转KVM，ss安装与加速测试">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,429
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="VPS购买与系统安装"><a href="#VPS购买与系统安装" class="headerlink" title="VPS购买与系统安装"></a>VPS购买与系统安装</h3><blockquote>
+<p>更换新的vps原因是搬瓦工前天发出公告宣布 OpenVZ 系列的所有 VPS 都已经不支持续费了 ,原先有一台LA基于openVZ架构的VPS，安装shadowSocks-libev与finalspeed加速使用起来还不错，缺陷就是不能在内核加速，这次顺势调整到KVM架构的主机。</p>
+</blockquote>
+<a id="more"></a>
+<h4 id="机房选择"><a href="#机房选择" class="headerlink" title="机房选择"></a>机房选择</h4><p>目前搬瓦工提供的方案中按速度排行 HK PCCW  &gt; CN2 GIA &gt; CN2 GT &gt;  普通KVM，但是价格而言HK PCCW较为奢侈，CN2 GIA 价格也较贵，目前存货中性价比较高的是 DC8 CN2 机房的普通CN2方案，<a href="https://stock.bwg.net/" title=" 搬瓦工库存" target="_blank" rel="noopener">搬瓦工库存</a>，目前提供的方案已经少有月付，可以订阅CN2 GIA的\$39.99 补货通知，当前情况还有一个星期就要回收VPS，无奈选择\$ 29.99的 CN2 方案。 </p>
+<p><img src="/shadowsocks_install.html/vps.png" alt="1545807890085"></p>
+<p>注意location选择的是DC8 ，目前相传是CN2测试较好的机房，可用支付宝付款，在结账页面可输入优惠码BWH26FXH3HIQ ，能有6.25%的优惠（目前最高），如果优惠码过期可参考<a href="https://www.bwgyhw.com/bandwagonhost-lastest-promo/" title="最新优惠码" target="_blank" rel="noopener">最新优惠码</a>，总计花费人民币195左右，购买完成稍等一段初始化时间即可去My Services中查看和进行后续安装操作。</p>
+<p><img src="/shadowsocks_install.html/vps_list.png" alt="1545808631772"></p>
+<h4 id="系统安装"><a href="#系统安装" class="headerlink" title="系统安装"></a>系统安装</h4><p>目前搬瓦工已经在系统上直接继承了BBR加速，在这里选择自带bbr加速的64位CentOs7，也可选择不带bbr的CentOs7再后续手动安装，选则内置的bbr加速防止内核不兼容问题。</p>
+<p><img src="/shadowsocks_install.html/install_os.png" alt="1545809335977"></p>
+<p>xshell远程登录主机查看bbr是否安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsmod | grep bbr</span><br></pre></td></tr></table></figure>
+<p><img src="/shadowsocks_install.html/ls_bbr.png" alt="1545813768403"></p>
+<h3 id="Shadowsocks服务端安装"><a href="#Shadowsocks服务端安装" class="headerlink" title="Shadowsocks服务端安装"></a>Shadowsocks服务端安装</h3><h4 id="安装脚本（四种版本）"><a href="#安装脚本（四种版本）" class="headerlink" title="安装脚本（四种版本）"></a>安装脚本（四种版本）</h4><p>首先要明确一点，不管 Shadowsocks 有几种版本，都分为服务端和客户端，服务端是部署在服务器（VPS）上的，客户端是在你的电脑上使用的。 Shadowsocks 服务端大体上有 4 种版本，按照程序语言划分，分别为 Python ，libev ，Go ， Nodejs ，目前主流使用前 3 种，具体不同版本的feature可参考《<a href="https://github.com/shadowsocks/shadowsocks/wiki/Feature-Comparison-across-Different-Versions" title="不同ss版本比较" target="_blank" rel="noopener">Feature Comparison across Different Versions</a>》。</p>
+<p>这里我选用的是<a href="https://teddysun.com/" target="_blank" rel="noopener">秋水逸冰</a>制作的四合一一键安装脚本，选择其中的shadowsocks-libev（之前使用过感觉较好）。</p>
+<h4 id="关于该脚本（感谢作者了哇）"><a href="#关于该脚本（感谢作者了哇）" class="headerlink" title="关于该脚本（感谢作者了哇）"></a>关于该脚本（感谢作者了哇）</h4><p>1、一键安装 Shadowsocks-Python， ShadowsocksR， Shadowsocks-Go， Shadowsocks-libev 版（四选一）服务端； </p>
+<p>2、各版本的启动脚本及配置文件名不再重合； </p>
+<p>3、每次运行可安装一种版本，libev版本的多开需要多个实例；</p>
+<p> 4、支持以多次运行来安装多个版本，且各个版本可以共存（注意端口号需设成不同）； 5、若已安装多个版本，则卸载时也需多次运行（每次卸载一种）； </p>
+<h4 id="默认配置"><a href="#默认配置" class="headerlink" title="默认配置"></a>默认配置</h4><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Server IP</td>
+<td>默认VPS IP即可</td>
+</tr>
+<tr>
+<td>Server Port</td>
+<td>默认9000-19999之间随机</td>
+</tr>
+<tr>
+<td>password</td>
+<td>用户自己设定</td>
+</tr>
+<tr>
+<td>加密方式</td>
+<td>用户自己设定，libev默认aes-256-gcm</td>
+</tr>
+<tr>
+<td>协议</td>
+<td>用户自己设定，默认为origin</td>
+</tr>
+</tbody>
+</table>
+<h4 id="客户端下载（可能有时会需要fan-qiang）"><a href="#客户端下载（可能有时会需要fan-qiang）" class="headerlink" title="客户端下载（可能有时会需要fan qiang）"></a>客户端下载（可能有时会需要fan qiang）</h4><p>常规版 Windows 客户端</p>
+<p> <a href="https://github.com/shadowsocks/shadowsocks-windows/releases" target="_blank" rel="noopener"><a href="https://github.com/shadowsocks/shadowsocks-windows/releases" target="_blank" rel="noopener">https://github.com/shadowsocks/shadowsocks-windows/releases</a> </a></p>
+<p>ShadowsocksR 版 Windows 客户端</p>
+<p> <a href="https://github.com/shadowsocksrr/shadowsocksr-csharp/releases" target="_blank" rel="noopener"><a href="https://github.com/shadowsocksrr/shadowsocksr-csharp/releases" target="_blank" rel="noopener">https://github.com/shadowsocksrr/shadowsocksr-csharp/releases</a> </a></p>
+<h4 id="脚本安装"><a href="#脚本安装" class="headerlink" title="脚本安装"></a>脚本安装</h4><p>root用户登录，下载脚本并赋予执行权限，最后安装脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh</span><br><span class="line">chmod +x shadowsocks-all.sh</span><br><span class="line">./shadowsocks-all.sh 2&gt;&amp;1 | tee shadowsocks-all.log</span><br></pre></td></tr></table></figure>
+<p><img src="/shadowsocks_install.html/select_version.png" alt="1545819349492"></p>
+<p>随后根据脚本设置三个参数：</p>
+<p>1、连接密码<br>2、连接端口号（程序随机分配一个端口号，可自定义）<br>3、加密方法（建议选择第7个，aes-256-cfb）</p>
+<p><img src="/shadowsocks_install.html/set_pwd.png" alt="1545819377748"></p>
+<p><img src="/shadowsocks_install.html/set_port.png" alt="1545819771508"></p>
+<p><img src="/shadowsocks_install.html/set_method.png" alt="1545819881885"></p>
+<p>加密方式建议选择7) aes-256-cfb，然后剩下的就一路enter即可，大概需要几分钟，完成之后提示如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Congratulations, Shadowsocks-libev server install completed!</span><br><span class="line">Your Server IP        :  your-server-ip </span><br><span class="line">Your Server Port      :  your-server-port</span><br><span class="line">Your Password         :  your-password </span><br><span class="line">Your Encryption Method:  your-encryption-method </span><br><span class="line"></span><br><span class="line">Your QR Code: (For Shadowsocks Windows, OSX, Android and iOS clients)</span><br><span class="line"> ss://YWVzLTI1Ni1jZmI6ZHBjMTk5NHNwYXJrQDE3Mi45Ni4yMjQuMjEyOjg5ODk= </span><br><span class="line">Your QR Code has been saved as a PNG file path:</span><br><span class="line"> /root/shadowsocsks/shadowsocks_libev_qr.png </span><br><span class="line"></span><br><span class="line">Welcome to visit: https://teddysun.com/486.html</span><br><span class="line">Enjoy it!</span><br></pre></td></tr></table></figure>
+<h4 id="卸载方法"><a href="#卸载方法" class="headerlink" title="卸载方法"></a>卸载方法</h4><p>如果上述选择过程中按错或者想重新安装，使用root用户登录到脚本的位置运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./shadowsocks-all.sh uninstall</span><br></pre></td></tr></table></figure>
+<h4 id="参数方式启动脚本"><a href="#参数方式启动脚本" class="headerlink" title="参数方式启动脚本"></a>参数方式启动脚本</h4><p>安装完成之后默认shadowsocks-libev是开启启动的</p>
+<p>启动脚本后面的参数含义，从左至右依次为：启动，停止，重启，查看状态。</p>
+<table>
+<thead>
+<tr>
+<th>版本</th>
+<th>脚本位置</th>
+<th>启动/停止</th>
+<th>重启</th>
+<th>查看状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shadowsocks-Python</td>
+<td>/etc/init.d/shadowsocks-python</td>
+<td>start/stop</td>
+<td>restart</td>
+<td>status</td>
+</tr>
+<tr>
+<td>ShadowsocksR</td>
+<td>/etc/init.d/shadowsocks-r</td>
+<td>start/stop</td>
+<td>restart</td>
+<td>status</td>
+</tr>
+<tr>
+<td>Shadowsocks-Go</td>
+<td>/etc/init.d/shadowsocks-go</td>
+<td>start/stop</td>
+<td>restart</td>
+<td>status</td>
+</tr>
+<tr>
+<td>Shadowsocks-libev</td>
+<td>/etc/init.d/shadowsocks-libev</td>
+<td>start/stop</td>
+<td>restart</td>
+<td>status</td>
+</tr>
+</tbody>
+</table>
+<h4 id="各个版本配置文件位置（默认）"><a href="#各个版本配置文件位置（默认）" class="headerlink" title="各个版本配置文件位置（默认）"></a>各个版本配置文件位置（默认）</h4><table>
+<thead>
+<tr>
+<th>Shadowsocks-Python 版：</th>
+<th>/etc/shadowsocks-python/config.json</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ShadowsocksR 版：</td>
+<td>/etc/shadowsocks-r/config.json</td>
+</tr>
+<tr>
+<td>Shadowsocks-Go 版：</td>
+<td>/etc/shadowsocks-go/config.json</td>
+</tr>
+<tr>
+<td>Shadowsocks-libev 版：</td>
+<td>/etc/shadowsocks-libev/config.json</td>
+</tr>
+</tbody>
+</table>
+<h3 id="速度测试"><a href="#速度测试" class="headerlink" title="速度测试"></a>速度测试</h3><p><img src="/shadowsocks_install.html/speed_bbr.png" alt="1545822424646"></p>
+<p>教育网情况下测试4K视频最快是35139kbps</p>
+<p><img src="/shadowsocks_install.html/speed_ovz.png" alt="1545822491223"></p>
+<p>原先的openVZ VPS+finalSpeed加速 速度一直保持在35595kbps，稍微好于bbr加速版的ss</p>
+<p><img src="/shadowsocks_install.html/speed_mobile.jpg" alt="手机测试"></p>
+<p>移动端测试一下,1080p也可以运行流畅，运营商是中国联通，相较于之前的VPS手机上的体验好了不少（ps：手机开了ss客户端之后发热严重，iphone7 plus）</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>虽然没赶上黑五买到39.99的GIA，而且相对花费较之前的CN2贵了点，但是搬瓦工提供的内置bbr还是免去了很多麻烦，尤其是内和不兼容升级内核的问题，速度方面目前在学校的感觉还可以，之后再在其他网络环境下进行测试更新，总体来说安装一个shadowSocks服务端还是很方便的一件事，感谢大佬的一键安装脚本。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>大佬， 赏一个吧 ~~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="杜鹏程 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="杜鹏程 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    杜鹏程
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://dpcfury.github.io/shadowsocks_install.html/" title="搬瓦工openVZ转KVM，ss安装与加速测试">https://dpcfury.github.io/shadowsocks_install.html/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ss安装/" rel="tag"><i class="fa fa-tag"></i> ss安装</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/HashMap_HashSet_diff.html/" rel="next" title="HashMap与HashSet--Java">
+                <i class="fa fa-chevron-left"></i> HashMap与HashSet--Java
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/KVM_FinalSpeed.html/" rel="prev" title="搬瓦工KVM安装FinalSpeed优化测试">
+                搬瓦工KVM安装FinalSpeed优化测试 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="杜鹏程" />
+            
+              <p class="site-author-name" itemprop="name">杜鹏程</p>
+              <p class="site-description motion-element" itemprop="description">live life to the fullest</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/dpcfury" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:dpcspark@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#VPS购买与系统安装"><span class="nav-number">1.</span> <span class="nav-text">VPS购买与系统安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#机房选择"><span class="nav-number">1.1.</span> <span class="nav-text">机房选择</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统安装"><span class="nav-number">1.2.</span> <span class="nav-text">系统安装</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shadowsocks服务端安装"><span class="nav-number">2.</span> <span class="nav-text">Shadowsocks服务端安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装脚本（四种版本）"><span class="nav-number">2.1.</span> <span class="nav-text">安装脚本（四种版本）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于该脚本（感谢作者了哇）"><span class="nav-number">2.2.</span> <span class="nav-text">关于该脚本（感谢作者了哇）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#默认配置"><span class="nav-number">2.3.</span> <span class="nav-text">默认配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#客户端下载（可能有时会需要fan-qiang）"><span class="nav-number">2.4.</span> <span class="nav-text">客户端下载（可能有时会需要fan qiang）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#脚本安装"><span class="nav-number">2.5.</span> <span class="nav-text">脚本安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#卸载方法"><span class="nav-number">2.6.</span> <span class="nav-text">卸载方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参数方式启动脚本"><span class="nav-number">2.7.</span> <span class="nav-text">参数方式启动脚本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#各个版本配置文件位置（默认）"><span class="nav-number">2.8.</span> <span class="nav-text">各个版本配置文件位置（默认）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#速度测试"><span class="nav-number">3.</span> <span class="nav-text">速度测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=86 src="//music.163.com/outchain/player?type=2&id=25867002&auto=1&height=66">
+    </iframe>
+</div>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">杜鹏程</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>本站访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'OKFVMdpRBgmwiwV45Muiamn4-gzGzoHsz',
+        appKey: 'GDDN79LXua3VhpCOIy4jpj9e',
+        placeholder: '',
+        avatar:'retro',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("OKFVMdpRBgmwiwV45Muiamn4-gzGzoHsz", "GDDN79LXua3VhpCOIy4jpj9e");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
