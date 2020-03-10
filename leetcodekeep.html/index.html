@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="leetcode,easy," />
 
 
 
@@ -88,17 +88,18 @@
 
 
 
-<meta name="description" content="n多天不再刷题，就做了道简单的还吭哧吭哧，这样下去不好">
+<meta name="description" content="13. Roman to Integer这道题其实有几个很精妙的解法，下面自己做的是一种很傻瓜式的方式">
+<meta name="keywords" content="leetcode,easy">
 <meta property="og:type" content="article">
-<meta property="og:title" content="重拾leetcode">
+<meta property="og:title" content="leetcode[13] roman to integer">
 <meta property="og:url" content="https://dpcfury.github.io/leetcodekeep.html/index.html">
 <meta property="og:site_name" content="DPC&#39;s Blog">
-<meta property="og:description" content="n多天不再刷题，就做了道简单的还吭哧吭哧，这样下去不好">
+<meta property="og:description" content="13. Roman to Integer这道题其实有几个很精妙的解法，下面自己做的是一种很傻瓜式的方式">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-25T15:10:11.892Z">
+<meta property="og:updated_time" content="2020-02-29T13:20:51.047Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="重拾leetcode">
-<meta name="twitter:description" content="n多天不再刷题，就做了道简单的还吭哧吭哧，这样下去不好">
+<meta name="twitter:title" content="leetcode[13] roman to integer">
+<meta name="twitter:description" content="13. Roman to Integer这道题其实有几个很精妙的解法，下面自己做的是一种很傻瓜式的方式">
 
 
 
@@ -134,7 +135,7 @@
 
 
 
-  <title>重拾leetcode | DPC's Blog</title>
+  <title>leetcode[13] roman to integer | DPC's Blog</title>
   
 
 
@@ -298,7 +299,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">重拾leetcode</h1>
+          <h1 class="post-title" itemprop="name headline">leetcode[13] roman to integer</h1>
         
 
         <div class="post-meta">
@@ -321,6 +322,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -338,7 +361,7 @@
 
           
           
-             <span id="/leetcodekeep.html/" class="leancloud_visitors" data-flag-title="重拾leetcode">
+             <span id="/leetcodekeep.html/" class="leancloud_visitors" data-flag-title="leetcode[13] roman to integer">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -368,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  291
+                  449
                 </span>
               
 
@@ -384,7 +407,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -406,8 +429,8 @@
 
       
         <blockquote>
-<p>n多天不再刷题，就做了道简单的还吭哧吭哧，这样下去不好<br><a id="more"></a></p>
-<h4 id="13-Roman-to-Integer"><a href="#13-Roman-to-Integer" class="headerlink" title="13. Roman to Integer"></a><a href="https://leetcode.com/problems/roman-to-integer/" target="_blank" rel="noopener">13. Roman to Integer</a></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">romanToInt</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        Map&lt;String, Integer&gt; index = <span class="keyword">new</span> HashMap&lt;String, Integer&gt;();</span><br><span class="line">        index.put(<span class="string">"I"</span>, <span class="number">1</span>);</span><br><span class="line">        index.put(<span class="string">"V"</span>, <span class="number">5</span>);</span><br><span class="line">        index.put(<span class="string">"X"</span>, <span class="number">10</span>);</span><br><span class="line">        index.put(<span class="string">"L"</span>, <span class="number">50</span>);</span><br><span class="line">        index.put(<span class="string">"C"</span>, <span class="number">100</span>);</span><br><span class="line">        index.put(<span class="string">"D"</span>, <span class="number">500</span>);</span><br><span class="line">        index.put(<span class="string">"M"</span>, <span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 特殊的组合</span></span><br><span class="line">        index.put(<span class="string">"IV"</span>, <span class="number">4</span>);</span><br><span class="line">        index.put(<span class="string">"IX"</span>, <span class="number">9</span>);</span><br><span class="line">        index.put(<span class="string">"XL"</span>, <span class="number">40</span>);</span><br><span class="line">        index.put(<span class="string">"XC"</span>, <span class="number">90</span>);</span><br><span class="line">        index.put(<span class="string">"CD"</span>, <span class="number">400</span>);</span><br><span class="line">        index.put(<span class="string">"CM"</span>, <span class="number">900</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">char</span>[] numbers = s.toCharArray();</span><br><span class="line">        <span class="keyword">if</span> (numbers.length == <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> index.get(s);</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> current = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; numbers.length) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i == numbers.length - <span class="number">1</span>) &#123;</span><br><span class="line">                result += index.get(String.valueOf(numbers[i]));</span><br><span class="line">                i++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="comment">//                System.out.println("当前numbers[i]的值为：" + String.valueOf(numbers[i]));</span></span><br><span class="line">                <span class="keyword">int</span> x = index.get(String.valueOf(numbers[i]));</span><br><span class="line">                <span class="keyword">int</span> y = index.get(String.valueOf(numbers[i + <span class="number">1</span>]));</span><br><span class="line">                <span class="keyword">int</span> xy = index.get(s.substring(i, i + <span class="number">2</span>)) != <span class="keyword">null</span> ? index.get(s.substring(i, i + <span class="number">2</span>)) : <span class="number">0</span>;</span><br><span class="line"><span class="comment">//                System.out.println("当前x的值为：" + x);</span></span><br><span class="line"><span class="comment">//                System.out.println("当前y的值为：" + y);</span></span><br><span class="line"><span class="comment">//                System.out.println("当前xy的值为：" + xy);</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (xy &gt; x &amp;&amp; xy &lt; y) &#123;</span><br><span class="line">                    current = xy;</span><br><span class="line">                    result += current;</span><br><span class="line">                    i += <span class="number">2</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    result += x;</span><br><span class="line">                    current = x;</span><br><span class="line">                    i++;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://leetcode.com/problems/roman-to-integer/" target="_blank" rel="noopener">13. Roman to Integer</a><br>这道题其实有几个很精妙的解法，下面自己做的是一种很傻瓜式的方式<br><a id="more"></a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">romanToInt</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        Map&lt;String, Integer&gt; index = <span class="keyword">new</span> HashMap&lt;String, Integer&gt;();</span><br><span class="line">        index.put(<span class="string">"I"</span>, <span class="number">1</span>);</span><br><span class="line">        index.put(<span class="string">"V"</span>, <span class="number">5</span>);</span><br><span class="line">        index.put(<span class="string">"X"</span>, <span class="number">10</span>);</span><br><span class="line">        index.put(<span class="string">"L"</span>, <span class="number">50</span>);</span><br><span class="line">        index.put(<span class="string">"C"</span>, <span class="number">100</span>);</span><br><span class="line">        index.put(<span class="string">"D"</span>, <span class="number">500</span>);</span><br><span class="line">        index.put(<span class="string">"M"</span>, <span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 特殊的组合</span></span><br><span class="line">        index.put(<span class="string">"IV"</span>, <span class="number">4</span>);</span><br><span class="line">        index.put(<span class="string">"IX"</span>, <span class="number">9</span>);</span><br><span class="line">        index.put(<span class="string">"XL"</span>, <span class="number">40</span>);</span><br><span class="line">        index.put(<span class="string">"XC"</span>, <span class="number">90</span>);</span><br><span class="line">        index.put(<span class="string">"CD"</span>, <span class="number">400</span>);</span><br><span class="line">        index.put(<span class="string">"CM"</span>, <span class="number">900</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">char</span>[] numbers = s.toCharArray();</span><br><span class="line">        <span class="keyword">if</span> (numbers.length == <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> index.get(s);</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> current = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &lt; numbers.length) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i == numbers.length - <span class="number">1</span>) &#123;</span><br><span class="line">                result += index.get(String.valueOf(numbers[i]));</span><br><span class="line">                i++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="comment">//                System.out.println("当前numbers[i]的值为：" + String.valueOf(numbers[i]));</span></span><br><span class="line">                <span class="keyword">int</span> x = index.get(String.valueOf(numbers[i]));</span><br><span class="line">                <span class="keyword">int</span> y = index.get(String.valueOf(numbers[i + <span class="number">1</span>]));</span><br><span class="line">                <span class="keyword">int</span> xy = index.get(s.substring(i, i + <span class="number">2</span>)) != <span class="keyword">null</span> ? index.get(s.substring(i, i + <span class="number">2</span>)) : <span class="number">0</span>;</span><br><span class="line"><span class="comment">//                System.out.println("当前x的值为：" + x);</span></span><br><span class="line"><span class="comment">//                System.out.println("当前y的值为：" + y);</span></span><br><span class="line"><span class="comment">//                System.out.println("当前xy的值为：" + xy);</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (xy &gt; x &amp;&amp; xy &lt; y) &#123;</span><br><span class="line">                    current = xy;</span><br><span class="line">                    result += current;</span><br><span class="line">                    i += <span class="number">2</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    result += x;</span><br><span class="line">                    current = x;</span><br><span class="line">                    i++;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>再来一个python的解法，其实更简便，就是针对规则对代码结构进行优化，不用做这么多的映射<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">romanToInt</span><span class="params">(self, s: str)</span> -&gt; int:</span></span><br><span class="line">      romanToIntMap = &#123;</span><br><span class="line">          <span class="string">"I"</span>: <span class="number">1</span>,</span><br><span class="line">          <span class="string">"V"</span>: <span class="number">5</span>,</span><br><span class="line">          <span class="string">"X"</span>: <span class="number">10</span>,</span><br><span class="line">          <span class="string">"L"</span>: <span class="number">50</span>,</span><br><span class="line">          <span class="string">"C"</span>: <span class="number">100</span>,</span><br><span class="line">          <span class="string">"D"</span>: <span class="number">500</span>,</span><br><span class="line">          <span class="string">"M"</span>: <span class="number">1000</span></span><br><span class="line">      &#125;</span><br><span class="line">      value = <span class="number">0</span></span><br><span class="line">      tracker = [s[<span class="number">0</span>]]</span><br><span class="line">      <span class="keyword">for</span> c <span class="keyword">in</span> s: </span><br><span class="line">        <span class="keyword">if</span> (c == <span class="string">"V"</span> <span class="keyword">or</span> c == <span class="string">"X"</span>) <span class="keyword">and</span> (tracker[<span class="number">-1</span>] == <span class="string">"I"</span>):</span><br><span class="line">          value += romanToIntMap[c] - <span class="number">2</span> * romanToIntMap[tracker[<span class="number">-1</span>]]</span><br><span class="line">        <span class="keyword">elif</span> (c == <span class="string">"L"</span> <span class="keyword">or</span> c == <span class="string">"C"</span>) <span class="keyword">and</span> (tracker[<span class="number">-1</span>] == <span class="string">"X"</span>):</span><br><span class="line">          value += romanToIntMap[c] - <span class="number">2</span> * romanToIntMap[tracker[<span class="number">-1</span>]]</span><br><span class="line">        <span class="keyword">elif</span> (c == <span class="string">"D"</span> <span class="keyword">or</span> c == <span class="string">"M"</span>) <span class="keyword">and</span> (tracker[<span class="number">-1</span>] == <span class="string">"C"</span>):</span><br><span class="line">          value += romanToIntMap[c] - <span class="number">2</span> * romanToIntMap[tracker[<span class="number">-1</span>]]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">          value += romanToIntMap[c]</span><br><span class="line">        tracker.append(c)</span><br><span class="line">      <span class="keyword">return</span> value</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 
       
@@ -458,7 +481,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://dpcfury.github.io/leetcodekeep.html/" title="重拾leetcode">https://dpcfury.github.io/leetcodekeep.html/</a>
+    <a href="https://dpcfury.github.io/leetcodekeep.html/" title="leetcode[13] roman to integer">https://dpcfury.github.io/leetcodekeep.html/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -470,6 +493,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag"><i class="fa fa-tag"></i> leetcode</a>
+          
+            <a href="/tags/easy/" rel="tag"><i class="fa fa-tag"></i> easy</a>
+          
+        </div>
       
 
       
@@ -489,6 +520,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/count_and_say.html/" rel="prev" title="leetcode[38] count and say">
+                leetcode[38] count and say <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -543,17 +578,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -572,7 +598,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -583,7 +609,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -594,7 +620,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -640,22 +666,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#13-Roman-to-Integer"><span class="nav-number">1.</span> <span class="nav-text">13. Roman to Integer</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

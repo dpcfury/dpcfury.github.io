@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="python多线程," />
+  <meta name="keywords" content="leetcode,easy," />
 
 
 
@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="背景: 项目中有个需求，在某一个api请求的处理逻辑中，将收到的数据信息写入文件，每次写入一条。在并发情况下存在文件读写覆盖问题，因此需要对写操作进行互斥。">
-<meta name="keywords" content="python多线程">
+<meta name="description" content="14. Longest Common Prefix这题比较有意思，我开始给出的算法属于很直接的那种，针对规则编码，其实这个问题可以进行总结和分析，会有更深的收获">
+<meta name="keywords" content="leetcode,easy">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python多线程同步">
-<meta property="og:url" content="https://dpcfury.github.io/python_concurrent_lock.html/index.html">
+<meta property="og:title" content="leetcode[14]longeest common prefix">
+<meta property="og:url" content="https://dpcfury.github.io/leetcode-longest-common-prefix.html/index.html">
 <meta property="og:site_name" content="DPC&#39;s Blog">
-<meta property="og:description" content="背景: 项目中有个需求，在某一个api请求的处理逻辑中，将收到的数据信息写入文件，每次写入一条。在并发情况下存在文件读写覆盖问题，因此需要对写操作进行互斥。">
+<meta property="og:description" content="14. Longest Common Prefix这题比较有意思，我开始给出的算法属于很直接的那种，针对规则编码，其实这个问题可以进行总结和分析，会有更深的收获">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-01-01T07:48:01.220Z">
+<meta property="og:updated_time" content="2020-03-10T13:09:49.492Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python多线程同步">
-<meta name="twitter:description" content="背景: 项目中有个需求，在某一个api请求的处理逻辑中，将收到的数据信息写入文件，每次写入一条。在并发情况下存在文件读写覆盖问题，因此需要对写操作进行互斥。">
+<meta name="twitter:title" content="leetcode[14]longeest common prefix">
+<meta name="twitter:description" content="14. Longest Common Prefix这题比较有意思，我开始给出的算法属于很直接的那种，针对规则编码，其实这个问题可以进行总结和分析，会有更深的收获">
 
 
 
@@ -129,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="https://dpcfury.github.io/python_concurrent_lock.html/"/>
+  <link rel="canonical" href="https://dpcfury.github.io/leetcode-longest-common-prefix.html/"/>
 
 
 
 
 
-  <title>python多线程同步 | DPC's Blog</title>
+  <title>leetcode[14]longeest common prefix | DPC's Blog</title>
   
 
 
@@ -282,7 +282,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://dpcfury.github.io/python_concurrent_lock.html/">
+    <link itemprop="mainEntityOfPage" href="https://dpcfury.github.io/leetcode-longest-common-prefix.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="杜鹏程">
@@ -299,7 +299,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">python多线程同步</h1>
+          <h1 class="post-title" itemprop="name headline">leetcode[14]longeest common prefix</h1>
         
 
         <div class="post-meta">
@@ -311,8 +311,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-29T22:12:04+08:00">
-                2019-12-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-29T21:29:02+08:00">
+                2020-02-29
               </time>
             
 
@@ -322,6 +322,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -330,8 +352,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/python_concurrent_lock.html/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/python_concurrent_lock.html/" itemprop="commentCount"></span>
+                <a href="/leetcode-longest-common-prefix.html/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/leetcode-longest-common-prefix.html/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -339,7 +361,7 @@
 
           
           
-             <span id="/python_concurrent_lock.html/" class="leancloud_visitors" data-flag-title="python多线程同步">
+             <span id="/leetcode-longest-common-prefix.html/" class="leancloud_visitors" data-flag-title="leetcode[14]longeest common prefix">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -369,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,200
+                  474
                 </span>
               
 
@@ -385,7 +407,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  3
                 </span>
               
             </div>
@@ -407,49 +429,17 @@
 
       
         <blockquote>
-<p><strong>背景</strong>: 项目中有个需求，在某一个api请求的处理逻辑中，将收到的数据信息写入文件，每次写入一条。在并发情况下存在文件读写覆盖问题，因此需要对写操作进行互斥。</p>
+<p><a href="https://leetcode.com/problems/longest-common-prefix/" target="_blank" rel="noopener">14. Longest Common Prefix</a><br>这题比较有意思，我开始给出的算法属于很直接的那种，针对规则编码，其实这个问题可以进行总结和分析，会有更深的收获<br><a id="more"></a></p>
 </blockquote>
-<a id="more"></a>
-<h2 id="1-问题复现"><a href="#1-问题复现" class="headerlink" title="1.问题复现"></a>1.问题复现</h2><h3 id="1-1-复现工具："><a href="#1-1-复现工具：" class="headerlink" title="1.1 复现工具："></a>1.1 复现工具：</h3><ul>
-<li>apache jmeter（推荐）</li>
-<li>postman runer<h3 id="1-2-复现方法"><a href="#1-2-复现方法" class="headerlink" title="1.2 复现方法"></a>1.2 复现方法</h3></li>
-<li>同一时间段发送100次请求<ul>
-<li>例如：10秒中之内发送100次请求</li>
-</ul>
-</li>
-<li>瞬时发送100次请求<ul>
-<li>例如：无延迟发送100次请求<br>请求处理完成，统计文件中的数据条数</li>
-</ul>
-</li>
-</ul>
-<h3 id="1-3-复现结果"><a href="#1-3-复现结果" class="headerlink" title="1.3 复现结果"></a>1.3 复现结果</h3><p>为方便统计，简单用一个python脚本做为统计：</p>
-<h4 id="1-3-1-统计脚本"><a href="#1-3-1-统计脚本" class="headerlink" title="1.3.1 统计脚本"></a>1.3.1 统计脚本</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- encoding:utf-8 -*-</span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'example_file'</span>, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        items = f.readlines()</span><br><span class="line"> </span><br><span class="line">    print(<span class="string">"数据条数:&#123;num&#125;"</span>.format(num=len(items)))</span><br></pre></td></tr></table></figure>
-<h4 id="1-3-2-结果"><a href="#1-3-2-结果" class="headerlink" title="1.3.2 结果"></a>1.3.2 结果</h4><p>conslusion：数据条数均小于100</p>
-<h2 id="2-解决方案"><a href="#2-解决方案" class="headerlink" title="2.解决方案"></a>2.解决方案</h2><p>在并发情况下，文件是作为一种竞争资源进行访问，因此对文件的写操作需要放在临界区，进入临界区的线程才有资格对文件进行实际的写操作。提供互斥访问文件方式，提供临界区的方式在众多变成语言中都提供了锁的方式，下面看看python中有哪些具体的实现方式能够满足需求。</p>
-<h3 id="2-1-threading-lock"><a href="#2-1-threading-lock" class="headerlink" title="2.1 threading.lock"></a>2.1 threading.lock</h3><h4 id="2-1-1-原理"><a href="#2-1-1-原理" class="headerlink" title="2.1.1 原理"></a>2.1.1 原理</h4><p>python提供的线程间同步机制，在访问临界区资源的过程中，通过加锁的方式实现互斥访问，没有获取锁的线程将被阻塞，直至当前获取锁的线程完成机器信息写入、释放锁。</p>
-<h4 id="2-1-2-实现方式"><a href="#2-1-2-实现方式" class="headerlink" title="2.1.2 实现方式"></a>2.1.2 实现方式</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading</span><br><span class="line">mutex = threading.Lock()</span><br><span class="line">file_path = <span class="string">"example_file"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(self, request)</span>:</span> <span class="comment"># 请求处理方法</span></span><br><span class="line">    body = json.loeads(request.body)</span><br><span class="line">    register_item(body)</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">register_item</span><span class="params">(item)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> mutex:</span><br><span class="line">        <span class="keyword">with</span> open(file_path, <span class="string">'a'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            f.write(json.dumps(item))</span><br><span class="line">            f.write(<span class="string">'\n'</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="2-1-3-缺陷"><a href="#2-1-3-缺陷" class="headerlink" title="2.1.3 缺陷"></a>2.1.3 缺陷</h4><p>在单纯的多线程情况下，这种互斥加锁的访问方式能够解决同步的问题，缺点这种互斥是阻塞的，并发请求过大的情况下，会造成过多的线程处于阻塞状态，系统的多线程模型可能会出现意想不到的错误提示。<br></p>
-<p>此外，项目的运行方式并不是简单的多线程，而是多进程+多线程模式，threading.Locak()只能在一个进程孵化的子线程之间实现资源的互斥访问，但是对不同进程之间并不能够做约束，所以无法满足项目实际需求。</p>
-<h3 id="2-2-fcntl-flock"><a href="#2-2-fcntl-flock" class="headerlink" title="2.2 fcntl.flock"></a>2.2 fcntl.flock</h3><h4 id="2-2-1-原理"><a href="#2-2-1-原理" class="headerlink" title="2.2.1 原理"></a>2.2.1 原理</h4><p>当涉及到多个进程向同一个文件write(或者read)的情况，如果几个进程同时都对这个文件进行写操作，那么文件的内容就会变得非常混乱，这个时候文件锁就派上用场了，python中的文件锁，可以保证同时只有一个进程写文件，目前使用的是fcntl这个库，它实际上为 Unix上的ioctl，flock和fcntl 函数提供了一个接口。python通过调用fcntl.flock()函数对文件加锁。</p>
-<p>常用锁类型</p>
-<ul>
-<li>LOCK_SH： 表示要创建一个共享锁，在任意时间内，一个文件的共享锁可以被多个进程拥有</li>
-<li>LOCK_EX： 表示创建一个排他锁，在任意时间内，一个文件的排他锁只能被一个进程拥有</li>
-</ul>
-<p>操作注意点</p>
-<ol>
-<li>对于文件的 close() 操作会使文件锁失效；</li>
-<li>同理，进程结束后文件锁失效；</li>
-<li>flock() 的 LOCK_EX是“劝告锁”，系统内核不会强制检查锁的状态，需要在代码中进行文件操作的地方显式检查才能生效。（一个进程中使用了acquire显示检查，另一个进程没有进行flock检查，可以直接读写文件）</li>
-</ol>
-<h4 id="2-2-2-实现方式"><a href="#2-2-2-实现方式" class="headerlink" title="2.2.2 实现方式"></a>2.2.2 实现方式</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> fcntl</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line">file_path = <span class="string">"example_file"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span><span class="params">(self, request)</span>:</span></span><br><span class="line">        body = json.loads(request.body)</span><br><span class="line">        register_item(body)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">register_item</span><span class="params">(item)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open(file_path, <span class="string">'a'</span>) <span class="keyword">as</span> f: <span class="comment"># 文件关闭，锁也自动释放</span></span><br><span class="line">        fcntl.flock(f.fileno(), fcntl.LOCK_EX)  <span class="comment"># fileno 获取的是打开文件的文件描述符</span></span><br><span class="line">        f.write(json.dumps(item))</span><br><span class="line">        f.write(<span class="string">'\n'</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="3-结论"><a href="#3-结论" class="headerlink" title="3. 结论"></a>3. 结论</h2><p>并发情况下对文件的读写操作，需要结合项目实际的需求，多线程和多进程的运行方式入手，划出临界区，选择合适的并发控制方案。此外，可以了解jmeter 工具做个并发测试，能够更深入理解其中的过程，包括处理的时间，线程池的工作方式。<br>TODO ：</p>
-<ul>
-<li>GIL 了解</li>
-<li>multiprocessing 了解</li>
-<li>对比Java中的加锁方式</li>
-<li>对比python中的线程池和Java中的线程池</li>
-</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">longestCommonPrefix</span><span class="params">(String[] strs)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        String result = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">if</span> (strs.length == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        <span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">while</span> (flag) &#123;</span><br><span class="line">            <span class="keyword">char</span> c = i &lt; strs[<span class="number">0</span>].length() ? strs[<span class="number">0</span>].charAt(i) : <span class="string">' '</span>;</span><br><span class="line">            <span class="keyword">for</span> (String s : strs) &#123;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (i == s.length() || s.charAt(i) != c) &#123;</span><br><span class="line">                    flag = <span class="keyword">false</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (flag)</span><br><span class="line">                result = result + c;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>官方解法</p>
+<h4 id="approach-1-Horizontal-Scan"><a href="#approach-1-Horizontal-Scan" class="headerlink" title="approach 1. Horizontal Scan"></a>approach 1. Horizontal Scan</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> String <span class="title">longestCommonPrefix</span><span class="params">(String[] strs)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (strs.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">    String prefix = strs[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; strs.length; i++)</span><br><span class="line">        <span class="keyword">while</span> (strs[i].indexOf(prefix) != <span class="number">0</span>) &#123;</span><br><span class="line">            prefix = prefix.substring(<span class="number">0</span>, prefix.length() - <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span> (prefix.isEmpty()) <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">return</span> prefix;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>比较形式化的防范，从approach1 的LCP公式衍生而来</p>
+<h4 id="approach-2-Divide-and-Conquer"><a href="#approach-2-Divide-and-Conquer" class="headerlink" title="approach 2. Divide and Conquer"></a>approach 2. Divide and Conquer</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">longestCommonPrefix</span><span class="params">(String[] strs)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (strs == <span class="keyword">null</span> || strs.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>;    </span><br><span class="line">        <span class="keyword">return</span> longestCommonPrefix(strs, <span class="number">0</span> , strs.length - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> String <span class="title">longestCommonPrefix</span><span class="params">(String[] strs, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l == r) &#123;</span><br><span class="line">        <span class="keyword">return</span> strs[l];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = (l + r)/<span class="number">2</span>;</span><br><span class="line">        String lcpLeft =   longestCommonPrefix(strs, l , mid);</span><br><span class="line">        String lcpRight =  longestCommonPrefix(strs, mid + <span class="number">1</span>,r);</span><br><span class="line">        <span class="keyword">return</span> commonPrefix(lcpLeft, lcpRight);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">String <span class="title">commonPrefix</span><span class="params">(String left,String right)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> min = Math.min(left.length(), right.length());       </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; min; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> ( left.charAt(i) != right.charAt(i) )</span><br><span class="line">            <span class="keyword">return</span> left.substring(<span class="number">0</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> left.substring(<span class="number">0</span>, min);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>更脱俗的一个解法是，利用binary search的思路，缩小搜索范围</p>
+<h4 id="approach-3-binary-search"><a href="#approach-3-binary-search" class="headerlink" title="approach 3. binary search"></a>approach 3. binary search</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">longestCommonPrefix</span><span class="params">(String[] strs)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (strs == <span class="keyword">null</span> || strs.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">    <span class="keyword">int</span> minLen = Integer.MAX_VALUE;</span><br><span class="line">    <span class="keyword">for</span> (String str : strs)</span><br><span class="line">        minLen = Math.min(minLen, str.length());</span><br><span class="line">    <span class="keyword">int</span> low = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> high = minLen;</span><br><span class="line">    <span class="keyword">while</span> (low &lt;= high) &#123;</span><br><span class="line">        <span class="keyword">int</span> middle = (low + high) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (isCommonPrefix(strs, middle))</span><br><span class="line">            low = middle + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            high = middle - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> strs[<span class="number">0</span>].substring(<span class="number">0</span>, (low + high) / <span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isCommonPrefix</span><span class="params">(String[] strs, <span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">    String str1 = strs[<span class="number">0</span>].substring(<span class="number">0</span>,len);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; strs.length; i++)</span><br><span class="line">        <span class="keyword">if</span> (!strs[i].startsWith(str1))</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
 
       
     </div>
@@ -499,7 +489,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://dpcfury.github.io/python_concurrent_lock.html/" title="python多线程同步">https://dpcfury.github.io/python_concurrent_lock.html/</a>
+    <a href="https://dpcfury.github.io/leetcode-longest-common-prefix.html/" title="leetcode[14]longeest common prefix">https://dpcfury.github.io/leetcode-longest-common-prefix.html/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -514,7 +504,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/python多线程/" rel="tag"><i class="fa fa-tag"></i> python多线程</a>
+            <a href="/tags/leetcode/" rel="tag"><i class="fa fa-tag"></i> leetcode</a>
+          
+            <a href="/tags/easy/" rel="tag"><i class="fa fa-tag"></i> easy</a>
           
         </div>
       
@@ -527,8 +519,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Leetcode.html/" rel="next" title="Leetcode笔记">
-                <i class="fa fa-chevron-left"></i> Leetcode笔记
+              <a href="/count_and_say.html/" rel="next" title="leetcode[38] count and say">
+                <i class="fa fa-chevron-left"></i> leetcode[38] count and say
               </a>
             
           </div>
@@ -536,10 +528,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/null.html/" rel="prev" title="curtin装机流">
-                curtin装机流 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -701,7 +689,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-问题复现"><span class="nav-number">1.</span> <span class="nav-text">1.问题复现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-复现工具："><span class="nav-number">1.1.</span> <span class="nav-text">1.1 复现工具：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-复现方法"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 复现方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-复现结果"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 复现结果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-1-统计脚本"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.3.1 统计脚本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-2-结果"><span class="nav-number">1.3.2.</span> <span class="nav-text">1.3.2 结果</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-解决方案"><span class="nav-number">2.</span> <span class="nav-text">2.解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-threading-lock"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 threading.lock</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1-原理"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1.1 原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-2-实现方式"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.1.2 实现方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-3-缺陷"><span class="nav-number">2.1.3.</span> <span class="nav-text">2.1.3 缺陷</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-fcntl-flock"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 fcntl.flock</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-原理"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.2.1 原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-实现方式"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2.2 实现方式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-结论"><span class="nav-number">3.</span> <span class="nav-text">3. 结论</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#approach-1-Horizontal-Scan"><span class="nav-number">1.</span> <span class="nav-text">approach 1. Horizontal Scan</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#approach-2-Divide-and-Conquer"><span class="nav-number">2.</span> <span class="nav-text">approach 2. Divide and Conquer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#approach-3-binary-search"><span class="nav-number">3.</span> <span class="nav-text">approach 3. binary search</span></a></li></ol></div>
             
 
           </div>
