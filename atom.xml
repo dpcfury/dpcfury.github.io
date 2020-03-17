@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-03-11T12:50:28.213Z</updated>
+  <updated>2020-03-17T13:49:04.842Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcode[88] path-sum</title>
+    <link href="https://dpcfury.github.io/leetcode-path-sum.html/"/>
+    <id>https://dpcfury.github.io/leetcode-path-sum.html/</id>
+    <published>2020-03-17T13:44:21.000Z</published>
+    <updated>2020-03-17T13:49:04.842Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/path-sum/" target="_blank" rel="noopener">112. Path Sum</a><br> 这题属于Tree类最基本的题目，只要画好图，考虑好递归和边界即可<br><a id="more"></a></p></blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasPathSum</span><span class="params">(TreeNode root, <span class="keyword">int</span> sum)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (root.left == <span class="keyword">null</span> &amp;&amp; root.right == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> sum - root.val == <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/path-sum/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;112. Path Sum&lt;/a&gt;&lt;br&gt; 这题属于Tree类最基本的题目，只要画好图，考虑好递归和边界即可&lt;br&gt;&lt;/p&gt;&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
+    
+      <category term="tree" scheme="https://dpcfury.github.io/tags/tree/"/>
+    
+  </entry>
   
   <entry>
     <title>kolla运行docker服务</title>
