@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-03-17T13:49:04.842Z</updated>
+  <updated>2020-03-18T13:56:50.068Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -17,11 +17,39 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>leetcode[88] path-sum</title>
+    <title>leetcode[836] Rectangle Overlap</title>
+    <link href="https://dpcfury.github.io/leetcode-rectangl-overlap.html/"/>
+    <id>https://dpcfury.github.io/leetcode-rectangl-overlap.html/</id>
+    <published>2020-03-18T13:48:28.000Z</published>
+    <updated>2020-03-18T13:56:50.068Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/rectangle-overlap/" target="_blank" rel="noopener">836. Rectangle</a><br>给出两个矩形的左下角坐标，以及右上角坐标，判断两个矩形是否重叠，只要从横坐标和纵坐标构成的线段判断是否重叠，再做逻辑与运算，即能判断长方形是否重叠，只要整理好判断条件即可</p></blockquote><a id="more"></a><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isRectangleOverlap</span><span class="params">(<span class="keyword">int</span>[] rec1, <span class="keyword">int</span>[] rec2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> x1 = rec1[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> y1 = rec1[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> x2 = rec1[<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">int</span> y2 = rec1[<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> x11 = rec2[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> y11 = rec2[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> x22 = rec2[<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">int</span> y22 = rec2[<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">boolean</span> xOverlap = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">boolean</span> yOverlap = <span class="keyword">false</span>;</span><br><span class="line">        xOverlap = (x11 &gt;= x1 &amp;&amp; x11 &lt; x2) || (x22 &gt; x1 &amp;&amp; x22 &lt;= x2) || (x11 &lt;= x1 &amp;&amp; x22 &gt;= x2);</span><br><span class="line">        yOverlap = (y11 &gt;= y1 &amp;&amp; y11 &lt; y2) || (y22 &gt; y1 &amp;&amp; y22 &lt;= y2) || (y11 &lt;= y1 &amp;&amp; y22 &gt;= y2);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> xOverlap &amp;&amp; yOverlap;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><p>其实在这种判断条件比较多的情况下，可以看看是否可以用取反进行优化，比如，用判断x轴和y轴不重叠的条件，再取非：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isRectangleOverlap</span><span class="params">(<span class="keyword">int</span>[] rec1, <span class="keyword">int</span>[] rec2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> x1 = rec1[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> y1 = rec1[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> x2 = rec1[<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">int</span> y2 = rec1[<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> x11 = rec2[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> y11 = rec2[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> x22 = rec2[<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">int</span> y22 = rec2[<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">boolean</span> xOverlap = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">boolean</span> yOverlap = <span class="keyword">false</span>;</span><br><span class="line">        xOverlap = !(x22 &lt;= x1 || x11 &gt;= x2);</span><br><span class="line">        yOverlap = !(y22 &lt;= y1 || y11 &gt;= y2);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> xOverlap &amp;&amp; yOverlap;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/rectangle-overlap/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;836. Rectangle&lt;/a&gt;&lt;br&gt;给出两个矩形的左下角坐标，以及右上角坐标，判断两个矩形是否重叠，只要从横坐标和纵坐标构成的线段判断是否重叠，再做逻辑与运算，即能判断长方形是否重叠，只要整理好判断条件即可&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
+    
+      <category term="array" scheme="https://dpcfury.github.io/tags/array/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode[112] path-sum</title>
     <link href="https://dpcfury.github.io/leetcode-path-sum.html/"/>
     <id>https://dpcfury.github.io/leetcode-path-sum.html/</id>
     <published>2020-03-17T13:44:21.000Z</published>
-    <updated>2020-03-17T13:49:04.842Z</updated>
+    <updated>2020-03-18T13:59:47.987Z</updated>
     
     <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/path-sum/" target="_blank" rel="noopener">112. Path Sum</a><br> 这题属于Tree类最基本的题目，只要画好图，考虑好递归和边界即可<br><a id="more"></a></p></blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasPathSum</span><span class="params">(TreeNode root, <span class="keyword">int</span> sum)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (root.left == <span class="keyword">null</span> &amp;&amp; root.right == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> sum - root.val == <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
     
