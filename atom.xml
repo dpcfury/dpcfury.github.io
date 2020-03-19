@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-03-19T13:07:36.554Z</updated>
+  <updated>2020-03-19T13:30:10.033Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcode[100]Same Tree</title>
+    <link href="https://dpcfury.github.io/leetcode-same-tree.html/"/>
+    <id>https://dpcfury.github.io/leetcode-same-tree.html/</id>
+    <published>2020-03-19T13:25:56.000Z</published>
+    <updated>2020-03-19T13:30:10.033Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/same-tree/" target="_blank" rel="noopener">100. Same Tree</a><br>判断两颗二叉树是否完全相同，即对应位置的结构以及节点的值需要相同，才能判断为相同的书结构，这类问题第一印象就是递归，将问题拆分为左右子树的比较，再加边缘条件的判断，司思路很清晰。</p></blockquote><a id="more"></a><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSameTree</span><span class="params">(TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (p == <span class="keyword">null</span> &amp;&amp; q == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">       <span class="keyword">else</span> <span class="keyword">if</span> (p == <span class="keyword">null</span> || q == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">       <span class="keyword">else</span> <span class="keyword">if</span> (p.val == q.val) <span class="keyword">return</span> isSameTree(p.left, q.left) &amp;&amp; isSameTree(p.right, q.right);</span><br><span class="line">       <span class="keyword">else</span> <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/same-tree/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;100. Same Tree&lt;/a&gt;&lt;br&gt;判断两颗二叉树是否完全相同，即对应位置的结构以及节点的值需要相同，才能判断为相同的书结构，这类问题第一印象就是递归，将问题拆分为左右子树的比较，再加边缘条件的判断，司思路很清晰。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
+    
+      <category term="tree" scheme="https://dpcfury.github.io/tags/tree/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode[107]Binary Tree Level Order Travesal II</title>
