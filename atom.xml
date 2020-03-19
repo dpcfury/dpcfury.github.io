@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-03-19T13:30:10.033Z</updated>
+  <updated>2020-03-19T15:09:16.367Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcode[409]Longest Palindrome</title>
+    <link href="https://dpcfury.github.io/leetcode-longest-palindrome.html/"/>
+    <id>https://dpcfury.github.io/leetcode-longest-palindrome.html/</id>
+    <published>2020-03-19T15:01:25.000Z</published>
+    <updated>2020-03-19T15:09:16.367Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/longest-palindrome/" target="_blank" rel="noopener">409. Longrest Palindrome</a><br>给定一个字符串，计算其包含的字符可组成的最长回文字符串，主要是观察下规律，看如何用字符去组织回文字符串，针对单数的字符、双数的字符，应该如何处理。个人给出的代码其实很臃肿，可以优化的地方很多，往上有种bitwise的做法，不是很理解，暂且不放上来。</p></blockquote><a id="more"></a><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestPalindrome</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        HashMap&lt;Character, Integer&gt; count = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c : s.toCharArray()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (count.containsKey(c)) &#123;</span><br><span class="line">                <span class="keyword">int</span> n = count.get(c);</span><br><span class="line">                count.put(c, n + <span class="number">1</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                count.put(c, <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">boolean</span> once = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (Map.Entry&lt;Character, Integer&gt; entry : count.entrySet()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (entry.getValue() == <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (once) <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    num++;</span><br><span class="line">                    once = <span class="keyword">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">int</span> n = entry.getValue();</span><br><span class="line">                <span class="keyword">if</span> (n % <span class="number">2</span> == <span class="number">0</span>) num += n;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span> (once) &#123;</span><br><span class="line">                        num += (n - <span class="number">1</span>);</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        num += n;</span><br><span class="line">                        once=<span class="keyword">true</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> num;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/longest-palindrome/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;409. Longrest Palindrome&lt;/a&gt;&lt;br&gt;给定一个字符串，计算其包含的字符可组成的最长回文字符串，主要是观察下规律，看如何用字符去组织回文字符串，针对单数的字符、双数的字符，应该如何处理。个人给出的代码其实很臃肿，可以优化的地方很多，往上有种bitwise的做法，不是很理解，暂且不放上来。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
+    
+      <category term="array" scheme="https://dpcfury.github.io/tags/array/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode[100]Same Tree</title>
