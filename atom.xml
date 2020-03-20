@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-03-19T15:09:16.367Z</updated>
+  <updated>2020-03-20T13:56:25.105Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode.cn 最小的k个数</title>
+    <link href="https://dpcfury.github.io/leetcode-cn-k-smallest-num.html/"/>
+    <id>https://dpcfury.github.io/leetcode-cn-k-smallest-num.html/</id>
+    <published>2020-03-20T13:50:59.000Z</published>
+    <updated>2020-03-20T13:56:25.105Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/submissions/" target="_blank" rel="noopener">Leetcode中国每日一题</a>取自剑指offer<br>题目意思就是从一个一维数组中，找出k个最小的数，每次看到这个K，最容易想到的就是堆排序，通过构造大顶堆或小顶堆分别来找最小的k个数和最大的k个数。而Java中天生有支持堆排序的数据结构，PriorityQueue，只要指定K容量的堆，通过比较堆顶元素与当前数组遍历元素，如果小于堆顶，则堆顶出列，插入当前遍历元素，遍历完成之后，堆中的K个数即我们要找的最小K个数。</p></blockquote><a id="more"></a><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] getLeastNumbers(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> k) &#123;</span><br><span class="line">        <span class="keyword">int</span>[] result = &#123;&#125;;</span><br><span class="line">        <span class="keyword">if</span> (arr == <span class="keyword">null</span> || k &gt; arr.length || k == <span class="number">0</span>) <span class="keyword">return</span> result;</span><br><span class="line">        PriorityQueue&lt;Integer&gt; queue = <span class="keyword">new</span> PriorityQueue&lt;&gt;(k, <span class="keyword">new</span> Comparator&lt;Integer&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Integer o1, Integer o2)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> o2.compareTo(o1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (queue.size() != k) &#123;</span><br><span class="line">                queue.offer(arr[i]);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (arr[i] &lt; queue.peek()) &#123;</span><br><span class="line">                    queue.poll();</span><br><span class="line">                    queue.offer(arr[i]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        result = <span class="keyword">new</span> <span class="keyword">int</span>[k];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; i++) &#123;</span><br><span class="line">            result[i] = queue.poll();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/submissions/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode中国每日一题&lt;/a&gt;取自剑指offer&lt;br&gt;题目意思就是从一个一维数组中，找出k个最小的数，每次看到这个K，最容易想到的就是堆排序，通过构造大顶堆或小顶堆分别来找最小的k个数和最大的k个数。而Java中天生有支持堆排序的数据结构，PriorityQueue，只要指定K容量的堆，通过比较堆顶元素与当前数组遍历元素，如果小于堆顶，则堆顶出列，插入当前遍历元素，遍历完成之后，堆中的K个数即我们要找的最小K个数。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="heap sort" scheme="https://dpcfury.github.io/tags/heap-sort/"/>
+    
+      <category term="priority queye" scheme="https://dpcfury.github.io/tags/priority-queye/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode[409]Longest Palindrome</title>
