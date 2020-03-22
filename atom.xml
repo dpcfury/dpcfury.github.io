@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-03-22T13:27:52.168Z</updated>
+  <updated>2020-03-22T13:50:32.830Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode[111] Minimum Depth of Binary Tree</title>
+    <link href="https://dpcfury.github.io/leetcode-minimum-depth-of-binary-tree.html/"/>
+    <id>https://dpcfury.github.io/leetcode-minimum-depth-of-binary-tree.html/</id>
+    <published>2020-03-22T13:46:45.000Z</published>
+    <updated>2020-03-22T13:50:32.830Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/minimum-depth-of-binary-tree/" target="_blank" rel="noopener">Leetcode 111. Minimum Depth of Binary Tree</a><br>题目要求计算二叉树从根节点开始，到叶子阶段的最短距离。解法同样是左右子树递归进行计算，但是要注意为空情况下，子树的最小深度应该设置为无穷大，而不是0。</p></blockquote><a id="more"></a><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minDepth</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span> ) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (root.left == <span class="keyword">null</span> &amp;&amp; root.right == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> minLeft = root.left != <span class="keyword">null</span> ? minDepth(root.left) : Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">int</span> minRight = root.right != <span class="keyword">null</span> ? minDepth(root.right) : Integer.MAX_VALUE;</span><br><span class="line">        <span class="keyword">return</span> Math.min(minLeft, minRight) + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/minimum-depth-of-binary-tree/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 111. Minimum Depth of Binary Tree&lt;/a&gt;&lt;br&gt;题目要求计算二叉树从根节点开始，到叶子阶段的最短距离。解法同样是左右子树递归进行计算，但是要注意为空情况下，子树的最小深度应该设置为无穷大，而不是0。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
+    
+      <category term="binary tree" scheme="https://dpcfury.github.io/tags/binary-tree/"/>
+    
+  </entry>
   
   <entry>
     <title>Leetcode[110] Balanced Binary Tree</title>
@@ -496,33 +524,6 @@
     
     
       <category term="刷题笔记" scheme="https://dpcfury.github.io/tags/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hexo permalink 设置为英文</title>
-    <link href="https://dpcfury.github.io/hexo_permalink.html/"/>
-    <id>https://dpcfury.github.io/hexo_permalink.html/</id>
-    <published>2019-01-04T13:04:07.000Z</published>
-    <updated>2019-12-29T11:26:05.388Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>引言：最近分享给朋友本站一篇文章，发送链接的时候发现链接很长很难看：<a href="https://dpcfury.github.io/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/VPS%E4%BC%98%E5%8C%96/%E6%90%AC%E7%93%A6%E5%B7%A5openVZ%E8%BD%ACKVM%EF%BC%8Css%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8A%A0%E9%80%9F%E6%B5%8B%E8%AF%95.html/">https://dpcfury.github.io/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/VPS%E4%BC%98%E5%8C%96/%E6%90%AC%E7%93%A6%E5%B7%A5openVZ%E8%BD%ACKVM%EF%BC%8Css%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8A%A0%E9%80%9F%E6%B5%8B%E8%AF%95.html/</a></p><p>其主要原因是文章的title为中文，被转义之后成为了上面的编码。</p></blockquote><a id="more"></a><p>于是查找到通过永久链接（<a href="https://hexo.io/zh-cn/docs/permalinks.html" title="Permalink" target="_blank" rel="noopener">Permalink</a>）的方式修改文章的url为英文，在hexo站点配置文件_config.yml中修改文章链接配置：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">permalink: :year/:month/:day/:title/</span><br><span class="line">permalink_defaults:</span><br></pre></td></tr></table></figure><p>可见hexo默认在url中是以title结尾，而我们的文章title几乎都会包括中文，于是我们希望通过Front-matter中的变量替换title，通过这种方式实现自定义url，例如、</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">permalink: :category/:urlname.html/</span><br></pre></td></tr></table></figure><p>加上.html的缘故是为了优化SEO</p><p>之后再每篇文章的Front-matter中加入urlname，取你认为合适的英文就可以，在以前发布的文章还使用和title相同的urlname即可：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">title: 搬瓦工CN2 手动安装bbr加速</span><br><span class="line">urlname: 搬瓦工CN2 手动安装bbr加速</span><br><span class="line">date: 2019-01-03 19:09:17</span><br><span class="line">categories: </span><br><span class="line">- 科学上网</span><br><span class="line">- VPS优化</span><br><span class="line">tags: bbr加速安装</span><br></pre></td></tr></table></figure><blockquote><p>ps: title中的空格会被转义为%20，也可能转义为其它字符，所以最好再后续检查一下</p></blockquote><p>我们可以在scaffolds/post.md中加上urlname这个变量，这样每次hexo new 创建文章的时候既可以自动添加urlname变量：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">urlname: </span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">tags:</span><br><span class="line">categories:</span><br><span class="line">---</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;引言：最近分享给朋友本站一篇文章，发送链接的时候发现链接很长很难看：&lt;a href=&quot;https://dpcfury.github.io/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/VPS%E4%BC%98%E5%8C%96/%E6%90%AC%E7%93%A6%E5%B7%A5openVZ%E8%BD%ACKVM%EF%BC%8Css%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8A%A0%E9%80%9F%E6%B5%8B%E8%AF%95.html/&quot;&gt;https://dpcfury.github.io/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/VPS%E4%BC%98%E5%8C%96/%E6%90%AC%E7%93%A6%E5%B7%A5openVZ%E8%BD%ACKVM%EF%BC%8Css%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8A%A0%E9%80%9F%E6%B5%8B%E8%AF%95.html/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;其主要原因是文章的title为中文，被转义之后成为了上面的编码。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="hexo" scheme="https://dpcfury.github.io/categories/hexo/"/>
-    
-      <category term="permalink 优化技巧" scheme="https://dpcfury.github.io/categories/hexo/permalink-%E4%BC%98%E5%8C%96%E6%8A%80%E5%B7%A7/"/>
-    
-    
-      <category term="hexo 优化" scheme="https://dpcfury.github.io/tags/hexo-%E4%BC%98%E5%8C%96/"/>
     
   </entry>
   
