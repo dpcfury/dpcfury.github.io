@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-03-21T08:13:28.442Z</updated>
+  <updated>2020-03-22T05:40:58.906Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode[108] Convert Sorted Array to Binary Search Tree</title>
+    <link href="https://dpcfury.github.io/convert-sorted-array-to-binary-search-tree.html/"/>
+    <id>https://dpcfury.github.io/convert-sorted-array-to-binary-search-tree.html/</id>
+    <published>2020-03-22T05:36:55.000Z</published>
+    <updated>2020-03-22T05:40:58.906Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/" target="_blank" rel="noopener">Leetcode 108.</a><br>题目意思：通过一个有序的数组，构建一个高度平衡的二叉搜索树。具体解法比较直观的就是，通过二分法，将数组从中间一份为二，前半部分为左子树，右半部分为右子树，中间元素为树的根，这样递归去构建左右子树技能得到最终的解。</p></blockquote><a id="more"></a><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">sortedArrayToBST</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> sortedArrayToBST(nums, <span class="number">0</span>, nums.length - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> TreeNode <span class="title">sortedArrayToBST</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (j &lt; i) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">int</span> m = (i + j) / <span class="number">2</span>;</span><br><span class="line">        TreeNode root = <span class="keyword">new</span> TreeNode(nums[m]);</span><br><span class="line">        root.left = sortedArrayToBST(nums, i, m - <span class="number">1</span>);</span><br><span class="line">        root.right = sortedArrayToBST(nums, m + <span class="number">1</span>, j);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 108.&lt;/a&gt;&lt;br&gt;题目意思：通过一个有序的数组，构建一个高度平衡的二叉搜索树。具体解法比较直观的就是，通过二分法，将数组从中间一份为二，前半部分为左子树，右半部分为右子树，中间元素为树的根，这样递归去构建左右子树技能得到最终的解。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
+    
+      <category term="BST" scheme="https://dpcfury.github.io/tags/BST/"/>
+    
+  </entry>
   
   <entry>
     <title>letcode[365]Water and Jug Problem</title>
@@ -492,32 +518,6 @@
     
     
       <category term="KVM优化" scheme="https://dpcfury.github.io/tags/KVM%E4%BC%98%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>搬瓦工openVZ转KVM，ss安装与加速测试</title>
-    <link href="https://dpcfury.github.io/shadowsocks_install.html/"/>
-    <id>https://dpcfury.github.io/shadowsocks_install.html/</id>
-    <published>2018-12-26T12:04:24.000Z</published>
-    <updated>2019-12-29T11:26:05.303Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="VPS购买与系统安装"><a href="#VPS购买与系统安装" class="headerlink" title="VPS购买与系统安装"></a>VPS购买与系统安装</h3><blockquote><p>更换新的vps原因是搬瓦工前天发出公告宣布 OpenVZ 系列的所有 VPS 都已经不支持续费了 ,原先有一台LA基于openVZ架构的VPS，安装shadowSocks-libev与finalspeed加速使用起来还不错，缺陷就是不能在内核加速，这次顺势调整到KVM架构的主机。</p></blockquote><a id="more"></a><h4 id="机房选择"><a href="#机房选择" class="headerlink" title="机房选择"></a>机房选择</h4><p>目前搬瓦工提供的方案中按速度排行 HK PCCW  &gt; CN2 GIA &gt; CN2 GT &gt;  普通KVM，但是价格而言HK PCCW较为奢侈，CN2 GIA 价格也较贵，目前存货中性价比较高的是 DC8 CN2 机房的普通CN2方案，<a href="https://stock.bwg.net/" title=" 搬瓦工库存" target="_blank" rel="noopener">搬瓦工库存</a>，目前提供的方案已经少有月付，可以订阅CN2 GIA的\$39.99 补货通知，当前情况还有一个星期就要回收VPS，无奈选择\$ 29.99的 CN2 方案。 </p><p><img src="/shadowsocks_install.html/vps.png" alt="1545807890085"></p><p>注意location选择的是DC8 ，目前相传是CN2测试较好的机房，可用支付宝付款，在结账页面可输入优惠码BWH26FXH3HIQ ，能有6.25%的优惠（目前最高），如果优惠码过期可参考<a href="https://www.bwgyhw.com/bandwagonhost-lastest-promo/" title="最新优惠码" target="_blank" rel="noopener">最新优惠码</a>，总计花费人民币195左右，购买完成稍等一段初始化时间即可去My Services中查看和进行后续安装操作。</p><p><img src="/shadowsocks_install.html/vps_list.png" alt="1545808631772"></p><h4 id="系统安装"><a href="#系统安装" class="headerlink" title="系统安装"></a>系统安装</h4><p>目前搬瓦工已经在系统上直接继承了BBR加速，在这里选择自带bbr加速的64位CentOs7，也可选择不带bbr的CentOs7再后续手动安装，选则内置的bbr加速防止内核不兼容问题。</p><p><img src="/shadowsocks_install.html/install_os.png" alt="1545809335977"></p><p>xshell远程登录主机查看bbr是否安装</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsmod | grep bbr</span><br></pre></td></tr></table></figure><p><img src="/shadowsocks_install.html/ls_bbr.png" alt="1545813768403"></p><h3 id="Shadowsocks服务端安装"><a href="#Shadowsocks服务端安装" class="headerlink" title="Shadowsocks服务端安装"></a>Shadowsocks服务端安装</h3><h4 id="安装脚本（四种版本）"><a href="#安装脚本（四种版本）" class="headerlink" title="安装脚本（四种版本）"></a>安装脚本（四种版本）</h4><p>首先要明确一点，不管 Shadowsocks 有几种版本，都分为服务端和客户端，服务端是部署在服务器（VPS）上的，客户端是在你的电脑上使用的。 Shadowsocks 服务端大体上有 4 种版本，按照程序语言划分，分别为 Python ，libev ，Go ， Nodejs ，目前主流使用前 3 种，具体不同版本的feature可参考《<a href="https://github.com/shadowsocks/shadowsocks/wiki/Feature-Comparison-across-Different-Versions" title="不同ss版本比较" target="_blank" rel="noopener">Feature Comparison across Different Versions</a>》。</p><p>这里我选用的是<a href="https://teddysun.com/" target="_blank" rel="noopener">秋水逸冰</a>制作的四合一一键安装脚本，选择其中的shadowsocks-libev（之前使用过感觉较好）。</p><h4 id="关于该脚本（感谢作者了哇）"><a href="#关于该脚本（感谢作者了哇）" class="headerlink" title="关于该脚本（感谢作者了哇）"></a>关于该脚本（感谢作者了哇）</h4><p>1、一键安装 Shadowsocks-Python， ShadowsocksR， Shadowsocks-Go， Shadowsocks-libev 版（四选一）服务端； </p><p>2、各版本的启动脚本及配置文件名不再重合； </p><p>3、每次运行可安装一种版本，libev版本的多开需要多个实例；</p><p> 4、支持以多次运行来安装多个版本，且各个版本可以共存（注意端口号需设成不同）； 5、若已安装多个版本，则卸载时也需多次运行（每次卸载一种）； </p><h4 id="默认配置"><a href="#默认配置" class="headerlink" title="默认配置"></a>默认配置</h4><table><thead><tr><th>参数</th><th>默认值</th></tr></thead><tbody><tr><td>Server IP</td><td>默认VPS IP即可</td></tr><tr><td>Server Port</td><td>默认9000-19999之间随机</td></tr><tr><td>password</td><td>用户自己设定</td></tr><tr><td>加密方式</td><td>用户自己设定，libev默认aes-256-gcm</td></tr><tr><td>协议</td><td>用户自己设定，默认为origin</td></tr></tbody></table><h4 id="客户端下载（可能有时会需要fan-qiang）"><a href="#客户端下载（可能有时会需要fan-qiang）" class="headerlink" title="客户端下载（可能有时会需要fan qiang）"></a>客户端下载（可能有时会需要fan qiang）</h4><p>常规版 Windows 客户端</p><p> <a href="https://github.com/shadowsocks/shadowsocks-windows/releases" target="_blank" rel="noopener"><a href="https://github.com/shadowsocks/shadowsocks-windows/releases" target="_blank" rel="noopener">https://github.com/shadowsocks/shadowsocks-windows/releases</a> </a></p><p>ShadowsocksR 版 Windows 客户端</p><p> <a href="https://github.com/shadowsocksrr/shadowsocksr-csharp/releases" target="_blank" rel="noopener"><a href="https://github.com/shadowsocksrr/shadowsocksr-csharp/releases" target="_blank" rel="noopener">https://github.com/shadowsocksrr/shadowsocksr-csharp/releases</a> </a></p><h4 id="脚本安装"><a href="#脚本安装" class="headerlink" title="脚本安装"></a>脚本安装</h4><p>root用户登录，下载脚本并赋予执行权限，最后安装脚本</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh</span><br><span class="line">chmod +x shadowsocks-all.sh</span><br><span class="line">./shadowsocks-all.sh 2&gt;&amp;1 | tee shadowsocks-all.log</span><br></pre></td></tr></table></figure><p><img src="/shadowsocks_install.html/select_version.png" alt="1545819349492"></p><p>随后根据脚本设置三个参数：</p><p>1、连接密码<br>2、连接端口号（程序随机分配一个端口号，可自定义）<br>3、加密方法（建议选择第7个，aes-256-cfb）</p><p><img src="/shadowsocks_install.html/set_pwd.png" alt="1545819377748"></p><p><img src="/shadowsocks_install.html/set_port.png" alt="1545819771508"></p><p><img src="/shadowsocks_install.html/set_method.png" alt="1545819881885"></p><p>加密方式建议选择7) aes-256-cfb，然后剩下的就一路enter即可，大概需要几分钟，完成之后提示如下</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Congratulations, Shadowsocks-libev server install completed!</span><br><span class="line">Your Server IP        :  your-server-ip </span><br><span class="line">Your Server Port      :  your-server-port</span><br><span class="line">Your Password         :  your-password </span><br><span class="line">Your Encryption Method:  your-encryption-method </span><br><span class="line"></span><br><span class="line">Your QR Code: (For Shadowsocks Windows, OSX, Android and iOS clients)</span><br><span class="line"> ss://YWVzLTI1Ni1jZmI6ZHBjMTk5NHNwYXJrQDE3Mi45Ni4yMjQuMjEyOjg5ODk= </span><br><span class="line">Your QR Code has been saved as a PNG file path:</span><br><span class="line"> /root/shadowsocsks/shadowsocks_libev_qr.png </span><br><span class="line"></span><br><span class="line">Welcome to visit: https://teddysun.com/486.html</span><br><span class="line">Enjoy it!</span><br></pre></td></tr></table></figure><h4 id="卸载方法"><a href="#卸载方法" class="headerlink" title="卸载方法"></a>卸载方法</h4><p>如果上述选择过程中按错或者想重新安装，使用root用户登录到脚本的位置运行：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./shadowsocks-all.sh uninstall</span><br></pre></td></tr></table></figure><h4 id="参数方式启动脚本"><a href="#参数方式启动脚本" class="headerlink" title="参数方式启动脚本"></a>参数方式启动脚本</h4><p>安装完成之后默认shadowsocks-libev是开启启动的</p><p>启动脚本后面的参数含义，从左至右依次为：启动，停止，重启，查看状态。</p><table><thead><tr><th>版本</th><th>脚本位置</th><th>启动/停止</th><th>重启</th><th>查看状态</th></tr></thead><tbody><tr><td>Shadowsocks-Python</td><td>/etc/init.d/shadowsocks-python</td><td>start/stop</td><td>restart</td><td>status</td></tr><tr><td>ShadowsocksR</td><td>/etc/init.d/shadowsocks-r</td><td>start/stop</td><td>restart</td><td>status</td></tr><tr><td>Shadowsocks-Go</td><td>/etc/init.d/shadowsocks-go</td><td>start/stop</td><td>restart</td><td>status</td></tr><tr><td>Shadowsocks-libev</td><td>/etc/init.d/shadowsocks-libev</td><td>start/stop</td><td>restart</td><td>status</td></tr></tbody></table><h4 id="各个版本配置文件位置（默认）"><a href="#各个版本配置文件位置（默认）" class="headerlink" title="各个版本配置文件位置（默认）"></a>各个版本配置文件位置（默认）</h4><table><thead><tr><th>Shadowsocks-Python 版：</th><th>/etc/shadowsocks-python/config.json</th></tr></thead><tbody><tr><td>ShadowsocksR 版：</td><td>/etc/shadowsocks-r/config.json</td></tr><tr><td>Shadowsocks-Go 版：</td><td>/etc/shadowsocks-go/config.json</td></tr><tr><td>Shadowsocks-libev 版：</td><td>/etc/shadowsocks-libev/config.json</td></tr></tbody></table><h3 id="速度测试"><a href="#速度测试" class="headerlink" title="速度测试"></a>速度测试</h3><p><img src="/shadowsocks_install.html/speed_bbr.png" alt="1545822424646"></p><p>教育网情况下测试4K视频最快是35139kbps</p><p><img src="/shadowsocks_install.html/speed_ovz.png" alt="1545822491223"></p><p>原先的openVZ VPS+finalSpeed加速 速度一直保持在35595kbps，稍微好于bbr加速版的ss</p><p><img src="/shadowsocks_install.html/speed_mobile.jpg" alt="手机测试"></p><p>移动端测试一下,1080p也可以运行流畅，运营商是中国联通，相较于之前的VPS手机上的体验好了不少（ps：手机开了ss客户端之后发热严重，iphone7 plus）</p><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>虽然没赶上黑五买到39.99的GIA，而且相对花费较之前的CN2贵了点，但是搬瓦工提供的内置bbr还是免去了很多麻烦，尤其是内和不兼容升级内核的问题，速度方面目前在学校的感觉还可以，之后再在其他网络环境下进行测试更新，总体来说安装一个shadowSocks服务端还是很方便的一件事，感谢大佬的一键安装脚本。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;VPS购买与系统安装&quot;&gt;&lt;a href=&quot;#VPS购买与系统安装&quot; class=&quot;headerlink&quot; title=&quot;VPS购买与系统安装&quot;&gt;&lt;/a&gt;VPS购买与系统安装&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;更换新的vps原因是搬瓦工前天发出公告宣布 OpenVZ 系列的所有 VPS 都已经不支持续费了 ,原先有一台LA基于openVZ架构的VPS，安装shadowSocks-libev与finalspeed加速使用起来还不错，缺陷就是不能在内核加速，这次顺势调整到KVM架构的主机。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="科学上网" scheme="https://dpcfury.github.io/categories/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
-    
-      <category term="VPS优化" scheme="https://dpcfury.github.io/categories/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/VPS%E4%BC%98%E5%8C%96/"/>
-    
-    
-      <category term="ss安装" scheme="https://dpcfury.github.io/tags/ss%E5%AE%89%E8%A3%85/"/>
     
   </entry>
   
