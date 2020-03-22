@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-03-22T07:34:25.558Z</updated>
+  <updated>2020-03-22T12:43:53.697Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode[200] Number of Islands</title>
+    <link href="https://dpcfury.github.io/leetcode-number-of-islands.html/"/>
+    <id>https://dpcfury.github.io/leetcode-number-of-islands.html/</id>
+    <published>2020-03-22T12:39:04.000Z</published>
+    <updated>2020-03-22T12:43:53.697Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/number-of-islands/" target="_blank" rel="noopener">Leetcode 200. Number of Islands</a><br>题目意思：一个二维字符数组，其中‘1’代表的是陆地，上下左右相邻的陆地构成一个岛，求解这幅地图中的独立小岛个数。这题和回溯的相似度很高，但是比回溯要更为简单，直观的解法就是，找到小岛的一块陆地，从上下左右分别去拓展这个小岛，通过一个标记二维数组标记当前的拓展情况，如果已经拓展则进行忽略，当二维字符数组的每个元素都遍历完成，求得小岛数就是最终的答案。</p></blockquote><a id="more"></a><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numIslands</span><span class="params">(<span class="keyword">char</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (grid == <span class="keyword">null</span> || grid.length==<span class="number">0</span>) <span class="keyword">return</span> num;</span><br><span class="line">        <span class="keyword">int</span> row = grid.length;</span><br><span class="line">        <span class="keyword">int</span> col = grid[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">boolean</span>[][] visited = <span class="keyword">new</span> <span class="keyword">boolean</span>[row][col];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; col; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (grid[i][j] == <span class="string">'1'</span> &amp;&amp; !visited[i][j]) &#123;</span><br><span class="line">                    traversal(grid, row, col, i, j, visited);</span><br><span class="line">                    num++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> num;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">traversal</span><span class="params">(<span class="keyword">char</span>[][] grid, <span class="keyword">int</span> row, <span class="keyword">int</span> col, <span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">boolean</span>[][] visited)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt;= row || j &lt; <span class="number">0</span> || j &gt;= col || grid[i][j] != <span class="string">'1'</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i][j]) &#123;</span><br><span class="line">                visited[i][j] = <span class="keyword">true</span>;</span><br><span class="line">                traversal(grid, row, col, i - <span class="number">1</span>, j, visited);</span><br><span class="line">                traversal(grid, row, col, i + <span class="number">1</span>, j, visited);</span><br><span class="line">                traversal(grid, row, col, i, j - <span class="number">1</span>, visited);</span><br><span class="line">                traversal(grid, row, col, i, j + <span class="number">1</span>, visited);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/number-of-islands/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 200. Number of Islands&lt;/a&gt;&lt;br&gt;题目意思：一个二维字符数组，其中‘1’代表的是陆地，上下左右相邻的陆地构成一个岛，求解这幅地图中的独立小岛个数。这题和回溯的相似度很高，但是比回溯要更为简单，直观的解法就是，找到小岛的一块陆地，从上下左右分别去拓展这个小岛，通过一个标记二维数组标记当前的拓展情况，如果已经拓展则进行忽略，当二维字符数组的每个元素都遍历完成，求得小岛数就是最终的答案。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="backtracking" scheme="https://dpcfury.github.io/tags/backtracking/"/>
+    
+      <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
+    
+  </entry>
   
   <entry>
     <title>Leetcode[108] Convert Sorted Array to Binary Search Tree</title>
@@ -494,30 +522,6 @@
     
     
       <category term="bbr加速安装" scheme="https://dpcfury.github.io/tags/bbr%E5%8A%A0%E9%80%9F%E5%AE%89%E8%A3%85/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>搬瓦工KVM安装FinalSpeed优化测试</title>
-    <link href="https://dpcfury.github.io/KVM_FinalSpeed.html/"/>
-    <id>https://dpcfury.github.io/KVM_FinalSpeed.html/</id>
-    <published>2019-01-02T02:08:43.000Z</published>
-    <updated>2019-12-29T11:26:05.321Z</updated>
-    
-    <content type="html"><![CDATA[<p>教育网环境下自带bbr加速的ss突然速度奇慢，在电信网下表现也较差（不超过2000kbps），于是准备测试在KVM上安装FinalSpeed双端加速测试。</p><a id="more"></a><p><img src="/KVM_FinalSpeed.html/bbr教育网速度奇慢.png" alt=""></p><h3 id="关闭bbr服务"><a href="#关闭bbr服务" class="headerlink" title="关闭bbr服务"></a>关闭bbr服务</h3><p>这里由于我所拥有的这台VPS之前选在安装的系统内核自带了bbr加速，这里先通过配置文件关闭bbr加速，利用vim编辑/etc/sysctl.conf，删除或注释bbr加速相关的两行配置：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net.core.default_qdisc = fq</span><br><span class="line">net.ipv4.tcp_congestion_control = bbr</span><br></pre></td></tr></table></figure><p><img src="/KVM_FinalSpeed.html/关闭bbr配置.PNG" alt=""></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">然后执行 sysctl -p 随后重启VPS</span><br></pre></td></tr></table></figure><p>ps: 重启过后，ss的链接速度达到了1444kkbps，但是仍然抵挡不止我装双端加速的决心</p><p>当然除了上面的关闭bbr加速的方式，还可以更换VPS内核或者直接在搬瓦工控制台更换不带bbr的系统即可</p><h3 id="finalSpeed安装脚本"><a href="#finalSpeed安装脚本" class="headerlink" title="finalSpeed安装脚本"></a>finalSpeed安装脚本</h3><p>这里采用91云的一键安装脚本，键入下面的命令，等待安装</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -N --no-check-certificate https://raw.githubusercontent.com/91yun/finalspeed/master/install_fs.sh &amp;&amp; bash install_fs.sh</span><br></pre></td></tr></table></figure><p><img src="/KVM_FinalSpeed.html/install_fs.PNG" alt=""></p><p>安装完成之后最好记录一下fs相关配置的位置，方便之后调试和进一步设置</p><p><img src="/KVM_FinalSpeed.html/fs_setting.PNG" alt=""></p><p>fs的安装目录默认为/fs ，日志的路径为/fs/server.log，查看日志可以看到fs监听的tcp与udp端口都为150</p><h3 id="finalSpeed卸载"><a href="#finalSpeed卸载" class="headerlink" title="finalSpeed卸载"></a>finalSpeed卸载</h3><p>卸载只需要一键安装脚本命令uninstall：(首先进入到install_fs.sh的下载位置)</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">install_fs.sh uninstall</span><br></pre></td></tr></table></figure><h3 id="finalSpeed服务使用"><a href="#finalSpeed服务使用" class="headerlink" title="finalSpeed服务使用"></a>finalSpeed服务使用</h3><p>这个一键安装包是91yun完全重写了作者原来的安装代码，启动，停止代码。并加入了服务，可以使用 service finalspeed star | stop 来控制，加入了开机启动启动，fs服务端版本为1.2</p><table><thead><tr><th>功能</th><th>命令</th></tr></thead><tbody><tr><td>启动</td><td>/etc/init.d/finalspeed start</td></tr><tr><td>停止</td><td>/etc/init.d/finalspeed stop</td></tr><tr><td>查看状态</td><td>/etc/init.d/finalspeed status</td></tr></tbody></table><h3 id="finalSpeed-客户端配置"><a href="#finalSpeed-客户端配置" class="headerlink" title="finalSpeed 客户端配置"></a>finalSpeed 客户端配置</h3><p>由于fs是一个双端加速，必须配合客户端使用，这里采用的是fs1.2的客户端，1.2的客户端如果不稳定也可选择1.0的客户端</p><h4 id="windows端下载地址："><a href="#windows端下载地址：" class="headerlink" title="windows端下载地址："></a>windows端下载地址：</h4><p><a href="https://github.com/91yun/finalspeed/raw/master/finalspeed_install1.0.exe" target="_blank" rel="noopener">finalspeed_install1.0.exe</a> </p><p><a href="https://github.com/91yun/finalspeed/raw/master/finalspeed_install1.12.exe" target="_blank" rel="noopener">finalspeed_install1.2.exe</a> </p><h4 id="Java版本的客户端地址："><a href="#Java版本的客户端地址：" class="headerlink" title="Java版本的客户端地址："></a>Java版本的客户端地址：</h4><p><a href="https://raw.githubusercontent.com/91yun/finalspeed/master/finalspeed_client.zip" target="_blank" rel="noopener">finalspeed_client1.0.zip</a> </p><p>系统需安装 java 运行环境 ,Linux 还需安装 <strong>libpcap</strong>.<br>Ubuntu,Debian 安装 libpcap: </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get -y install libpcap-dev</span><br></pre></td></tr></table></figure><p>Centos 安装 libpcap: </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install libpcap</span><br></pre></td></tr></table></figure><p>安装 : 下载解压 .<br>运行 : 打开终端 , 假设 finalspeed_client.jar 所在路径为 /fsclient , 先切换到该路径 cd /fsclient ,<br>然后执行 sudo java -jar finalspeed_client.jar , 前面加 sudo, 因为必须以 root 权限运行 , 如果没有 root 权限 , 会无法启用 tcp 协议 .</p><h4 id="客户端配置"><a href="#客户端配置" class="headerlink" title="客户端配置"></a>客户端配置</h4><p>服务器地址为你VPS的IP地址，传输协议选择TCP或UDP。然后到加速列表选择添加，名称随便起一个就行，加速端口即为你要加速的ss服务端口，本地端口选择一个当前系统未被占用的端口且不常用就行。物理带宽设置严格按照实际带宽设置，否则会导致加速失败：</p><p><img src="/KVM_FinalSpeed.html/fs_client.PNG" alt=""></p><h4 id="ss客户端设置"><a href="#ss客户端设置" class="headerlink" title="ss客户端设置"></a>ss客户端设置</h4><p><img src="/KVM_FinalSpeed.html/ss_client.PNG" alt=""></p><p>以上全部完成之后，进行结果测试，在UDP加速下结果为(教育网)，4k 60帧 最高在23000kbps，加速效果不如openVZ在finalSpeed下的加速：</p><p><img src="/KVM_FinalSpeed.html/fs_test_udp.PNG" alt=""></p><p>在TCP协议下（教育网），4k 60 帧最高在36000kbps，但是这个速度极不稳定，一般维持在15000kbps甚至不到1000kbps：</p><p><img src="/KVM_FinalSpeed.html/fs_tcp.PNG" alt=""></p><p>（考虑今天的测试可能受学校网络环境影响，2019/01/02，ipV6翻墙又可以用了），后续会在宿舍电信网环境下继续测试。</p><h3 id="bbr与finalSpeed共存"><a href="#bbr与finalSpeed共存" class="headerlink" title="bbr与finalSpeed共存"></a>bbr与finalSpeed共存</h3><p>之后，重新启动了bbr加速服务之后，fs在客户端使用UDP协议，测试结果较好，4k环境下能流程运行（秒开）：</p><p><img src="/KVM_FinalSpeed.html/bbr_fs.PNG" alt=""></p><h3 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h3><p>考虑到网络运营商和时段的影响，今天的测试结果不一定能代表大部分情况，后续还会测试KCPtun和KCPServer的加速效果。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;教育网环境下自带bbr加速的ss突然速度奇慢，在电信网下表现也较差（不超过2000kbps），于是准备测试在KVM上安装FinalSpeed双端加速测试。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="科学上网" scheme="https://dpcfury.github.io/categories/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
-    
-      <category term="VPS优化" scheme="https://dpcfury.github.io/categories/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/VPS%E4%BC%98%E5%8C%96/"/>
-    
-    
-      <category term="KVM优化" scheme="https://dpcfury.github.io/tags/KVM%E4%BC%98%E5%8C%96/"/>
     
   </entry>
   
