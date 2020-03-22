@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-03-22T12:43:53.697Z</updated>
+  <updated>2020-03-22T13:27:52.168Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode[110] Balanced Binary Tree</title>
+    <link href="https://dpcfury.github.io/leetcode-balanced-binary-tree.html/"/>
+    <id>https://dpcfury.github.io/leetcode-balanced-binary-tree.html/</id>
+    <published>2020-03-22T13:24:11.000Z</published>
+    <updated>2020-03-22T13:27:52.168Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/balanced-binary-tree/" target="_blank" rel="noopener">Leetcode 110. Balanced Binary Tree</a><br>题目给出一个二叉树，需要判断这颗树是不是平衡二叉树，即对树的每个节点而言，其左右子树高度差不能超过1。第一感觉就是使用递归，从当前节点判断，除了要左右两颗子树都是平衡二叉树之外，还需要一个条件，即左右子树的高度不能像差超过1，因此需要计算树的高度。</p></blockquote><a id="more"></a><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isBalanced</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (isBalanced(root.left) &amp;&amp; isBalanced(root.right))</span><br><span class="line">            <span class="keyword">return</span> Math.abs(heightOfTree(root.left) - heightOfTree(root.right)) &lt;= <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">heightOfTree</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ldep = heightOfTree(root.left);</span><br><span class="line">        <span class="keyword">int</span> rdep = heightOfTree(root.right);</span><br><span class="line">        <span class="keyword">if</span> (ldep &gt; rdep) &#123;</span><br><span class="line">            <span class="keyword">return</span> ldep + <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> rdep + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/balanced-binary-tree/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 110. Balanced Binary Tree&lt;/a&gt;&lt;br&gt;题目给出一个二叉树，需要判断这颗树是不是平衡二叉树，即对树的每个节点而言，其左右子树高度差不能超过1。第一感觉就是使用递归，从当前节点判断，除了要左右两颗子树都是平衡二叉树之外，还需要一个条件，即左右子树的高度不能像差超过1，因此需要计算树的高度。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
+    
+      <category term="binary tree" scheme="https://dpcfury.github.io/tags/binary-tree/"/>
+    
+  </entry>
   
   <entry>
     <title>Leetcode[200] Number of Islands</title>
@@ -38,9 +66,9 @@
     
       <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
     
-      <category term="backtracking" scheme="https://dpcfury.github.io/tags/backtracking/"/>
-    
       <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
+    
+      <category term="backtracking" scheme="https://dpcfury.github.io/tags/backtracking/"/>
     
   </entry>
   
@@ -495,33 +523,6 @@
     
     
       <category term="hexo 优化" scheme="https://dpcfury.github.io/tags/hexo-%E4%BC%98%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>搬瓦工CN2 手动安装bbr加速</title>
-    <link href="https://dpcfury.github.io/VPS_bbr_install.html/"/>
-    <id>https://dpcfury.github.io/VPS_bbr_install.html/</id>
-    <published>2019-01-03T11:09:17.000Z</published>
-    <updated>2019-12-29T11:26:05.373Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><strong>背景：</strong>最近几天搬瓦工LA CN2的VPS上安装的ss服务及其慢，与刚完成安装时的速度相差极大，几乎网页打不开，于是测试一下在手动安装的bbr下是否会有改善（预期没有）。</p></blockquote><p><strong>ps:</strong> 悲伤的是即将过期的OVZ加FS加速，在此时还能保持35000kmbps以上、缓冲29s，4k 60秒开，而新购买的LA CN2+自带bbr此时已经网页都浏览不动（不知是否有其他原因）：</p><a id="more"></a><p><img src="/VPS_bbr_install.html/ovz_fs.PNG" alt=""></p><h3 id="1-Install-new-OS"><a href="#1-Install-new-OS" class="headerlink" title="1. Install new OS"></a>1. Install new OS</h3><p>找到VPS的KiwiVM面板，选择安装新的操作系统，这里选择不带bbr的centOS7：</p><p><img src="/VPS_bbr_install.html/install_new_os.PNG" alt=""></p><h3 id="2-安装bbr脚本"><a href="#2-安装bbr脚本" class="headerlink" title="2. 安装bbr脚本"></a>2. 安装bbr脚本</h3><h4 id="2-1-安装wget"><a href="#2-1-安装wget" class="headerlink" title="2.1 安装wget"></a>2.1 安装wget</h4><p>通过更新的SSH端口与root密码远程登录VPS，安装wget工具：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install wget</span><br></pre></td></tr></table></figure><h4 id="2-2-下载并安装脚本"><a href="#2-2-下载并安装脚本" class="headerlink" title="2.2 下载并安装脚本"></a>2.2 下载并安装脚本</h4><p>以root身份在任意目录下执行下面的命令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh</span><br><span class="line">chmod +x bbr.sh</span><br><span class="line">./bbr.sh</span><br></pre></td></tr></table></figure><p>自动安装过程中如果当前OS的内核与bbr所需的内核不兼容会首先去下载最新的内核：</p><p><img src="/VPS_bbr_install.html/update_kernel.PNG" alt=""></p><p>更新完成之后验证是否成功，输入</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -r</span><br></pre></td></tr></table></figure><p>如果此时内核显示是4.10以上表示内核已经替换成功</p><p>查看bbr是否安装成功，输入：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsmod | grep bbr</span><br></pre></td></tr></table></figure><p>如果显示有tcp_bbr 即说明bbr安装成功</p><h3 id="3-安装ss服务与客户端"><a href="#3-安装ss服务与客户端" class="headerlink" title="3. 安装ss服务与客户端"></a>3. 安装ss服务与客户端</h3><p>ss服务端的安装与客户端使用参考<a href="https://dpcfury.github.io/2018/12/26/%E6%90%AC%E7%93%A6%E5%B7%A5openVZ%E8%BD%ACKVM%EF%BC%8Css%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8A%A0%E9%80%9F%E6%B5%8B%E8%AF%95/" title="ss安装">ss服务安装与客户端使用</a></p><h3 id="4-迁移机房测试"><a href="#4-迁移机房测试" class="headerlink" title="4. 迁移机房测试"></a>4. 迁移机房测试</h3><p>由于在DC8机房中各种测试下速度奇慢无比，索性更换到了DC3机房，发现速度明显恢复正常（希望不是最近GWF2.0要出来了），速度能够达到25000kmbps（夜晚9.10分左右）：</p><p><img src="/VPS_bbr_install.html/DC3_test.PNG" alt=""></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;背景：&lt;/strong&gt;最近几天搬瓦工LA CN2的VPS上安装的ss服务及其慢，与刚完成安装时的速度相差极大，几乎网页打不开，于是测试一下在手动安装的bbr下是否会有改善（预期没有）。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;ps:&lt;/strong&gt; 悲伤的是即将过期的OVZ加FS加速，在此时还能保持35000kmbps以上、缓冲29s，4k 60秒开，而新购买的LA CN2+自带bbr此时已经网页都浏览不动（不知是否有其他原因）：&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="科学上网" scheme="https://dpcfury.github.io/categories/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
-    
-      <category term="VPS优化" scheme="https://dpcfury.github.io/categories/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/VPS%E4%BC%98%E5%8C%96/"/>
-    
-    
-      <category term="bbr加速安装" scheme="https://dpcfury.github.io/tags/bbr%E5%8A%A0%E9%80%9F%E5%AE%89%E8%A3%85/"/>
     
   </entry>
   
