@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-03-25T13:41:06.999Z</updated>
+  <updated>2020-03-26T14:41:07.426Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode[999] Available Captures for Rook</title>
+    <link href="https://dpcfury.github.io/available-captures-for-root.html/"/>
+    <id>https://dpcfury.github.io/available-captures-for-root.html/</id>
+    <published>2020-03-26T14:37:54.000Z</published>
+    <updated>2020-03-26T14:41:07.426Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/available-captures-for-rook/" target="_blank" rel="noopener">999. Available Captures for Rook</a> 题目要求8x8的棋局上，Rook上下左右移动可以补货的黑色卒数量，只要遍历上下左右位置即可。实际题目并没有什么含量，奈何把黑色卒缩写理解成‘B’,稍微折腾了一下，并给题目点了个👎。</p></blockquote><a id="more"></a><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numRookCaptures</span><span class="params">(<span class="keyword">char</span>[][] board)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> row = board.length;</span><br><span class="line">        <span class="keyword">int</span> col = board[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; col; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (board[i][j] == <span class="string">'R'</span>) &#123;</span><br><span class="line">                    <span class="keyword">return</span> canCapture(board, row, col, i, j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">canCapture</span><span class="params">(<span class="keyword">char</span>[][] board, <span class="keyword">int</span> row, <span class="keyword">int</span> col, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> up = i - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (up &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">char</span> c = board[up][j];</span><br><span class="line">            <span class="keyword">if</span> (c == <span class="string">'.'</span>) &#123;</span><br><span class="line">                up--;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (c == <span class="string">'p'</span>) &#123;</span><br><span class="line">                    num++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> right = j + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (right &lt; col) &#123;</span><br><span class="line">            <span class="keyword">char</span> c = board[i][right];</span><br><span class="line">            <span class="keyword">if</span> (c == <span class="string">'.'</span>) &#123;</span><br><span class="line">                right++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (c == <span class="string">'p'</span>) &#123;</span><br><span class="line">                    num++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> left = j - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (left &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">char</span> c = board[i][left];</span><br><span class="line">            <span class="keyword">if</span> (c == <span class="string">'.'</span>) &#123;</span><br><span class="line">                left--;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (c == <span class="string">'p'</span>) &#123;</span><br><span class="line">                    num++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> down = i + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (down &lt; row) &#123;</span><br><span class="line">            <span class="keyword">char</span> c = board[down][j];</span><br><span class="line">            <span class="keyword">if</span> (c == <span class="string">'.'</span>) &#123;</span><br><span class="line">                down++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (c == <span class="string">'p'</span>) &#123;</span><br><span class="line">                    num++;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> num;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/available-captures-for-rook/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;999. Available Captures for Rook&lt;/a&gt; 题目要求8x8的棋局上，Rook上下左右移动可以补货的黑色卒数量，只要遍历上下左右位置即可。实际题目并没有什么含量，奈何把黑色卒缩写理解成‘B’,稍微折腾了一下，并给题目点了个👎。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
+    
+  </entry>
   
   <entry>
     <title>Leetcode[92] Reverse Linked List II</title>
@@ -521,31 +547,6 @@
     
       &lt;blockquote&gt;
 &lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/longest-common-prefix/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;14. Longest Common Prefix&lt;/a&gt;&lt;br&gt;这题比较有意思，我开始给出的算法属于很直接的那种，针对规则编码，其实这个问题可以进行总结和分析，会有更深的收获&lt;br&gt;&lt;/p&gt;&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
-    
-      <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode[38] count and say</title>
-    <link href="https://dpcfury.github.io/count_and_say.html/"/>
-    <id>https://dpcfury.github.io/count_and_say.html/</id>
-    <published>2020-02-29T06:50:22.000Z</published>
-    <updated>2020-02-29T07:05:07.957Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/roman-to-integer/" target="_blank" rel="noopener">13. Roman to Integer</a><br> 这道题最重要的还是能读懂，英文意思就是，每一当前n计算得到的结果，取决于之n-1计算得到的记过，所以第一感觉是递归。按照题目的滚则，“1”就是一个1，“2”就是一个2名， “1121”就是两个1，一个2，一个1，这么去报数。<br> <a id="more"></a><br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">countAndSay</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (n == <span class="number">1</span>)</span><br><span class="line">           <span class="keyword">return</span> <span class="string">"1"</span>;</span><br><span class="line">       String s = countAndSay(n - <span class="number">1</span>) + <span class="string">'*'</span>;</span><br><span class="line">       <span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line">       String t = <span class="string">""</span>;</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length() - <span class="number">1</span>; i++) &#123;</span><br><span class="line">           <span class="keyword">if</span> (s.charAt(i) == s.charAt(i + <span class="number">1</span>)) &#123;</span><br><span class="line">               count++;</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               t = t + count + s.charAt(i);</span><br><span class="line">               count = <span class="number">1</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> t;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/roman-to-integer/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;13. Roman to Integer&lt;/a&gt;&lt;br&gt; 这道题最重要的还是能读懂，英文意思就是，每一当前n计算得到的结果，取决于之n-1计算得到的记过，所以第一感觉是递归。按照题目的滚则，“1”就是一个1，“2”就是一个2名， “1121”就是两个1，一个2，一个1，这么去报数。&lt;br&gt;&lt;/p&gt;&lt;/blockquote&gt;
     
     </summary>
     
