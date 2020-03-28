@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="(Leetcode 168. Excel Sheet Column Title)[https://leetcode.com/problems/excel-sheet-column-title/]题目求数字到Excel sheet编号的转换，其实本质就是进制的转换，但是需要注意的是，这边的A是代表1，z代表的是26，如果直接取余数，会发现结果查一位，这里有个技巧就是，每次将初数-1操作,可以看成逻">
+<meta name="description" content="Leetcode 168. Excel Sheet Column Title题目求数字到Excel sheet编号的转换，其实本质就是进制的转换，但是需要注意的是，这边的A是代表1，z代表的是26，如果直接取余数，会发现结果查一位，这里有个技巧就是，每次将初数-1操作,可以看成逻辑上将A从0开始算。">
 <meta name="keywords" content="leetcode,easy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Leetcode[168] Excel Sheet Column Title">
 <meta property="og:url" content="https://dpcfury.github.io/leetcode-excel-sheet-column-title.html/index.html">
 <meta property="og:site_name" content="DPC&#39;s Blog">
-<meta property="og:description" content="(Leetcode 168. Excel Sheet Column Title)[https://leetcode.com/problems/excel-sheet-column-title/]题目求数字到Excel sheet编号的转换，其实本质就是进制的转换，但是需要注意的是，这边的A是代表1，z代表的是26，如果直接取余数，会发现结果查一位，这里有个技巧就是，每次将初数-1操作,可以看成逻">
+<meta property="og:description" content="Leetcode 168. Excel Sheet Column Title题目求数字到Excel sheet编号的转换，其实本质就是进制的转换，但是需要注意的是，这边的A是代表1，z代表的是26，如果直接取余数，会发现结果查一位，这里有个技巧就是，每次将初数-1操作,可以看成逻辑上将A从0开始算。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-03-27T14:18:23.302Z">
+<meta property="og:updated_time" content="2020-03-28T15:43:15.120Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode[168] Excel Sheet Column Title">
-<meta name="twitter:description" content="(Leetcode 168. Excel Sheet Column Title)[https://leetcode.com/problems/excel-sheet-column-title/]题目求数字到Excel sheet编号的转换，其实本质就是进制的转换，但是需要注意的是，这边的A是代表1，z代表的是26，如果直接取余数，会发现结果查一位，这里有个技巧就是，每次将初数-1操作,可以看成逻">
+<meta name="twitter:description" content="Leetcode 168. Excel Sheet Column Title题目求数字到Excel sheet编号的转换，其实本质就是进制的转换，但是需要注意的是，这边的A是代表1，z代表的是26，如果直接取余数，会发现结果查一位，这里有个技巧就是，每次将初数-1操作,可以看成逻辑上将A从0开始算。">
 
 
 
@@ -391,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  142
+                  134
                 </span>
               
 
@@ -429,7 +429,7 @@
 
       
         <blockquote>
-<p>(Leetcode 168. Excel Sheet Column Title)[<a href="https://leetcode.com/problems/excel-sheet-column-title/" target="_blank" rel="noopener">https://leetcode.com/problems/excel-sheet-column-title/</a>]<br>题目求数字到Excel sheet编号的转换，其实本质就是进制的转换，但是需要注意的是，这边的A是代表1，z代表的是26，如果直接取余数，会发现结果查一位，这里有个技巧就是，每次将初数-1操作,可以看成逻辑上将A从0开始算。</p>
+<p><a href="https://leetcode.com/problems/excel-sheet-column-title/" target="_blank" rel="noopener">Leetcode 168. Excel Sheet Column Title</a><br>题目求数字到Excel sheet编号的转换，其实本质就是进制的转换，但是需要注意的是，这边的A是代表1，z代表的是26，如果直接取余数，会发现结果查一位，这里有个技巧就是，每次将初数-1操作,可以看成逻辑上将A从0开始算。</p>
 </blockquote>
 <a id="more"></a>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">convertToTitle</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        StringBuilder str = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">while</span> (n != <span class="number">0</span>) &#123;</span><br><span class="line">            n--;</span><br><span class="line">            <span class="keyword">int</span> num = n % <span class="number">26</span>;</span><br><span class="line">            str.append((<span class="keyword">char</span>) (num + <span class="number">65</span>));</span><br><span class="line">            n = n / <span class="number">26</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> str.reverse().toString();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
