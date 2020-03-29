@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="hexo 优化," />
+  <meta name="keywords" content="leetcode,medium," />
 
 
 
@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="引言：最近分享给朋友本站一篇文章，发送链接的时候发现链接很长很难看：https://dpcfury.github.io/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/VPS%E4%BC%98%E5%8C%96/%E6%90%AC%E7%93%A6%E5%B7%A5openVZ%E8%BD%ACKVM%EF%BC%8Css%E5%AE%89%E8%A3%85%E4%B8">
-<meta name="keywords" content="hexo 优化">
+<meta name="description" content="423. Reconstruct Original Digits from English题目的意思第一遍读，以为是和编解码同类型的题目，想用回溯去尝试，后来发现给定的一个条件是input长度小于5000，那就说明可能存在重复的数字，回溯走不通。再看看discuss，发现这题主要是在找规律，即分析每个数字英文所包含的字母和其对应关系，再从input中判断特征字母的出现次数，计算每个数字的出现次数">
+<meta name="keywords" content="leetcode,medium">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo permalink 设置为英文">
-<meta property="og:url" content="https://dpcfury.github.io/hexo_permalink.html/index.html">
+<meta property="og:title" content="Leetcode[423] Reconstruct Original Digits from English">
+<meta property="og:url" content="https://dpcfury.github.io/reconstruct-original-digits-from-english.html/index.html">
 <meta property="og:site_name" content="DPC&#39;s Blog">
-<meta property="og:description" content="引言：最近分享给朋友本站一篇文章，发送链接的时候发现链接很长很难看：https://dpcfury.github.io/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/VPS%E4%BC%98%E5%8C%96/%E6%90%AC%E7%93%A6%E5%B7%A5openVZ%E8%BD%ACKVM%EF%BC%8Css%E5%AE%89%E8%A3%85%E4%B8">
+<meta property="og:description" content="423. Reconstruct Original Digits from English题目的意思第一遍读，以为是和编解码同类型的题目，想用回溯去尝试，后来发现给定的一个条件是input长度小于5000，那就说明可能存在重复的数字，回溯走不通。再看看discuss，发现这题主要是在找规律，即分析每个数字英文所包含的字母和其对应关系，再从input中判断特征字母的出现次数，计算每个数字的出现次数">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-29T11:26:05.388Z">
+<meta property="og:updated_time" content="2020-03-29T06:08:49.856Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo permalink 设置为英文">
-<meta name="twitter:description" content="引言：最近分享给朋友本站一篇文章，发送链接的时候发现链接很长很难看：https://dpcfury.github.io/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/VPS%E4%BC%98%E5%8C%96/%E6%90%AC%E7%93%A6%E5%B7%A5openVZ%E8%BD%ACKVM%EF%BC%8Css%E5%AE%89%E8%A3%85%E4%B8">
+<meta name="twitter:title" content="Leetcode[423] Reconstruct Original Digits from English">
+<meta name="twitter:description" content="423. Reconstruct Original Digits from English题目的意思第一遍读，以为是和编解码同类型的题目，想用回溯去尝试，后来发现给定的一个条件是input长度小于5000，那就说明可能存在重复的数字，回溯走不通。再看看discuss，发现这题主要是在找规律，即分析每个数字英文所包含的字母和其对应关系，再从input中判断特征字母的出现次数，计算每个数字的出现次数">
 
 
 
@@ -129,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="https://dpcfury.github.io/hexo_permalink.html/"/>
+  <link rel="canonical" href="https://dpcfury.github.io/reconstruct-original-digits-from-english.html/"/>
 
 
 
 
 
-  <title>hexo permalink 设置为英文 | DPC's Blog</title>
+  <title>Leetcode[423] Reconstruct Original Digits from English | DPC's Blog</title>
   
 
 
@@ -282,7 +282,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://dpcfury.github.io/hexo_permalink.html/">
+    <link itemprop="mainEntityOfPage" href="https://dpcfury.github.io/reconstruct-original-digits-from-english.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="杜鹏程">
@@ -299,7 +299,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">hexo permalink 设置为英文</h1>
+          <h1 class="post-title" itemprop="name headline">Leetcode[423] Reconstruct Original Digits from English</h1>
         
 
         <div class="post-meta">
@@ -311,8 +311,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-04T21:04:07+08:00">
-                2019-01-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-29T13:49:52+08:00">
+                2020-03-29
               </time>
             
 
@@ -334,19 +334,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">hexo</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hexo/permalink-优化技巧/" itemprop="url" rel="index">
-                    <span itemprop="name">permalink 优化技巧</span>
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
                   </a>
                 </span>
 
@@ -363,8 +352,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/hexo_permalink.html/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/hexo_permalink.html/" itemprop="commentCount"></span>
+                <a href="/reconstruct-original-digits-from-english.html/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/reconstruct-original-digits-from-english.html/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -372,7 +361,7 @@
 
           
           
-             <span id="/hexo_permalink.html/" class="leancloud_visitors" data-flag-title="hexo permalink 设置为英文">
+             <span id="/reconstruct-original-digits-from-english.html/" class="leancloud_visitors" data-flag-title="Leetcode[423] Reconstruct Original Digits from English">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -402,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  419
+                  553
                 </span>
               
 
@@ -418,7 +407,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -440,22 +429,73 @@
 
       
         <blockquote>
-<p>引言：最近分享给朋友本站一篇文章，发送链接的时候发现链接很长很难看：<a href="https://dpcfury.github.io/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/VPS%E4%BC%98%E5%8C%96/%E6%90%AC%E7%93%A6%E5%B7%A5openVZ%E8%BD%ACKVM%EF%BC%8Css%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8A%A0%E9%80%9F%E6%B5%8B%E8%AF%95.html/">https://dpcfury.github.io/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/VPS%E4%BC%98%E5%8C%96/%E6%90%AC%E7%93%A6%E5%B7%A5openVZ%E8%BD%ACKVM%EF%BC%8Css%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8A%A0%E9%80%9F%E6%B5%8B%E8%AF%95.html/</a></p>
-<p>其主要原因是文章的title为中文，被转义之后成为了上面的编码。</p>
+<p><a href="https://leetcode.com/problems/reconstruct-original-digits-from-english/" target="_blank" rel="noopener">423. Reconstruct Original Digits from English</a><br>题目的意思第一遍读，以为是和编解码同类型的题目，想用回溯去尝试，后来发现给定的一个条件是input长度小于5000，那就说明可能存在重复的数字，回溯走不通。再看看discuss，发现这题主要是在找规律，即分析每个数字英文所包含的字母和其对应关系，再从input中判断特征字母的出现次数，计算每个数字的出现次数。</p>
 </blockquote>
 <a id="more"></a>
-<p>于是查找到通过永久链接（<a href="https://hexo.io/zh-cn/docs/permalinks.html" title="Permalink" target="_blank" rel="noopener">Permalink</a>）的方式修改文章的url为英文，在hexo站点配置文件_config.yml中修改文章链接配置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">permalink: :year/:month/:day/:title/</span><br><span class="line">permalink_defaults:</span><br></pre></td></tr></table></figure>
-<p>可见hexo默认在url中是以title结尾，而我们的文章title几乎都会包括中文，于是我们希望通过Front-matter中的变量替换title，通过这种方式实现自定义url，例如、</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">permalink: :category/:urlname.html/</span><br></pre></td></tr></table></figure>
-<p>加上.html的缘故是为了优化SEO</p>
-<p>之后再每篇文章的Front-matter中加入urlname，取你认为合适的英文就可以，在以前发布的文章还使用和title相同的urlname即可：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">title: 搬瓦工CN2 手动安装bbr加速</span><br><span class="line">urlname: 搬瓦工CN2 手动安装bbr加速</span><br><span class="line">date: 2019-01-03 19:09:17</span><br><span class="line">categories: </span><br><span class="line">- 科学上网</span><br><span class="line">- VPS优化</span><br><span class="line">tags: bbr加速安装</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>ps: title中的空格会被转义为%20，也可能转义为其它字符，所以最好再后续检查一下</p>
-</blockquote>
-<p>我们可以在scaffolds/post.md中加上urlname这个变量，这样每次hexo new 创建文章的时候既可以自动添加urlname变量：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">urlname: </span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">tags:</span><br><span class="line">categories:</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>如果我们用numbers数组存储出现的数字个数，其中下标表示着对应0-9的数字，那么我们会有下面这个结果：</p>
+<table>
+<thead>
+<tr>
+<th>数字</th>
+<th>数字的个数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>numbers[0] = ‘z’的个数</td>
+</tr>
+<tr>
+<td>2</td>
+<td>numbers[2] = ‘w’的个数</td>
+</tr>
+<tr>
+<td>4</td>
+<td>numbers[4] = ‘u’的个数</td>
+</tr>
+<tr>
+<td>6</td>
+<td>numbers[6] = ‘x’的个数</td>
+</tr>
+<tr>
+<td>8</td>
+<td>numbers[8] = ‘g’的个数</td>
+</tr>
+</tbody>
+</table>
+<p>而其他的数字个数，比如5的个数，因为‘f’的数目由four和five的数目组成，而我们已知four的数目为numbers[4]，所以numbers[5] = ‘f’的个数-number[4]。其他的数字同样处理。<br>最后得到了下面的映射关系：</p>
+<table>
+<thead>
+<tr>
+<th>数字</th>
+<th>数字的个数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5</td>
+<td>numbers[5] = ‘f’的个数 - numbers[4]</td>
+</tr>
+<tr>
+<td>3</td>
+<td>numbers[3] = ‘h’的个数 - numbers[8]</td>
+</tr>
+<tr>
+<td>7</td>
+<td>numbers[7] = ‘s’的个数 - numbers[6]</td>
+</tr>
+<tr>
+<td>1</td>
+<td>numbers[1] = ‘o’的个数 - numbers[0] - numbers[2] - numbers[4]</td>
+</tr>
+<tr>
+<td>9</td>
+<td>numbers[9] = ‘i’的个数 - numbers[5] - numbers[6] - numbers[8]</td>
+</tr>
+</tbody>
+</table>
+<p>于是乎，代码写成下面这种格式：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">originalDigits</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        HashMap&lt;Character, Integer&gt; count = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span>[] nums = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c : s.toCharArray()) &#123;</span><br><span class="line">            count.put(c, count.getOrDefault(c, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        nums[<span class="number">8</span>] = count.getOrDefault(<span class="string">'g'</span>, <span class="number">0</span>);</span><br><span class="line">        nums[<span class="number">6</span>] = count.getOrDefault(<span class="string">'x'</span>, <span class="number">0</span>);</span><br><span class="line">        nums[<span class="number">4</span>] = count.getOrDefault(<span class="string">'u'</span>, <span class="number">0</span>);</span><br><span class="line">        nums[<span class="number">2</span>] = count.getOrDefault(<span class="string">'w'</span>, <span class="number">0</span>);</span><br><span class="line">        nums[<span class="number">0</span>] = count.getOrDefault(<span class="string">'z'</span>, <span class="number">0</span>);</span><br><span class="line">        nums[<span class="number">5</span>] = count.getOrDefault(<span class="string">'f'</span>, <span class="number">0</span>) - nums[<span class="number">4</span>];</span><br><span class="line">        nums[<span class="number">3</span>] = count.getOrDefault(<span class="string">'h'</span>, <span class="number">0</span>) - nums[<span class="number">8</span>];</span><br><span class="line">        nums[<span class="number">7</span>] = count.getOrDefault(<span class="string">'s'</span>, <span class="number">0</span>) - nums[<span class="number">6</span>];</span><br><span class="line">        nums[<span class="number">1</span>] = count.getOrDefault(<span class="string">'o'</span>, <span class="number">0</span>) - nums[<span class="number">0</span>] - nums[<span class="number">2</span>] - nums[<span class="number">4</span>];</span><br><span class="line">        nums[<span class="number">9</span>] = count.getOrDefault(<span class="string">'i'</span>, <span class="number">0</span>) - nums[<span class="number">5</span>] - nums[<span class="number">6</span>] - nums[<span class="number">8</span>];</span><br><span class="line"></span><br><span class="line">        StringBuilder str = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (nums[i] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                str.append((<span class="keyword">char</span>) (<span class="string">'0'</span> + i));</span><br><span class="line">                nums[i]--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> str.toString();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>看到discuss中有给出的拓扑排序解法，但是这题给人的感觉更倾向于找规律，因此不再讨论另外的解法。</p>
 
       
     </div>
@@ -505,7 +545,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://dpcfury.github.io/hexo_permalink.html/" title="hexo permalink 设置为英文">https://dpcfury.github.io/hexo_permalink.html/</a>
+    <a href="https://dpcfury.github.io/reconstruct-original-digits-from-english.html/" title="Leetcode[423] Reconstruct Original Digits from English">https://dpcfury.github.io/reconstruct-original-digits-from-english.html/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -520,7 +560,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hexo-优化/" rel="tag"><i class="fa fa-tag"></i> hexo 优化</a>
+            <a href="/tags/leetcode/" rel="tag"><i class="fa fa-tag"></i> leetcode</a>
+          
+            <a href="/tags/medium/" rel="tag"><i class="fa fa-tag"></i> medium</a>
           
         </div>
       
@@ -533,8 +575,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/VPS_bbr_install.html/" rel="next" title="搬瓦工CN2 手动安装bbr加速">
-                <i class="fa fa-chevron-left"></i> 搬瓦工CN2 手动安装bbr加速
+              <a href="/leetcode-short-encoding-of-words.html/" rel="next" title="Leetcode[820] Short Encoding of Words">
+                <i class="fa fa-chevron-left"></i> Leetcode[820] Short Encoding of Words
               </a>
             
           </div>
@@ -542,10 +584,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/Leetcode.html/" rel="prev" title="Leetcode笔记">
-                Leetcode笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

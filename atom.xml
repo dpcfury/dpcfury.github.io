@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-03-28T13:03:46.304Z</updated>
+  <updated>2020-03-29T06:08:49.856Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode[423] Reconstruct Original Digits from English</title>
+    <link href="https://dpcfury.github.io/reconstruct-original-digits-from-english.html/"/>
+    <id>https://dpcfury.github.io/reconstruct-original-digits-from-english.html/</id>
+    <published>2020-03-29T05:49:52.000Z</published>
+    <updated>2020-03-29T06:08:49.856Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/reconstruct-original-digits-from-english/" target="_blank" rel="noopener">423. Reconstruct Original Digits from English</a><br>题目的意思第一遍读，以为是和编解码同类型的题目，想用回溯去尝试，后来发现给定的一个条件是input长度小于5000，那就说明可能存在重复的数字，回溯走不通。再看看discuss，发现这题主要是在找规律，即分析每个数字英文所包含的字母和其对应关系，再从input中判断特征字母的出现次数，计算每个数字的出现次数。</p></blockquote><a id="more"></a><p>如果我们用numbers数组存储出现的数字个数，其中下标表示着对应0-9的数字，那么我们会有下面这个结果：</p><table><thead><tr><th>数字</th><th>数字的个数</th></tr></thead><tbody><tr><td>0</td><td>numbers[0] = ‘z’的个数</td></tr><tr><td>2</td><td>numbers[2] = ‘w’的个数</td></tr><tr><td>4</td><td>numbers[4] = ‘u’的个数</td></tr><tr><td>6</td><td>numbers[6] = ‘x’的个数</td></tr><tr><td>8</td><td>numbers[8] = ‘g’的个数</td></tr></tbody></table><p>而其他的数字个数，比如5的个数，因为‘f’的数目由four和five的数目组成，而我们已知four的数目为numbers[4]，所以numbers[5] = ‘f’的个数-number[4]。其他的数字同样处理。<br>最后得到了下面的映射关系：</p><table><thead><tr><th>数字</th><th>数字的个数</th></tr></thead><tbody><tr><td>5</td><td>numbers[5] = ‘f’的个数 - numbers[4]</td></tr><tr><td>3</td><td>numbers[3] = ‘h’的个数 - numbers[8]</td></tr><tr><td>7</td><td>numbers[7] = ‘s’的个数 - numbers[6]</td></tr><tr><td>1</td><td>numbers[1] = ‘o’的个数 - numbers[0] - numbers[2] - numbers[4]</td></tr><tr><td>9</td><td>numbers[9] = ‘i’的个数 - numbers[5] - numbers[6] - numbers[8]</td></tr></tbody></table><p>于是乎，代码写成下面这种格式：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">originalDigits</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        HashMap&lt;Character, Integer&gt; count = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span>[] nums = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c : s.toCharArray()) &#123;</span><br><span class="line">            count.put(c, count.getOrDefault(c, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        nums[<span class="number">8</span>] = count.getOrDefault(<span class="string">'g'</span>, <span class="number">0</span>);</span><br><span class="line">        nums[<span class="number">6</span>] = count.getOrDefault(<span class="string">'x'</span>, <span class="number">0</span>);</span><br><span class="line">        nums[<span class="number">4</span>] = count.getOrDefault(<span class="string">'u'</span>, <span class="number">0</span>);</span><br><span class="line">        nums[<span class="number">2</span>] = count.getOrDefault(<span class="string">'w'</span>, <span class="number">0</span>);</span><br><span class="line">        nums[<span class="number">0</span>] = count.getOrDefault(<span class="string">'z'</span>, <span class="number">0</span>);</span><br><span class="line">        nums[<span class="number">5</span>] = count.getOrDefault(<span class="string">'f'</span>, <span class="number">0</span>) - nums[<span class="number">4</span>];</span><br><span class="line">        nums[<span class="number">3</span>] = count.getOrDefault(<span class="string">'h'</span>, <span class="number">0</span>) - nums[<span class="number">8</span>];</span><br><span class="line">        nums[<span class="number">7</span>] = count.getOrDefault(<span class="string">'s'</span>, <span class="number">0</span>) - nums[<span class="number">6</span>];</span><br><span class="line">        nums[<span class="number">1</span>] = count.getOrDefault(<span class="string">'o'</span>, <span class="number">0</span>) - nums[<span class="number">0</span>] - nums[<span class="number">2</span>] - nums[<span class="number">4</span>];</span><br><span class="line">        nums[<span class="number">9</span>] = count.getOrDefault(<span class="string">'i'</span>, <span class="number">0</span>) - nums[<span class="number">5</span>] - nums[<span class="number">6</span>] - nums[<span class="number">8</span>];</span><br><span class="line"></span><br><span class="line">        StringBuilder str = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">while</span> (nums[i] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                str.append((<span class="keyword">char</span>) (<span class="string">'0'</span> + i));</span><br><span class="line">                nums[i]--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> str.toString();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p><p>看到discuss中有给出的拓扑排序解法，但是这题给人的感觉更倾向于找规律，因此不再讨论另外的解法。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/reconstruct-original-digits-from-english/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;423. Reconstruct Original Digits from English&lt;/a&gt;&lt;br&gt;题目的意思第一遍读，以为是和编解码同类型的题目，想用回溯去尝试，后来发现给定的一个条件是input长度小于5000，那就说明可能存在重复的数字，回溯走不通。再看看discuss，发现这题主要是在找规律，即分析每个数字英文所包含的字母和其对应关系，再从input中判断特征字母的出现次数，计算每个数字的出现次数。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
+    
+  </entry>
   
   <entry>
     <title>Leetcode[820] Short Encoding of Words</title>
@@ -540,31 +566,6 @@
       <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
     
       <category term="tree" scheme="https://dpcfury.github.io/tags/tree/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>kolla运行docker服务</title>
-    <link href="https://dpcfury.github.io/kolla-start-docker.html/"/>
-    <id>https://dpcfury.github.io/kolla-start-docker.html/</id>
-    <published>2020-03-11T12:40:18.000Z</published>
-    <updated>2020-03-11T12:50:28.213Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>kolla制作的docker镜像，通过juju部署服务，发现容器在juju中的状态一直是重启状态，检查启动日志，成功运行了进程脚本，于是从镜像入手进行分析。<br><a id="more"></a></p></blockquote><h3 id="kolla运行docker"><a href="#kolla运行docker" class="headerlink" title="kolla运行docker"></a>kolla运行docker</h3><p> 通过kolla启动docekr，运行的是一个启动命令脚本，作为docker的1号进程，而docker判断容器是否运行的依据就是这个启动进程是否存在，即docker中存在的前台和后台概念。<br> 按照这种道理，需要在启动命令中直接进行容器中服务的启动，但是初次之外，还有个trick操作。</p><h3 id="挂起pid-1的进程"><a href="#挂起pid-1的进程" class="headerlink" title="挂起pid=1的进程"></a>挂起pid=1的进程</h3><p> 即在启动命令脚本的最后，加入一行：<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail -f &gt;/dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure></p><p> 其原理便是，通过tail和top这种挂起的服务，保持pid=1的进程不会结束，从而实现docker容器的后台运行。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;kolla制作的docker镜像，通过juju部署服务，发现容器在juju中的状态一直是重启状态，检查启动日志，成功运行了进程脚本，于是从镜像入手进行分析。&lt;br&gt;&lt;/p&gt;&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="docekr" scheme="https://dpcfury.github.io/categories/docekr/"/>
-    
-    
-      <category term="docker" scheme="https://dpcfury.github.io/tags/docker/"/>
-    
-      <category term="kolla" scheme="https://dpcfury.github.io/tags/kolla/"/>
     
   </entry>
   
