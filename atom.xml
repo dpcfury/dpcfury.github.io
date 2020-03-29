@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-03-29T06:08:49.856Z</updated>
+  <updated>2020-03-29T13:49:56.009Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode[1162] As Far from Land as Possible</title>
+    <link href="https://dpcfury.github.io/leetcode-as-far-from-land-as-possible.html/"/>
+    <id>https://dpcfury.github.io/leetcode-as-far-from-land-as-possible.html/</id>
+    <published>2020-03-29T13:44:36.000Z</published>
+    <updated>2020-03-29T13:49:56.009Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/as-far-from-land-as-possible/" target="_blank" rel="noopener">Leetcode 1162. As Far from Land as Possible</a><br>题目的意思需要多读几次，最终的目的就是求离陆地最远的海洋距离。这类题目可以属于一道简单的bfs题目。leetcode中海洋陆地问题的题目很多，大多都是bfs或是dfs题目。这里再简单啰嗦一下bfs的思路。首先我们选取一些特征一致的点作为起始目标，然后从这些目标开始向四周扩散一步，四周的点只要在数组边界之内并且其特征与初始特征不一致，我们就将其变为与起始点同一特征（染色）。同时将这些新染色的点作为起始再向四周扩散一步，执行相同操作，直到全部同化完成。</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol><li>先找出所有陆地的坐标，作为bfs的起始条件。</li><li>通过所有的陆地坐标向外bfs。直到找到最后一块海洋为止。这期间所用到的步数即是答案，也即从某个初始点扩散到这块海洋，所需要的最长距离。</li></ol><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> x;</span><br><span class="line">        <span class="keyword">int</span> y;</span><br><span class="line">        <span class="keyword">int</span> dist;</span><br><span class="line"></span><br><span class="line">        Point(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> dist) &#123;</span><br><span class="line">            <span class="keyword">this</span>.x = x;</span><br><span class="line">            <span class="keyword">this</span>.y = y;</span><br><span class="line">            <span class="keyword">this</span>.dist = dist;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxDistance</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = grid.length;</span><br><span class="line">        <span class="keyword">int</span> maxDistance = -<span class="number">1</span>;</span><br><span class="line">        Queue&lt;Point&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span>[][] directions = &#123;&#123;<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;-<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">0</span>, <span class="number">1</span>&#125;, &#123;<span class="number">0</span>, -<span class="number">1</span>&#125;&#125;;</span><br><span class="line">        <span class="keyword">boolean</span>[][] visited = <span class="keyword">new</span> <span class="keyword">boolean</span>[n][n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (grid[i][j] == <span class="number">1</span>) &#123;</span><br><span class="line">                    queue.offer(<span class="keyword">new</span> Point(i, j, <span class="number">0</span>));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 如果没有陆地或者全是陆地，直接返回-1</span></span><br><span class="line">        <span class="keyword">if</span> (queue.size() == <span class="number">0</span> || queue.size() == n * n) <span class="keyword">return</span> maxDistance;</span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">            Point p = queue.poll();</span><br><span class="line">            <span class="keyword">if</span> (p.x &lt; <span class="number">0</span> || p.x &gt; grid.length - <span class="number">1</span> || p.y &lt; <span class="number">0</span> || p.y &gt; grid[<span class="number">0</span>].length - <span class="number">1</span>)</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span> (!visited[p.x][p.y]) &#123;</span><br><span class="line">                visited[p.x][p.y] = <span class="keyword">true</span>;</span><br><span class="line">                maxDistance = Math.max(maxDistance, p.dist);</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span>[] dir : directions) &#123;</span><br><span class="line">                    <span class="keyword">int</span> curX = p.x + dir[<span class="number">0</span>];</span><br><span class="line">                    <span class="keyword">int</span> curY = p.y + dir[<span class="number">1</span>];</span><br><span class="line">                    queue.offer(<span class="keyword">new</span> Point(curX, curY, p.dist+ <span class="number">1</span>));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> maxDistance;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/as-far-from-land-as-possible/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 1162. As Far from Land as Possible&lt;/a&gt;&lt;br&gt;题目的意思需要多读几次，最终的目的就是求离陆地最远的海洋距离。这类题目可以属于一道简单的bfs题目。leetcode中海洋陆地问题的题目很多，大多都是bfs或是dfs题目。这里再简单啰嗦一下bfs的思路。首先我们选取一些特征一致的点作为起始目标，然后从这些目标开始向四周扩散一步，四周的点只要在数组边界之内并且其特征与初始特征不一致，我们就将其变为与起始点同一特征（染色）。同时将这些新染色的点作为起始再向四周扩散一步，执行相同操作，直到全部同化完成。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
+    
+      <category term="BFS" scheme="https://dpcfury.github.io/tags/BFS/"/>
+    
+  </entry>
   
   <entry>
     <title>Leetcode[423] Reconstruct Original Digits from English</title>
@@ -541,31 +567,6 @@
       <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
     
       <category term="array" scheme="https://dpcfury.github.io/tags/array/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode[112] path-sum</title>
-    <link href="https://dpcfury.github.io/leetcode-path-sum.html/"/>
-    <id>https://dpcfury.github.io/leetcode-path-sum.html/</id>
-    <published>2020-03-17T13:44:21.000Z</published>
-    <updated>2020-03-18T13:59:47.987Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/path-sum/" target="_blank" rel="noopener">112. Path Sum</a><br> 这题属于Tree类最基本的题目，只要画好图，考虑好递归和边界即可<br><a id="more"></a></p></blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasPathSum</span><span class="params">(TreeNode root, <span class="keyword">int</span> sum)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (root.left == <span class="keyword">null</span> &amp;&amp; root.right == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> sum - root.val == <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/path-sum/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;112. Path Sum&lt;/a&gt;&lt;br&gt; 这题属于Tree类最基本的题目，只要画好图，考虑好递归和边界即可&lt;br&gt;&lt;/p&gt;&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
-    
-    
-      <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
-    
-      <category term="tree" scheme="https://dpcfury.github.io/tags/tree/"/>
     
   </entry>
   
