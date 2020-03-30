@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-03-29T13:49:56.009Z</updated>
+  <updated>2020-03-30T14:00:09.357Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>力扣中国[62] Joseph Circle Problem</title>
+    <link href="https://dpcfury.github.io/joseph-circle-problem.html/"/>
+    <id>https://dpcfury.github.io/joseph-circle-problem.html/</id>
+    <published>2020-03-30T13:46:19.000Z</published>
+    <updated>2020-03-30T14:00:09.357Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/" target="_blank" rel="noopener">剑指offer Joseph Problem</a><br>题目不用多介绍，经典的约瑟夫环问题，求解的过程主要包含两种。一种是直观的构造循环链表，通过多次多次遍历，求的最终结果，时间复杂度为O(mn),另一种就是通过数学分析，找出递归的规律，然后使用递归或者动归求解。</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>令f(n-1,m) 为n-1个人，报数m，最终留下的胜者坐标，那么f(n,m)的的胜者同样是f(n-1,m)胜者，但是其下坐标遍了，那么上一轮中胜者的坐标对应应该是(f(n-1,m)+m) % n</p><p>即关系式为：f(n,m) = (f(n-1,m)+m) % n</p><p>针对0和1个数的情况，胜者坐标都为0<br>因此解法可写为:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lastRemaining</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> dp = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            dp = (dp + m) % i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp ;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p><blockquote><p>对于这个推到技巧，在知乎看到这么一个总结，感觉比较实用</p></blockquote><p>递归问题分3步走：<br>1、递归收敛：由于m是不变的，所以只能通过n将规模不断缩小<br>2、找出口：当递归收敛到最小单位时，能得到一个出口。即当n=1时，胜者的位置为0<br>3、找规律：分析已知条件，与我们需要结果的关联。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;剑指offer Joseph Problem&lt;/a&gt;&lt;br&gt;题目不用多介绍，经典的约瑟夫环问题，求解的过程主要包含两种。一种是直观的构造循环链表，通过多次多次遍历，求的最终结果，时间复杂度为O(mn),另一种就是通过数学分析，找出递归的规律，然后使用递归或者动归求解。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
+    
+      <category term="Math" scheme="https://dpcfury.github.io/tags/Math/"/>
+    
+  </entry>
   
   <entry>
     <title>Leetcode[1162] As Far from Land as Possible</title>
@@ -539,34 +565,6 @@
       <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
     
       <category term="binary tree" scheme="https://dpcfury.github.io/tags/binary-tree/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode[836] Rectangle Overlap</title>
-    <link href="https://dpcfury.github.io/leetcode-rectangl-overlap.html/"/>
-    <id>https://dpcfury.github.io/leetcode-rectangl-overlap.html/</id>
-    <published>2020-03-18T13:48:28.000Z</published>
-    <updated>2020-03-18T13:56:50.068Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/rectangle-overlap/" target="_blank" rel="noopener">836. Rectangle</a><br>给出两个矩形的左下角坐标，以及右上角坐标，判断两个矩形是否重叠，只要从横坐标和纵坐标构成的线段判断是否重叠，再做逻辑与运算，即能判断长方形是否重叠，只要整理好判断条件即可</p></blockquote><a id="more"></a><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isRectangleOverlap</span><span class="params">(<span class="keyword">int</span>[] rec1, <span class="keyword">int</span>[] rec2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> x1 = rec1[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> y1 = rec1[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> x2 = rec1[<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">int</span> y2 = rec1[<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> x11 = rec2[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> y11 = rec2[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> x22 = rec2[<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">int</span> y22 = rec2[<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">boolean</span> xOverlap = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">boolean</span> yOverlap = <span class="keyword">false</span>;</span><br><span class="line">        xOverlap = (x11 &gt;= x1 &amp;&amp; x11 &lt; x2) || (x22 &gt; x1 &amp;&amp; x22 &lt;= x2) || (x11 &lt;= x1 &amp;&amp; x22 &gt;= x2);</span><br><span class="line">        yOverlap = (y11 &gt;= y1 &amp;&amp; y11 &lt; y2) || (y22 &gt; y1 &amp;&amp; y22 &lt;= y2) || (y11 &lt;= y1 &amp;&amp; y22 &gt;= y2);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> xOverlap &amp;&amp; yOverlap;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><p>其实在这种判断条件比较多的情况下，可以看看是否可以用取反进行优化，比如，用判断x轴和y轴不重叠的条件，再取非：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isRectangleOverlap</span><span class="params">(<span class="keyword">int</span>[] rec1, <span class="keyword">int</span>[] rec2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> x1 = rec1[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> y1 = rec1[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> x2 = rec1[<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">int</span> y2 = rec1[<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> x11 = rec2[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> y11 = rec2[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> x22 = rec2[<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">int</span> y22 = rec2[<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">boolean</span> xOverlap = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">boolean</span> yOverlap = <span class="keyword">false</span>;</span><br><span class="line">        xOverlap = !(x22 &lt;= x1 || x11 &gt;= x2);</span><br><span class="line">        yOverlap = !(y22 &lt;= y1 || y11 &gt;= y2);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> xOverlap &amp;&amp; yOverlap;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/rectangle-overlap/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;836. Rectangle&lt;/a&gt;&lt;br&gt;给出两个矩形的左下角坐标，以及右上角坐标，判断两个矩形是否重叠，只要从横坐标和纵坐标构成的线段判断是否重叠，再做逻辑与运算，即能判断长方形是否重叠，只要整理好判断条件即可&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
-    
-      <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
-    
-      <category term="array" scheme="https://dpcfury.github.io/tags/array/"/>
     
   </entry>
   
