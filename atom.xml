@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-03-30T15:20:26.278Z</updated>
+  <updated>2020-03-31T14:19:14.725Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,51 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>排序</title>
+    <link href="https://dpcfury.github.io/sorting.html/"/>
+    <id>https://dpcfury.github.io/sorting.html/</id>
+    <published>2020-03-31T14:11:02.000Z</published>
+    <updated>2020-03-31T14:19:14.725Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>十大排序算法可以说是每个程序员都必须得掌握的了，为了方便个人复习和总结，把它整理成一篇独立文章，每种算法会有简单的算法思想描述，为了方便大家理解，从网上搜集了动图演示。</p></blockquote><ul><li>选择排序</li><li>插入排序</li><li>冒泡排序</li><li>非优化版本</li><li>优化版本</li><li>希尔排序</li><li>归并排序</li><li>递归式归并排序</li><li>非递归式归并排序</li><li>快速排序</li><li>堆排序</li><li>基数排序</li><li>非优化版本</li><li>优化版本</li><li>桶排序</li><li>基数排序</li></ul><h4 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h4><p><strong>过程简单描述：</strong> 首先，找到数组中最小的那个元素，其次，将它和数组的第一个元素交换位置(如果第一个元素就是最小元素那么它就和自己交换)。其次，在剩下的元素中找到最小的元素，将它与数组的第二个元素交换位置。如此往复，直到将整个数组排序。这种方法我们称之为选择排序。</p><a id="more"></a><p><img src="https://pic1.zhimg.com/v2-f20b8898585b3ca03843d93ce2c35a68_b.jpg" alt="选择排序"></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">selectSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> min = i;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; nums.length; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums[j] &lt; nums[min]) min = j;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> temp = nums[i];</span><br><span class="line">            nums[i] = nums[min];</span><br><span class="line">            nums[min] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><h4 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h4><p><a href="https://zhuanlan.zhihu.com/p/57088609" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/57088609</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;十大排序算法可以说是每个程序员都必须得掌握的了，为了方便个人复习和总结，把它整理成一篇独立文章，每种算法会有简单的算法思想描述，为了方便大家理解，从网上搜集了动图演示。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;选择排序&lt;/li&gt;
+&lt;li&gt;插入排序&lt;/li&gt;
+&lt;li&gt;冒泡排序&lt;/li&gt;
+&lt;li&gt;非优化版本&lt;/li&gt;
+&lt;li&gt;优化版本&lt;/li&gt;
+&lt;li&gt;希尔排序&lt;/li&gt;
+&lt;li&gt;归并排序&lt;/li&gt;
+&lt;li&gt;递归式归并排序&lt;/li&gt;
+&lt;li&gt;非递归式归并排序&lt;/li&gt;
+&lt;li&gt;快速排序&lt;/li&gt;
+&lt;li&gt;堆排序&lt;/li&gt;
+&lt;li&gt;基数排序&lt;/li&gt;
+&lt;li&gt;非优化版本&lt;/li&gt;
+&lt;li&gt;优化版本&lt;/li&gt;
+&lt;li&gt;桶排序&lt;/li&gt;
+&lt;li&gt;基数排序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;选择排序&quot;&gt;&lt;a href=&quot;#选择排序&quot; class=&quot;headerlink&quot; title=&quot;选择排序&quot;&gt;&lt;/a&gt;选择排序&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;过程简单描述：&lt;/strong&gt; 首先，找到数组中最小的那个元素，其次，将它和数组的第一个元素交换位置(如果第一个元素就是最小元素那么它就和自己交换)。其次，在剩下的元素中找到最小的元素，将它与数组的第二个元素交换位置。如此往复，直到将整个数组排序。这种方法我们称之为选择排序。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="sorting" scheme="https://dpcfury.github.io/tags/sorting/"/>
+    
+  </entry>
   
   <entry>
     <title>Leetcode[1218] Longest Arithmetic Subsequence of Given Difference</title>
@@ -537,34 +582,6 @@
       <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
     
       <category term="array" scheme="https://dpcfury.github.io/tags/array/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>leetcode[100]Same Tree</title>
-    <link href="https://dpcfury.github.io/leetcode-same-tree.html/"/>
-    <id>https://dpcfury.github.io/leetcode-same-tree.html/</id>
-    <published>2020-03-19T13:25:56.000Z</published>
-    <updated>2020-03-19T13:30:10.033Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/same-tree/" target="_blank" rel="noopener">100. Same Tree</a><br>判断两颗二叉树是否完全相同，即对应位置的结构以及节点的值需要相同，才能判断为相同的书结构，这类问题第一印象就是递归，将问题拆分为左右子树的比较，再加边缘条件的判断，司思路很清晰。</p></blockquote><a id="more"></a><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSameTree</span><span class="params">(TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (p == <span class="keyword">null</span> &amp;&amp; q == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">       <span class="keyword">else</span> <span class="keyword">if</span> (p == <span class="keyword">null</span> || q == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">       <span class="keyword">else</span> <span class="keyword">if</span> (p.val == q.val) <span class="keyword">return</span> isSameTree(p.left, q.left) &amp;&amp; isSameTree(p.right, q.right);</span><br><span class="line">       <span class="keyword">else</span> <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/same-tree/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;100. Same Tree&lt;/a&gt;&lt;br&gt;判断两颗二叉树是否完全相同，即对应位置的结构以及节点的值需要相同，才能判断为相同的书结构，这类问题第一印象就是递归，将问题拆分为左右子树的比较，再加边缘条件的判断，司思路很清晰。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
-    
-      <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
-    
-      <category term="tree" scheme="https://dpcfury.github.io/tags/tree/"/>
     
   </entry>
   
