@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="spring-boot,工程实践," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DPC's Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="在web开发中，经常需要处理各类异常情况，这种处理逻辑经常会被分散在代码的各个层次，导致异常的处理和业务逻辑混杂，后续重构代价升高，前后端交互成本提高，不利用系统的持续演进。本文针对工作中遇到的不良实践进行总结，试图找寻一种可以解决大部分问题的工程实践方案。">
+<meta name="keywords" content="spring-boot,工程实践">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Boot统一异常处理实践">
+<meta property="og:url" content="https://dpcfury.github.io/spring-boot-exception-handling.html/index.html">
+<meta property="og:site_name" content="DPC&#39;s Blog">
+<meta property="og:description" content="在web开发中，经常需要处理各类异常情况，这种处理逻辑经常会被分散在代码的各个层次，导致异常的处理和业务逻辑混杂，后续重构代价升高，前后端交互成本提高，不利用系统的持续演进。本文针对工作中遇到的不良实践进行总结，试图找寻一种可以解决大部分问题的工程实践方案。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-04-01T12:09:55.870Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring Boot统一异常处理实践">
+<meta name="twitter:description" content="在web开发中，经常需要处理各类异常情况，这种处理逻辑经常会被分散在代码的各个层次，导致异常的处理和业务逻辑混杂，后续重构代价升高，前后端交互成本提高，不利用系统的持续演进。本文针对工作中遇到的不良实践进行总结，试图找寻一种可以解决大部分问题的工程实践方案。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://dpcfury.github.io/spring-boot-exception-handling.html/"/>
+
+
+
+
+
+  <title>Spring Boot统一异常处理实践 | DPC's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DPC's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://dpcfury.github.io/spring-boot-exception-handling.html/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="杜鹏程">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DPC's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Spring Boot统一异常处理实践</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-01T19:14:57+08:00">
+                2020-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发/spring-boot/" itemprop="url" rel="index">
+                    <span itemprop="name">spring-boot</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/spring-boot-exception-handling.html/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/spring-boot-exception-handling.html/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/spring-boot-exception-handling.html/" class="leancloud_visitors" data-flag-title="Spring Boot统一异常处理实践">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,636
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>在web开发中，经常需要处理各类异常情况，这种处理逻辑经常会被分散在代码的各个层次，导致异常的处理和业务逻辑混杂，后续重构代价升高，前后端交互成本提高，不利用系统的持续演进。本文针对工作中遇到的不良实践进行总结，试图找寻一种可以解决大部分问题的工程实践方案。</p>
+</blockquote>
+<a id="more"></a>
+<h4 id="核心关注点"><a href="#核心关注点" class="headerlink" title="核心关注点"></a>核心关注点</h4><p>对异常的处理，总结先来，主要有三个核心的关注点：</p>
+<ul>
+<li>在什么时候，什么地方捕获异常（try-catch），什么时候需要抛出（throws）异常</li>
+<li>在DAO、Service还是在Controller层次进行捕获</li>
+<li>抛出一场后，如何处理，如何向前端返回错误</li>
+</ul>
+<h4 id="工作中遇到的反例"><a href="#工作中遇到的反例" class="headerlink" title="工作中遇到的反例"></a>工作中遇到的反例</h4><p>以个人在工作中接触的一个django项目为例，其业务逻辑都集中在view.py文件中，通过装饰器，将返回内容统一转换为json形式进行返回，系统在异常处理存在的问题集中体现在：</p>
+<ul>
+<li>分散在业务各处的返回信息处理</li>
+<li>满大街的try-catch，可能一层套一层</li>
+<li>混乱的返回方式</li>
+</ul>
+<p>后端和前端约定返回结果形式：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"message"</span>:<span class="string">"ok"</span>,</span><br><span class="line">    <span class="attr">"data"</span>:[],</span><br><span class="line">    <span class="attr">"success"</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>分散的返回处理</strong><br>即返回结果的处理没有统一的入口，可能分散在代码的多个层次中，导致返回信息的组织和业务逻辑交织在一起，代码逻辑非常不清晰，其次，会导致返回信息不对的情况下，排查人力投入明显增加。经常看到返回的结果message对应的从约定的”ok”变成了其他的词，”success”也出现五花八门的返回结果。</p>
+<p><strong>满大街的try-catch</strong><br>在代码的不同层次，你都能找到活多或少的try-cath处理段，过多的try-catch 导致业务代码分割严重，也增加了对应处理逻辑，导致系统的复杂度上升，后续维护重构举步维艰。</p>
+<p><strong>混乱的返回方式</strong><br>在spring-mvc中，返回统一在controller层次，第一层的函数就负责了结果的返回，但是接触到的django项目，它的返回逻辑甚至能在入口跳转6次的函数中，没有统一的处理入口，出了问题需要到处排查，前后端要一起折腾。</p>
+<p><strong>总结</strong><br>当前项目的异常处理方式非常失败，处于xx原因，就不好列举代码了。</p>
+<h4 id="异常处理规范"><a href="#异常处理规范" class="headerlink" title="异常处理规范"></a>异常处理规范</h4><p>为了进行统一的异常处理，一般会约定异常处理规范，这里不仅仅是将结果形式定义了就完事了，还得通过前后端各种工程实践将这个规范践行下去。</p>
+<h4 id="原则一：-不捕获任何异常"><a href="#原则一：-不捕获任何异常" class="headerlink" title="原则一： 不捕获任何异常"></a>原则一： 不捕获任何异常</h4><p>根据大佬们的实践经验，不再对与业务逻辑和数据处理中的异常进行捕获，即将DAO、Service、Controller中所有的异常全部抛出到上层，从而不眠代码中一堆的try-catch，减少维护的难度。</p>
+<h4 id="原则二：统一返回结果集"><a href="#原则二：统一返回结果集" class="headerlink" title="原则二：统一返回结果集"></a>原则二：统一返回结果集</h4><p>这个原则很多开发实践都已经明确，就是按照统一的一个格式进行结果返回，返回结果中应该起码包含请求的处理状态标志，此外用一层数组包装查询的结果。</p>
+<p>而在spring-boot(mvc)架构中，通常会定义一个Java的DTO对象，用来进行统一的结果返回，for example:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ResultBean</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> code; <span class="comment">// 统一协商的状态码</span></span><br><span class="line">    <span class="keyword">private</span> String message; <span class="comment">// 携带的额外提示信息</span></span><br><span class="line">    <span class="keyword">private</span> Collection&lt;T&gt; data; <span class="comment">// 请求返回的数据集</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">ResultBean</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ResultBean <span class="title">error</span><span class="params">(<span class="keyword">int</span> code, String message)</span> </span>&#123;</span><br><span class="line">        ResultBean resultBean = <span class="keyword">new</span> ResultBean();</span><br><span class="line">        resultBean.setCode(code);</span><br><span class="line">        resultBean.setMessage(message);</span><br><span class="line">        <span class="keyword">return</span> resultBean;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ResultBean <span class="title">success</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ResultBean resultBean = <span class="keyword">new</span> ResultBean();</span><br><span class="line">        resultBean.setCode(<span class="number">0</span>);</span><br><span class="line">        resultBean.setMessage(<span class="string">"success"</span>);</span><br><span class="line">        <span class="keyword">return</span> resultBean;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;V&gt; <span class="function">ResultBean&lt;V&gt; <span class="title">success</span><span class="params">(Collection&lt;V&gt; data)</span> </span>&#123;</span><br><span class="line">        ResultBean resultBean = <span class="keyword">new</span> ResultBean();</span><br><span class="line">        resultBean.setCode(<span class="number">0</span>);</span><br><span class="line">        resultBean.setMessage(<span class="string">"success"</span>);</span><br><span class="line">        resultBean.setData(data);</span><br><span class="line">        <span class="keyword">return</span> resultBean;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// getter / setter 略</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从而，在成功的情况下，只需要返回ResultBean.success() 或 ResultBean.success(Collection<v> data)需要返回数据按照下面的形式：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/host/add"</span>)</span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ResultBean&lt;Goods&gt; <span class="title">getAllHosts</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    List&lt;Host&gt; hosts = hostService.findAll();</span><br><span class="line">    <span class="keyword">return</span> ResultBean.success(hosts);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/host/update"</span>)</span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ResultBean <span class="title">updatehosts</span><span class="params">(Host hosts)</span> </span>&#123;</span><br><span class="line">    hostsService.update(host);</span><br><span class="line">    <span class="keyword">return</span> ResultBean.success();</span><br><span class="line">&#125;</span><br><span class="line">`</span><br></pre></td></tr></table></figure></v></p>
+<p>只有查询方法需要调用 ResultBean.success(Collection<v> data) 来返回 N 条数据, 删除, 修改等方法都应该调用 ResultBean.success(), 即在业务代码中只处理正确的功能, 不对异常做任何判断. 也不需要对 update 或 delete 的更新条数做判断. 只要没有抛出异常, 就等价于用户请求处理成功，再加足够的日志即可，且操作成功的提示信息在前端处理, 不要后台返回 “操作成功” 等字段，这种设计在国际化的时候能减轻不少的工作量。</v></p>
+<p>前台接受的json for example：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"code"</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="string">"message"</span>: <span class="string">"success"</span>,</span><br><span class="line">    <span class="string">"data"</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">"sn"</span>: <span class="string">"xxxx"</span>,</span><br><span class="line">            <span class="string">"hostname"</span>: <span class="string">"xxxxx"</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">"sn"</span>: <span class="string">"xxxx"</span>,</span><br><span class="line">            <span class="string">"hostname"</span>: <span class="string">"xxxx"</span>,</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>在后端报错情况下，在后端统一调用ResultBean.error(int code, String message), 来将状态码和错误信息返回, 我们约定 code 为 0 表示操作成功, 1 标示系统错误， 2标示 参数错误（协商解决）</li>
+</ul>
+<p>前台收到错误结果后，只要根据对应的错误code进行相应的提示信息弹出即可。</p>
+<h4 id="后端统一异常处理"><a href="#后端统一异常处理" class="headerlink" title="后端统一异常处理"></a>后端统一异常处理</h4><p>这里是最重点的地方，spring-boot（mvc）开发的web应用中，如何进行统一的异常处理呢，spring利用AOP，提供了一种@Advice的处理方式，我们所有的异常只要能保证抛出到controller层次， 就能由统一的Advice进行处理：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ControllerAdvice</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RequestExceptionHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger log = LoggerFactory.getLogger(RequestExceptionHandler.class);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ExceptionHandler</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ResultBean <span class="title">unknownSn</span><span class="params">(UnknownSntException e)</span> </span>&#123;</span><br><span class="line">        log.error(<span class="string">"机器sn不存在"</span>, e);</span><br><span class="line">        <span class="keyword">return</span> ResultBean.error(<span class="number">1</span>, <span class="string">"sn不存在"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ExceptionHandler</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ResultBean <span class="title">incorrectMac</span><span class="params">(IncorrectMacException e)</span> </span>&#123;</span><br><span class="line">        log.error(<span class="string">"mac地址不对"</span>, e);</span><br><span class="line">        <span class="keyword">return</span> ResultBean.error(-<span class="number">2</span>, <span class="string">"mac地址错误"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ExceptionHandler</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ResultBean <span class="title">unknownException</span><span class="params">(Exception e)</span> </span>&#123;</span><br><span class="line">        log.error(<span class="string">"内部错误"</span>, e);</span><br><span class="line">        <span class="keyword">return</span> ResultBean.error(-<span class="number">99</span>, <span class="string">"系统出现错误，联系管理员处理"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
+<li>不要满大街的try-catch</li>
+<li>统一返回值，集中异常的处理逻辑</li>
+<li>认真对待写的代码</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>大佬， 赏一个吧 ~~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="杜鹏程 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="杜鹏程 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    杜鹏程
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://dpcfury.github.io/spring-boot-exception-handling.html/" title="Spring Boot统一异常处理实践">https://dpcfury.github.io/spring-boot-exception-handling.html/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/spring-boot/" rel="tag"><i class="fa fa-tag"></i> spring-boot</a>
+          
+            <a href="/tags/工程实践/" rel="tag"><i class="fa fa-tag"></i> 工程实践</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/sorting.html/" rel="next" title="排序">
+                <i class="fa fa-chevron-left"></i> 排序
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="杜鹏程" />
+            
+              <p class="site-author-name" itemprop="name">杜鹏程</p>
+              <p class="site-description motion-element" itemprop="description">live life to the fullest</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/dpcfury" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:dpcspark@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#核心关注点"><span class="nav-number">1.</span> <span class="nav-text">核心关注点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工作中遇到的反例"><span class="nav-number">2.</span> <span class="nav-text">工作中遇到的反例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异常处理规范"><span class="nav-number">3.</span> <span class="nav-text">异常处理规范</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原则一：-不捕获任何异常"><span class="nav-number">4.</span> <span class="nav-text">原则一： 不捕获任何异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原则二：统一返回结果集"><span class="nav-number">5.</span> <span class="nav-text">原则二：统一返回结果集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#后端统一异常处理"><span class="nav-number">6.</span> <span class="nav-text">后端统一异常处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1063590&auto=1&height=66"></iframe>
+</div>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">杜鹏程</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>本站访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'OKFVMdpRBgmwiwV45Muiamn4-gzGzoHsz',
+        appKey: 'GDDN79LXua3VhpCOIy4jpj9e',
+        placeholder: '',
+        avatar:'retro',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("OKFVMdpRBgmwiwV45Muiamn4-gzGzoHsz", "GDDN79LXua3VhpCOIy4jpj9e");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
