@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-04-01T15:59:09.464Z</updated>
+  <updated>2020-04-02T15:15:55.297Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,62 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode[289] Game of LifeGame of Life</title>
+    <link href="https://dpcfury.github.io/leetcode-game-of-life.html/"/>
+    <id>https://dpcfury.github.io/leetcode-game-of-life.html/</id>
+    <published>2020-04-02T14:44:34.000Z</published>
+    <updated>2020-04-02T15:15:55.297Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/game-of-life/" target="_blank" rel="noopener">Leetcode 289. Game of Life</a><br>题目给定一个二维面板，每个格子中的细胞存活由0，1代表，给定一定的繁衍规律，希望在面板上直接更新细胞的下一次存活状态。题目特别强调的是in-place修改，以及边界控制。</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>由于不能使用额外的存储空间标记细胞的上一轮状态，所以想到了，有没有社么办法，先在遍历过程中，将值做一个转换，在计算每个细胞的下一个状态时，同时还能保持记录上一轮状态。此时，题目的重点就是：如何提供一种编码方式，将细胞的更新值和上一轮状态保留，后续再进行一次遍历，即获取最终的值。</p><p>分析值变化情况：</p><ul><li>0 -&gt; 1 利用101标记，上一轮状态为0，更新状态为1</li><li>1 -&gt; 0 利用10 标记，上一轮状态为1，更新状态为0</li><li>0 -&gt; 0 不变</li><li>1 -&gt; 1 不变</li></ul><p>再加上八个方向的边界控制，题目的解法如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gameOfLife</span><span class="params">(<span class="keyword">int</span>[][] board)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (board == <span class="keyword">null</span> || board.length == <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">       <span class="keyword">int</span> row = board.length;</span><br><span class="line">       <span class="keyword">int</span> col = board[<span class="number">0</span>].length;</span><br><span class="line">       <span class="keyword">int</span>[][] directions = &#123;&#123;<span class="number">0</span>, <span class="number">1</span>&#125;, &#123;<span class="number">0</span>, -<span class="number">1</span>&#125;, &#123;<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;-<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;-<span class="number">1</span>, -<span class="number">1</span>&#125;, &#123;-<span class="number">1</span>, <span class="number">1</span>&#125;, &#123;<span class="number">1</span>, -<span class="number">1</span>&#125;, &#123;<span class="number">1</span>, <span class="number">1</span>&#125;&#125;;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row; i++) &#123;</span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; col; j++) &#123;</span><br><span class="line">               <span class="keyword">int</span> numOfOne = <span class="number">0</span>;</span><br><span class="line">               <span class="keyword">int</span> numOfZero = <span class="number">0</span>;</span><br><span class="line">               <span class="keyword">for</span> (<span class="keyword">int</span>[] dir : directions) &#123;</span><br><span class="line">                   <span class="keyword">int</span> curX = i + dir[<span class="number">0</span>];</span><br><span class="line">                   <span class="keyword">int</span> curY = j + dir[<span class="number">1</span>];</span><br><span class="line">                   <span class="keyword">if</span> (inArea(curX, curY, row, col)) &#123;</span><br><span class="line">                       <span class="keyword">int</span> value = board[curX][curY];</span><br><span class="line">                       <span class="keyword">if</span> (value == <span class="number">1</span> || value == <span class="number">10</span>) numOfOne++;</span><br><span class="line">                       <span class="keyword">else</span> numOfZero++;</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;</span><br><span class="line"></span><br><span class="line">               <span class="keyword">if</span> (board[i][j] == <span class="number">0</span> &amp;&amp; numOfOne == <span class="number">3</span>) board[i][j] = <span class="number">101</span>; <span class="comment">// 0-&gt;1</span></span><br><span class="line">               <span class="keyword">if</span> (board[i][j] == <span class="number">1</span> &amp;&amp; (numOfOne &lt; <span class="number">2</span> || numOfOne &gt; <span class="number">3</span>)) board[i][j] = <span class="number">10</span>; <span class="comment">// 1-&gt;0</span></span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row; i++) &#123;</span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; col; j++) &#123;</span><br><span class="line">               <span class="keyword">int</span> value = board[i][j];</span><br><span class="line">               <span class="keyword">if</span> (value == <span class="number">101</span>) board[i][j] = <span class="number">1</span>;</span><br><span class="line">               <span class="keyword">if</span> (value == <span class="number">10</span>) board[i][j] = <span class="number">0</span>;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">inArea</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> row, <span class="keyword">int</span> col)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (x &lt; <span class="number">0</span> || x &gt;= row) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">       <span class="keyword">if</span> (y &lt; <span class="number">0</span> || y &gt;= col) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/game-of-life/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 289. Game of Life&lt;/a&gt;&lt;br&gt;题目给定一个二维面板，每个格子中的细胞存活由0，1代表，给定一定的繁衍规律，希望在面板上直接更新细胞的下一次存活状态。题目特别强调的是in-place修改，以及边界控制。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
+    
+      <category term="bit" scheme="https://dpcfury.github.io/tags/bit/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>django 启动 libmysqlclient_r.so.16找不到</title>
+    <link href="https://dpcfury.github.io/django-libmysqlclient-error.html/"/>
+    <id>https://dpcfury.github.io/django-libmysqlclient-error.html/</id>
+    <published>2020-04-02T05:51:29.000Z</published>
+    <updated>2020-04-02T06:03:29.870Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>问题：开发环境由于yum安装的mysql版本太低，卸载后从mysql官网下载rpm进行安装，正常设置mysql之后，在启动Django时，提示libmysqlclient_r.so.16找不到。</p></blockquote><a id="more"></a><h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><blockquote><p>django.core.exceptions.ImproperlyConfigured: Error loading MySQLdb module: libmysqlclient_r.so.16: cannot open shared object file: No such file or directory.</p></blockquote><p>在网上找了不少回答，发现都是扯的很，最后发现的问题是，在通过rpm方式安装mysql时，使用的是mysql-rpm-bundle的版本，当时只安装了mysql-client和mysql-server。</p><p>完整的安装包：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- -rw-r--r--  1 root root  285470720 Mar 31 19:53 MySQL-5.6.46-1.el6.x86_64.rpm-bundle.tar</span><br><span class="line">- -rw-r--r--  1 7155 31415  35528000 Sep 29  2019 MySQL-client-5.6.46-1.el6.x86_64.rpm</span><br><span class="line">- -rw-r--r--  1 7155 31415   6191888 Sep 29  2019 MySQL-devel-5.6.46-1.el6.x86_64.rpm</span><br><span class="line">- -rw-r--r--  1 7155 31415  98136984 Sep 29  2019 MySQL-embedded-5.6.46-1.el6.x86_64.rpm</span><br><span class="line">- -rw-r--r--  1 7155 31415  80628348 Sep 29  2019 MySQL-server-5.6.46-1.el6.x86_64.rpm</span><br><span class="line">- -rw-r--r--  1 7155 31415   3722376 Sep 29  2019 MySQL-shared-5.6.46-1.el6.x86_64.rpm</span><br><span class="line">- -rw-r--r--  1 7155 31415   3969752 Sep 29  2019 MySQL-shared-compat-5.6.46-1.el6.x86_64.rpm</span><br><span class="line">- -rw-r--r--  1 7155 31415  57279436 Sep 29  2019 MySQL-test-5.6.46-1.el6.x86_64.rpm</span><br></pre></td></tr></table></figure></p><p>缺少libmysqlclient_r.so.16是因为MySQL-shared-compat-5.6.46-1.el6.x86_64.rpm没有安装，直接安装即可<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh MySQL-shared-compat-5.6.46-1.el6.x86_64.rpm</span><br><span class="line">warning: MySQL-shared-compat-5.6.46-1.el6.x86_64.rpm: Header V3 DSA/SHA1 Signature, key ID 5072e1f5: NOKEY</span><br><span class="line">Preparing...                <span class="comment">########################################### [100%]</span></span><br><span class="line">   1:MySQL-shared-compat    <span class="comment">########################################### [100%]</span></span><br><span class="line"></span><br><span class="line">[root@dpctest upload]<span class="comment"># find / -name libmysqlclient_r.so.16</span></span><br><span class="line">/usr/lib64/libmysqlclient_r.so.16</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;问题：开发环境由于yum安装的mysql版本太低，卸载后从mysql官网下载rpm进行安装，正常设置mysql之后，在启动Django时，提示libmysqlclient_r.so.16找不到。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="django" scheme="https://dpcfury.github.io/categories/django/"/>
+    
+    
+      <category term="开发" scheme="https://dpcfury.github.io/tags/%E5%BC%80%E5%8F%91/"/>
+    
+      <category term="django" scheme="https://dpcfury.github.io/tags/django/"/>
+    
+      <category term="mysql" scheme="https://dpcfury.github.io/tags/mysql/"/>
+    
+  </entry>
   
   <entry>
     <title>Leetcode[1111] Maximum Nesting Depth of Two Valid Parentheses Strings</title>
@@ -509,60 +565,6 @@
       <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
     
       <category term="binary tree" scheme="https://dpcfury.github.io/tags/binary-tree/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode[200] Number of Islands</title>
-    <link href="https://dpcfury.github.io/leetcode-number-of-islands.html/"/>
-    <id>https://dpcfury.github.io/leetcode-number-of-islands.html/</id>
-    <published>2020-03-22T12:39:04.000Z</published>
-    <updated>2020-03-23T14:44:54.002Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/number-of-islands/" target="_blank" rel="noopener">Leetcode 200. Number of Islands</a><br>题目意思：一个二维字符数组，其中‘1’代表的是陆地，上下左右相邻的陆地构成一个岛，求解这幅地图中的独立小岛个数。这题和回溯的相似度很高，但是比回溯要更为简单，直观的解法就是，找到小岛的一块陆地，从上下左右分别去拓展这个小岛，通过一个标记二维数组标记当前的拓展情况，如果已经拓展则进行忽略，当二维字符数组的每个元素都遍历完成，求得小岛数就是最终的答案。</p></blockquote><a id="more"></a><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numIslands</span><span class="params">(<span class="keyword">char</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (grid == <span class="keyword">null</span> || grid.length==<span class="number">0</span>) <span class="keyword">return</span> num;</span><br><span class="line">        <span class="keyword">int</span> row = grid.length;</span><br><span class="line">        <span class="keyword">int</span> col = grid[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">boolean</span>[][] visited = <span class="keyword">new</span> <span class="keyword">boolean</span>[row][col];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; col; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (grid[i][j] == <span class="string">'1'</span> &amp;&amp; !visited[i][j]) &#123;</span><br><span class="line">                    traversal(grid, row, col, i, j, visited);</span><br><span class="line">                    num++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> num;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">traversal</span><span class="params">(<span class="keyword">char</span>[][] grid, <span class="keyword">int</span> row, <span class="keyword">int</span> col, <span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">boolean</span>[][] visited)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt;= row || j &lt; <span class="number">0</span> || j &gt;= col || grid[i][j] != <span class="string">'1'</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (!visited[i][j]) &#123;</span><br><span class="line">                visited[i][j] = <span class="keyword">true</span>;</span><br><span class="line">                traversal(grid, row, col, i - <span class="number">1</span>, j, visited);</span><br><span class="line">                traversal(grid, row, col, i + <span class="number">1</span>, j, visited);</span><br><span class="line">                traversal(grid, row, col, i, j - <span class="number">1</span>, visited);</span><br><span class="line">                traversal(grid, row, col, i, j + <span class="number">1</span>, visited);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/number-of-islands/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 200. Number of Islands&lt;/a&gt;&lt;br&gt;题目意思：一个二维字符数组，其中‘1’代表的是陆地，上下左右相邻的陆地构成一个岛，求解这幅地图中的独立小岛个数。这题和回溯的相似度很高，但是比回溯要更为简单，直观的解法就是，找到小岛的一块陆地，从上下左右分别去拓展这个小岛，通过一个标记二维数组标记当前的拓展情况，如果已经拓展则进行忽略，当二维字符数组的每个元素都遍历完成，求得小岛数就是最终的答案。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
-    
-      <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
-    
-      <category term="backtracking" scheme="https://dpcfury.github.io/tags/backtracking/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode[108] Convert Sorted Array to Binary Search Tree</title>
-    <link href="https://dpcfury.github.io/convert-sorted-array-to-binary-search-tree.html/"/>
-    <id>https://dpcfury.github.io/convert-sorted-array-to-binary-search-tree.html/</id>
-    <published>2020-03-22T05:36:55.000Z</published>
-    <updated>2020-03-22T07:34:25.558Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/" target="_blank" rel="noopener">Leetcode 108. Convert Sorted Array to Binary Search Tree</a><br>题目意思：通过一个有序的数组，构建一个高度平衡的二叉搜索树。具体解法比较直观的就是，通过二分法，将数组从中间一份为二，前半部分为左子树，右半部分为右子树，中间元素为树的根，这样递归去构建左右子树技能得到最终的解。</p></blockquote><a id="more"></a><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">sortedArrayToBST</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> sortedArrayToBST(nums, <span class="number">0</span>, nums.length - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> TreeNode <span class="title">sortedArrayToBST</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (j &lt; i) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">int</span> m = (i + j) / <span class="number">2</span>;</span><br><span class="line">        TreeNode root = <span class="keyword">new</span> TreeNode(nums[m]);</span><br><span class="line">        root.left = sortedArrayToBST(nums, i, m - <span class="number">1</span>);</span><br><span class="line">        root.right = sortedArrayToBST(nums, m + <span class="number">1</span>, j);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 108. Convert Sorted Array to Binary Search Tree&lt;/a&gt;&lt;br&gt;题目意思：通过一个有序的数组，构建一个高度平衡的二叉搜索树。具体解法比较直观的就是，通过二分法，将数组从中间一份为二，前半部分为左子树，右半部分为右子树，中间元素为树的根，这样递归去构建左右子树技能得到最终的解。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
-    
-      <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
-    
-      <category term="BST" scheme="https://dpcfury.github.io/tags/BST/"/>
     
   </entry>
   
