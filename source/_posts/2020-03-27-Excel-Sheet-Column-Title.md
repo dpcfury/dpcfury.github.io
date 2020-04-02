@@ -9,7 +9,7 @@ tags:
 - easy
 ---
 
->(Leetcode 168. Excel Sheet Column Title)[https://leetcode.com/problems/excel-sheet-column-title/]
+>[Leetcode 168. Excel Sheet Column Title](https://leetcode.com/problems/excel-sheet-column-title/)
 题目求数字到Excel sheet编号的转换，其实本质就是进制的转换，但是需要注意的是，这边的A是代表1，z代表的是26，如果直接取余数，会发现结果查一位，这里有个技巧就是，每次将初数-1操作,可以看成逻辑上将A从0开始算。
 
 <!--more-->
