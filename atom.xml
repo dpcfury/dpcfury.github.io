@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-04-03T07:35:17.799Z</updated>
+  <updated>2020-04-03T14:46:43.988Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,54 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode[8]String to Integer (atoi)</title>
+    <link href="https://dpcfury.github.io/string-to-integer.html/"/>
+    <id>https://dpcfury.github.io/string-to-integer.html/</id>
+    <published>2020-04-03T14:41:07.000Z</published>
+    <updated>2020-04-03T14:46:43.988Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/string-to-integer-atoi/" target="_blank" rel="noopener">Leetcode 8. String to Integer (atoi)</a><br>题目要实现一个 atoi 函数，使其能将字符串转换成整数。确切的说，这种字符的类型五花八门，有很多中形式，除了正负号的判断，还需要判断数字的合法性，数字的长度是否超越32位整数的边界等，属于细节题，不做过多的描述，比较好的方式是不用借助太多的标记为，而是分阶段进行处理，先处理空格，再处理符号，再处理数字。</p></blockquote><a id="more"></a><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">myAtoi</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(str.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> index=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> startIndex=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">boolean</span> negative=<span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">while</span>(str.length()&gt;index &amp;&amp; str.charAt(index)==<span class="string">' '</span>) &#123;</span><br><span class="line">            index++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(index&gt;=str.length()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(str.charAt(index)==<span class="string">'+'</span>) &#123;</span><br><span class="line">            index++;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(str.charAt(index)==<span class="string">'-'</span>) &#123;</span><br><span class="line">            index++;</span><br><span class="line">            negative=<span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(index&gt;=str.length()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(Character.isDigit(str.charAt(index))==<span class="keyword">false</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            startIndex=index;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> endIndex=startIndex;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=startIndex; i&lt;str.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(str.charAt(i)&gt;=<span class="string">'0'</span> &amp;&amp; str.charAt(i)&lt;=<span class="string">'9'</span>) &#123;</span><br><span class="line">                endIndex++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">double</span> num=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=startIndex; i&lt;endIndex; i++) &#123;</span><br><span class="line">            num=(num*<span class="number">10</span>)+Double.parseDouble(Character.toString(str.charAt(i)));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(num&gt;Integer.MAX_VALUE) &#123;</span><br><span class="line">            <span class="keyword">return</span> (negative)?Integer.MIN_VALUE:Integer.MAX_VALUE;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> negative?(<span class="keyword">int</span>)(-<span class="number">1</span>*num):(<span class="keyword">int</span>)num;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/string-to-integer-atoi/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 8. String to Integer (atoi)&lt;/a&gt;&lt;br&gt;题目要实现一个 atoi 函数，使其能将字符串转换成整数。确切的说，这种字符的类型五花八门，有很多中形式，除了正负号的判断，还需要判断数字的合法性，数字的长度是否超越32位整数的边界等，属于细节题，不做过多的描述，比较好的方式是不用借助太多的标记为，而是分阶段进行处理，先处理空格，再处理符号，再处理数字。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>todo-list</title>
+    <link href="https://dpcfury.github.io/todo-list.html/"/>
+    <id>https://dpcfury.github.io/todo-list.html/</id>
+    <published>2020-04-03T07:55:08.000Z</published>
+    <updated>2020-04-03T08:07:01.818Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>罗列平时工作学习中需要总结的内容，可以开拓视野的内容。因为来不及实践或总结成博客，暂时记个todo，方便有时间去尝试和整理。</p></blockquote><a id="more"></a><ol><li><p>Spring Boot 微服务应用集成Prometheus + Grafana 实现监控告警(reference :<a href="https://juejin.im/post/5e27acf6e51d4557ea363a65" target="_blank" rel="noopener">https://juejin.im/post/5e27acf6e51d4557ea363a65</a>)</p></li><li><p>python 垃圾回收</p></li><li><p>问题：一次web请求，所创建对象的垃圾回收和session相关的垃圾回收，首先了解拉垃圾对象的判别（核心）</p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;罗列平时工作学习中需要总结的内容，可以开拓视野的内容。因为来不及实践或总结成博客，暂时记个todo，方便有时间去尝试和整理。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="todo" scheme="https://dpcfury.github.io/categories/todo/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>内存泄漏和内存溢出</title>
@@ -507,62 +555,6 @@
       <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
     
       <category term="binary tree" scheme="https://dpcfury.github.io/tags/binary-tree/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode[198] House Robber</title>
-    <link href="https://dpcfury.github.io/leetcode-house-robber.html/"/>
-    <id>https://dpcfury.github.io/leetcode-house-robber.html/</id>
-    <published>2020-03-24T14:10:43.000Z</published>
-    <updated>2020-03-24T14:16:47.064Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/house-robber/" target="_blank" rel="noopener">198. House Robber</a><br>题目描述，给定一组序列，对其中的每一个元素，可以选择拿或者不拿，但是拿了之后，后相邻的下一个元素就不能拿，求能够拿的最大数量。属于特别典型的dp问题，推到出递归式即可。这题在国内还换了种说法，变成了<a href="https://leetcode-cn.com/problems/the-masseuse-lcci/" target="_blank" rel="noopener">按摩师</a>，内容完全一样。</p></blockquote><a id="more"></a><h4 id="写法一"><a href="#写法一" class="headerlink" title="写法一"></a>写法一</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">massage</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length + <span class="number">1</span>];</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        dp[<span class="number">1</span>] = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= nums.length; i++) &#123;</span><br><span class="line">            dp[i] = Math.max(dp[i - <span class="number">1</span>], dp[i - <span class="number">2</span>] + nums[i-<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[nums.length];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><h4 id="写法二"><a href="#写法二" class="headerlink" title="写法二"></a>写法二</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">rob</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums.length == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span>[] max = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i == <span class="number">0</span>)</span><br><span class="line">                max[i] = nums[i];</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (i == <span class="number">1</span>)</span><br><span class="line">                max[i] = Math.max(nums[<span class="number">0</span>], nums[<span class="number">1</span>]);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                max[i] = Math.max(max[i - <span class="number">1</span>], max[i - <span class="number">2</span>] + nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max[nums.length - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/house-robber/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;198. House Robber&lt;/a&gt;&lt;br&gt;题目描述，给定一组序列，对其中的每一个元素，可以选择拿或者不拿，但是拿了之后，后相邻的下一个元素就不能拿，求能够拿的最大数量。属于特别典型的dp问题，推到出递归式即可。这题在国内还换了种说法，变成了&lt;a href=&quot;https://leetcode-cn.com/problems/the-masseuse-lcci/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;按摩师&lt;/a&gt;，内容完全一样。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
-    
-      <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
-    
-      <category term="dynamic programming" scheme="https://dpcfury.github.io/tags/dynamic-programming/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode[876] Middle of the Linked List</title>
-    <link href="https://dpcfury.github.io/leetcode-middle-of-the-linked-list.html/"/>
-    <id>https://dpcfury.github.io/leetcode-middle-of-the-linked-list.html/</id>
-    <published>2020-03-23T14:35:01.000Z</published>
-    <updated>2020-03-23T14:45:15.623Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/middle-of-the-linked-list/" target="_blank" rel="noopener">Leetcode 876. Middle of the Linked List</a><br>题目目的是求一个非空链表中，从中间元素开始往后的截取一半列表。比较直观的就是设立两个元素以相差一倍的速度进行遍历，当跑的快的达到null，或者即将为null，再返回慢的元素或慢元素的下一个位置。</p></blockquote><a id="more"></a><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">middleNode</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        ListNode p = head;</span><br><span class="line">        ListNode q = head.next;</span><br><span class="line">        <span class="keyword">while</span> (q != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (q == <span class="keyword">null</span> || q.next == <span class="keyword">null</span>) <span class="keyword">break</span>;</span><br><span class="line">            p = p.next;</span><br><span class="line">            q = q.next.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> q == <span class="keyword">null</span> ? p : p.next;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/middle-of-the-linked-list/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 876. Middle of the Linked List&lt;/a&gt;&lt;br&gt;题目目的是求一个非空链表中，从中间元素开始往后的截取一半列表。比较直观的就是设立两个元素以相差一倍的速度进行遍历，当跑的快的达到null，或者即将为null，再返回慢的元素或慢元素的下一个位置。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
-    
-      <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
-    
-      <category term="linked list" scheme="https://dpcfury.github.io/tags/linked-list/"/>
     
   </entry>
   
