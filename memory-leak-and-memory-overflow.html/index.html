@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="内存泄漏,内存溢出," />
 
 
 
@@ -88,16 +88,18 @@
 
 
 
-<meta name="description" content="live life to the fullest">
-<meta property="og:type" content="website">
-<meta property="og:title" content="DPC&#39;s Blog">
-<meta property="og:url" content="https://dpcfury.github.io/archives/page/7/index.html">
+<meta name="description" content="内存泄漏（Memory Leak）指的是申请了内存，但是在后续不用的时候没有进行释放，对程序而言这块内存一直处于占用状态。内存溢出（Memory Overflow）：指的是申请内存时，已经没有足够的内容可供使用；或者，给定一块内存，你却操作这块内存意外的地址空间，这时候就会OOM，即所谓的内存溢出。">
+<meta name="keywords" content="内存泄漏,内存溢出">
+<meta property="og:type" content="article">
+<meta property="og:title" content="内存泄漏和内存溢出">
+<meta property="og:url" content="https://dpcfury.github.io/memory-leak-and-memory-overflow.html/index.html">
 <meta property="og:site_name" content="DPC&#39;s Blog">
-<meta property="og:description" content="live life to the fullest">
+<meta property="og:description" content="内存泄漏（Memory Leak）指的是申请了内存，但是在后续不用的时候没有进行释放，对程序而言这块内存一直处于占用状态。内存溢出（Memory Overflow）：指的是申请内存时，已经没有足够的内容可供使用；或者，给定一块内存，你却操作这块内存意外的地址空间，这时候就会OOM，即所谓的内存溢出。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-04-03T07:35:17.799Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DPC&#39;s Blog">
-<meta name="twitter:description" content="live life to the fullest">
+<meta name="twitter:title" content="内存泄漏和内存溢出">
+<meta name="twitter:description" content="内存泄漏（Memory Leak）指的是申请了内存，但是在后续不用的时候没有进行释放，对程序而言这块内存一直处于占用状态。内存溢出（Memory Overflow）：指的是申请内存时，已经没有足够的内容可供使用；或者，给定一块内存，你却操作这块内存意外的地址空间，这时候就会OOM，即所谓的内存溢出。">
 
 
 
@@ -127,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="https://dpcfury.github.io/archives/page/7/"/>
+  <link rel="canonical" href="https://dpcfury.github.io/memory-leak-and-memory-overflow.html/"/>
 
 
 
 
 
-  <title>归档 | DPC's Blog</title>
+  <title>内存泄漏和内存溢出 | DPC's Blog</title>
   
 
 
@@ -152,7 +154,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -266,225 +268,290 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      <span class="archive-page-counter">
-        
-        
-         
-        
-        OK! 目前共计 45 篇日志。 继续努力。
-      </span>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://dpcfury.github.io/memory-leak-and-memory-overflow.html/">
 
-      
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="杜鹏程">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DPC's Blog">
+    </span>
+
+    
+      <header class="post-header">
 
         
         
+          <h1 class="post-title" itemprop="name headline">内存泄漏和内存溢出</h1>
         
 
-        
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-03T14:35:50+08:00">
+                2020-04-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2020">2020</h1>
-          </div>
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/leetcode-path-sum.html/" itemprop="url">
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
               
-                <span itemprop="name">leetcode[112] path-sum</span>
+                <span class="post-meta-item-text">分类于</span>
               
-            </a>
-        
-      </h2>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/开发/" itemprop="url" rel="index">
+                    <span itemprop="name">开发</span>
+                  </a>
+                </span>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-17T21:44:21+08:00"
-              content="2020-03-17" >
-          03-17
-        </time>
-      </div>
+                
+                
+              
+            </span>
+          
 
-    </header>
-  </article>
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/memory-leak-and-memory-overflow.html/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/memory-leak-and-memory-overflow.html/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
 
+          
+          
+             <span id="/memory-leak-and-memory-overflow.html/" class="leancloud_visitors" data-flag-title="内存泄漏和内存溢出">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  726
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/kolla-start-docker.html/" itemprop="url">
-              
-                <span itemprop="name">kolla运行docker服务</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-11T20:40:18+08:00"
-              content="2020-03-11" >
-          03-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/leetcode-merge-sorted-array.html/" itemprop="url">
-              
-                <span itemprop="name">leetcode[88] Merge Sorted Array</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-11T20:28:25+08:00"
-              content="2020-03-11" >
-          03-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <blockquote>
+<p><strong>内存泄漏（Memory Leak）</strong>指的是申请了内存，但是在后续不用的时候没有进行释放，对程序而言这块内存一直处于占用状态。<br><strong>内存溢出（Memory Overflow）</strong>：指的是申请内存时，已经没有足够的内容可供使用；或者，给定一块内存，你却操作这块内存意外的地址空间，这时候就会OOM，即所谓的内存溢出。</p>
+</blockquote>
+<a id="more"></a>
+<h4 id="二者关系"><a href="#二者关系" class="headerlink" title="二者关系"></a>二者关系</h4><p>内存泄漏的堆积最终必然会导致内存溢出，内存溢出就是需要的空间超过了系统所能分配给你的最大空间，此时系统无法满足分配器请求，就会报内存溢出的错误。<br>内存泄漏更倾向于是说，你申请了空间，但是没有在不使用的情况下释放，导致系统无法将这些空间分配给其他程序，也无法被gc进行回收。</p>
+<h4 id="内存泄漏分类"><a href="#内存泄漏分类" class="headerlink" title="内存泄漏分类"></a>内存泄漏分类</h4><ol>
+<li><p><strong>常发性内存泄漏</strong>：造成内存泄漏的代码经常被执行到，每次执行程序都会造成对应代码段的内存泄漏。</p>
+</li>
+<li><p><strong>偶发性内存泄漏</strong>：造成内存泄漏的代码段很少被执行到，只有在特定的环境和条件下执行某种操作才会发生。常发性和偶发性是相对的。在特定条件下，偶发的泄漏可能演化常发性的内存泄漏，所以需要考虑泄漏发生的条件和环境。</p>
+</li>
+<li><p><strong>一次性内存泄漏</strong>：在整个应用程序的生命周期中，造成内存泄漏的代码段只会执行一次，可能是由于算法、程序设计、加载机制上的缺陷，导致总会发生一次内存泄漏。例如在加载阶段的初始化分配内存，但是后续类一直需要使用，因此不使用的内存一直没有被释放。</p>
+</li>
+<li><p><strong>隐式内存泄漏</strong>：程序在执行过程中（例如处理web用户的一次查询请求），由于程序设计问题，不停的在请求分配内存，但是直到请求处理完成才能释放内存。严格来说，这里并不能成为内存泄漏，因为程序如果能吹完成请求会释放所申请的内存。但是对于程序而言，不断申请大量的内内存，并且不及时释放（相对及时），最终还是会导致系统的内存耗尽。因此，把这种泄漏行为成为隐式内存泄漏。</p>
+</li>
+</ol>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>内存泄漏多处于程序设计原因，产生内存泄漏不一定会导致系统问题，但是内存泄漏的情况频繁、泄漏的内存较大，就会导致程序内存溢出，严重的会导致机器hang住，只能重启。</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/leetcode-add-binary.html/" itemprop="url">
-              
-                <span itemprop="name">leetcode[67]add binay</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-10T22:28:44+08:00"
-              content="2020-03-10" >
-          03-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/leetcode-longest-common-prefix.html/" itemprop="url">
-              
-                <span itemprop="name">leetcode[14]longeest common prefix</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-02-29T21:29:02+08:00"
-              content="2020-02-29" >
-          02-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>大佬， 赏一个吧 ~~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="杜鹏程 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="杜鹏程 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    杜鹏程
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://dpcfury.github.io/memory-leak-and-memory-overflow.html/" title="内存泄漏和内存溢出">https://dpcfury.github.io/memory-leak-and-memory-overflow.html/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/内存泄漏/" rel="tag"><i class="fa fa-tag"></i> 内存泄漏</a>
+          
+            <a href="/tags/内存溢出/" rel="tag"><i class="fa fa-tag"></i> 内存溢出</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/mac-mysql-python-installation.html/" rel="next" title="Mac下安装Mysql-Python">
+                <i class="fa fa-chevron-left"></i> Mac下安装Mysql-Python
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/archives/page/8/">8</a><a class="page-number" href="/archives/page/9/">9</a><a class="extend next" rel="next" href="/archives/page/8/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -492,6 +559,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -512,8 +586,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -600,6 +683,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#二者关系"><span class="nav-number">1.</span> <span class="nav-text">二者关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内存泄漏分类"><span class="nav-number">2.</span> <span class="nav-text">内存泄漏分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -763,6 +862,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
