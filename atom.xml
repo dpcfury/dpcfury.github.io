@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-04-03T14:46:43.988Z</updated>
+  <updated>2020-04-04T01:21:43.136Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode[42] Trapping Rain Water</title>
+    <link href="https://dpcfury.github.io/trapping-rain-water.html/"/>
+    <id>https://dpcfury.github.io/trapping-rain-water.html/</id>
+    <published>2020-04-04T01:13:04.000Z</published>
+    <updated>2020-04-04T01:21:43.136Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/trapping-rain-water/" target="_blank" rel="noopener">Leetcode 42. Trapping Rain Water</a><br>题目给定一个整形数组，代表高低相间的柱状体，问下完雨之后，这些柱状体之间的缝隙空间能装载多少水。这里提供自己比较喜欢的一种直观解法，理解非常方便。</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>从每个柱体进行考虑，这一格柱体能承载多少水，是由其左侧最高的柱体+ 右侧最高的柱体+本身的柱体高度决定，只要能计算出每个柱体能承载多少水，就能计算出总的盛水量。<br>实现方式：</p><ul><li>从左往右遍历，计算出每个柱体左边最高的柱体，记为leftMax[i]；</li><li>从右往左遍历，计算出每个柱体右侧最高的柱体，记为rightMax[i];</li><li>从迁往后遍历，计算每个柱体盛水量</li></ul><h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">trap</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (height == <span class="keyword">null</span> || height.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span>[] leftMax = <span class="keyword">new</span> <span class="keyword">int</span>[height.length];</span><br><span class="line">        <span class="keyword">int</span>[] rightMax = <span class="keyword">new</span> <span class="keyword">int</span>[height.length];</span><br><span class="line">        <span class="keyword">int</span> max1 = height[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; height.length; i++) &#123;</span><br><span class="line">            max1 = Math.max(max1, height[i]);</span><br><span class="line">            leftMax[i] = max1;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> max2 = height[height.length - <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = height.length - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">            max2 = Math.max(max2, height[j]);</span><br><span class="line">            rightMax[j] = max2;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; height.length; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> min = Math.min(leftMax[i], rightMax[i]);</span><br><span class="line">            <span class="keyword">if</span> (min &gt; height[i]) num += min - height[i];</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> num;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/trapping-rain-water/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 42. Trapping Rain Water&lt;/a&gt;&lt;br&gt;题目给定一个整形数组，代表高低相间的柱状体，问下完雨之后，这些柱状体之间的缝隙空间能装载多少水。这里提供自己比较喜欢的一种直观解法，理解非常方便。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="hard" scheme="https://dpcfury.github.io/tags/hard/"/>
+    
+  </entry>
   
   <entry>
     <title>Leetcode[8]String to Integer (atoi)</title>
@@ -527,34 +553,6 @@
       <category term="linkedlist" scheme="https://dpcfury.github.io/tags/linkedlist/"/>
     
       <category term="stack" scheme="https://dpcfury.github.io/tags/stack/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode[543] Diameter of Binary Tree</title>
-    <link href="https://dpcfury.github.io/leetcode-diameter-of-binary-tree.html/"/>
-    <id>https://dpcfury.github.io/leetcode-diameter-of-binary-tree.html/</id>
-    <published>2020-03-25T11:55:19.000Z</published>
-    <updated>2020-03-25T13:49:13.835Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/diameter-of-binary-tree/" target="_blank" rel="noopener">543. Diameter of Binary Tree</a><br>题目要求二叉树的最大直径，所谓直径就是这颗树的任意两个叶子结点连接，所能经过的最多节点数。分析这个路径的可能构成情况，可能是存在于左子树、右子树，或者存在于左右子树+根节点。所以对于当前任意节点，这颗树的最大直径，可以分为包含这个节点的路径情况：即左右子树高度+1，不包含的情况，即左子树的最大直径、或右子树的最大直径。</p></blockquote><a id="more"></a><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">diameterOfBinaryTree</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> max = getDepth(root.left) + getDepth(root.right);</span><br><span class="line">        <span class="keyword">int</span> leftMax = diameterOfBinaryTree(root.left);</span><br><span class="line">        <span class="keyword">int</span> rightMax = diameterOfBinaryTree(root.right);</span><br><span class="line">        <span class="keyword">if</span> (leftMax &gt; max)</span><br><span class="line">            max = leftMax;</span><br><span class="line">        <span class="keyword">if</span> (rightMax &gt; max)</span><br><span class="line">            max = rightMax;</span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getDepth</span><span class="params">(TreeNode node)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (node == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> Math.max(getDepth(node.left), getDepth(node.right)) + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/diameter-of-binary-tree/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;543. Diameter of Binary Tree&lt;/a&gt;&lt;br&gt;题目要求二叉树的最大直径，所谓直径就是这颗树的任意两个叶子结点连接，所能经过的最多节点数。分析这个路径的可能构成情况，可能是存在于左子树、右子树，或者存在于左右子树+根节点。所以对于当前任意节点，这颗树的最大直径，可以分为包含这个节点的路径情况：即左右子树高度+1，不包含的情况，即左子树的最大直径、或右子树的最大直径。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
-    
-      <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
-    
-      <category term="binary tree" scheme="https://dpcfury.github.io/tags/binary-tree/"/>
     
   </entry>
   
