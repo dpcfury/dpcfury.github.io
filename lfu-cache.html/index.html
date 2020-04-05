@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="leetcode,medium,bit," />
+  <meta name="keywords" content="leetcode,hard,lfu," />
 
 
 
@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="Leetcode 289. Game of Life题目给定一个二维面板，每个格子中的细胞存活由0，1代表，给定一定的繁衍规律，希望在面板上直接更新细胞的下一次存活状态。题目特别强调的是in-place修改，以及边界控制。">
-<meta name="keywords" content="leetcode,medium,bit">
+<meta name="description" content="Leetcode 46.  LFU Cache题目要求实现计算机页面置换中经典的LFU算法，和LRU一字之别，但是含义完全不同，LFU即Least Frequently Used，就是在缓存容量不够，需要置换的时候，替换策略是：将当前时间页面（key）访问次数最少的页面替换，然后将新的缓存更新。">
+<meta name="keywords" content="leetcode,hard,lfu">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Leetcode[289] Game of Life">
-<meta property="og:url" content="https://dpcfury.github.io/leetcode-game-of-life.html/index.html">
+<meta property="og:title" content="Leetcode[46] LFU Cache">
+<meta property="og:url" content="https://dpcfury.github.io/lfu-cache.html/index.html">
 <meta property="og:site_name" content="DPC&#39;s Blog">
-<meta property="og:description" content="Leetcode 289. Game of Life题目给定一个二维面板，每个格子中的细胞存活由0，1代表，给定一定的繁衍规律，希望在面板上直接更新细胞的下一次存活状态。题目特别强调的是in-place修改，以及边界控制。">
+<meta property="og:description" content="Leetcode 46.  LFU Cache题目要求实现计算机页面置换中经典的LFU算法，和LRU一字之别，但是含义完全不同，LFU即Least Frequently Used，就是在缓存容量不够，需要置换的时候，替换策略是：将当前时间页面（key）访问次数最少的页面替换，然后将新的缓存更新。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-02T15:45:29.786Z">
+<meta property="og:updated_time" content="2020-04-05T16:15:19.249Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Leetcode[289] Game of Life">
-<meta name="twitter:description" content="Leetcode 289. Game of Life题目给定一个二维面板，每个格子中的细胞存活由0，1代表，给定一定的繁衍规律，希望在面板上直接更新细胞的下一次存活状态。题目特别强调的是in-place修改，以及边界控制。">
+<meta name="twitter:title" content="Leetcode[46] LFU Cache">
+<meta name="twitter:description" content="Leetcode 46.  LFU Cache题目要求实现计算机页面置换中经典的LFU算法，和LRU一字之别，但是含义完全不同，LFU即Least Frequently Used，就是在缓存容量不够，需要置换的时候，替换策略是：将当前时间页面（key）访问次数最少的页面替换，然后将新的缓存更新。">
 
 
 
@@ -129,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="https://dpcfury.github.io/leetcode-game-of-life.html/"/>
+  <link rel="canonical" href="https://dpcfury.github.io/lfu-cache.html/"/>
 
 
 
 
 
-  <title>Leetcode[289] Game of Life | DPC's Blog</title>
+  <title>Leetcode[46] LFU Cache | DPC's Blog</title>
   
 
 
@@ -282,7 +282,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://dpcfury.github.io/leetcode-game-of-life.html/">
+    <link itemprop="mainEntityOfPage" href="https://dpcfury.github.io/lfu-cache.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="杜鹏程">
@@ -299,7 +299,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Leetcode[289] Game of Life</h1>
+          <h1 class="post-title" itemprop="name headline">Leetcode[46] LFU Cache</h1>
         
 
         <div class="post-meta">
@@ -311,8 +311,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-02T22:44:34+08:00">
-                2020-04-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-05T23:53:02+08:00">
+                2020-04-05
               </time>
             
 
@@ -352,8 +352,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/leetcode-game-of-life.html/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/leetcode-game-of-life.html/" itemprop="commentCount"></span>
+                <a href="/lfu-cache.html/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/lfu-cache.html/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -361,7 +361,7 @@
 
           
           
-             <span id="/leetcode-game-of-life.html/" class="leancloud_visitors" data-flag-title="Leetcode[289] Game of Life">
+             <span id="/lfu-cache.html/" class="leancloud_visitors" data-flag-title="Leetcode[46] LFU Cache">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -391,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  499
+                  676
                 </span>
               
 
@@ -407,7 +407,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -429,18 +429,15 @@
 
       
         <blockquote>
-<p><a href="https://leetcode.com/problems/game-of-life/" target="_blank" rel="noopener">Leetcode 289. Game of Life</a><br>题目给定一个二维面板，每个格子中的细胞存活由0，1代表，给定一定的繁衍规律，希望在面板上直接更新细胞的下一次存活状态。题目特别强调的是in-place修改，以及边界控制。</p>
+<p><a href="https://leetcode.com/problems/lfu-cache/" target="_blank" rel="noopener">Leetcode 46.  LFU Cache</a><br>题目要求实现计算机页面置换中经典的LFU算法，和LRU一字之别，但是含义完全不同，LFU即<br>Least Frequently Used，就是在缓存容量不够，需要置换的时候，替换策略是：将当前时间页面（key）访问次数最少的页面替换，然后将新的缓存更新。</p>
 </blockquote>
 <a id="more"></a>
-<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>由于不能使用额外的存储空间标记细胞的上一轮状态，所以想到了，有没有社么办法，先在遍历过程中，将值做一个转换，在计算每个细胞的下一个状态时，同时还能保持记录上一轮状态。此时，题目的重点就是：如何提供一种编码方式，将细胞的更新值和上一轮状态保留，后续再进行一次遍历，即获取最终的值。</p>
-<p>分析值变化情况：</p>
-<ul>
-<li>0 -&gt; 1 利用101标记，上一轮状态为0，更新状态为1</li>
-<li>1 -&gt; 0 利用10 标记，上一轮状态为1，更新状态为0</li>
-<li>0 -&gt; 0 不变</li>
-<li>1 -&gt; 1 不变</li>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul>
+<li>tip1: 考虑涉及到访问次数的统计</li>
+<li>tip2: 题目要求在O(1)时间完成所有操作</li>
 </ul>
-<p>再加上八个方向的边界控制，题目的解法如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gameOfLife</span><span class="params">(<span class="keyword">int</span>[][] board)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (board == <span class="keyword">null</span> || board.length == <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">       <span class="keyword">int</span> row = board.length;</span><br><span class="line">       <span class="keyword">int</span> col = board[<span class="number">0</span>].length;</span><br><span class="line">       <span class="keyword">int</span>[][] directions = &#123;&#123;<span class="number">0</span>, <span class="number">1</span>&#125;, &#123;<span class="number">0</span>, -<span class="number">1</span>&#125;, &#123;<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;-<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;-<span class="number">1</span>, -<span class="number">1</span>&#125;, &#123;-<span class="number">1</span>, <span class="number">1</span>&#125;, &#123;<span class="number">1</span>, -<span class="number">1</span>&#125;, &#123;<span class="number">1</span>, <span class="number">1</span>&#125;&#125;;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row; i++) &#123;</span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; col; j++) &#123;</span><br><span class="line">               <span class="keyword">int</span> numOfOne = <span class="number">0</span>;</span><br><span class="line">               <span class="keyword">int</span> numOfZero = <span class="number">0</span>;</span><br><span class="line">               <span class="keyword">for</span> (<span class="keyword">int</span>[] dir : directions) &#123;</span><br><span class="line">                   <span class="keyword">int</span> curX = i + dir[<span class="number">0</span>];</span><br><span class="line">                   <span class="keyword">int</span> curY = j + dir[<span class="number">1</span>];</span><br><span class="line">                   <span class="keyword">if</span> (inArea(curX, curY, row, col)) &#123;</span><br><span class="line">                       <span class="keyword">int</span> value = board[curX][curY];</span><br><span class="line">                       <span class="keyword">if</span> (value == <span class="number">1</span> || value == <span class="number">10</span>) numOfOne++;</span><br><span class="line">                       <span class="keyword">else</span> numOfZero++;</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;</span><br><span class="line"></span><br><span class="line">               <span class="keyword">if</span> (board[i][j] == <span class="number">0</span> &amp;&amp; numOfOne == <span class="number">3</span>) board[i][j] = <span class="number">101</span>; <span class="comment">// 0-&gt;1</span></span><br><span class="line">               <span class="keyword">if</span> (board[i][j] == <span class="number">1</span> &amp;&amp; (numOfOne &lt; <span class="number">2</span> || numOfOne &gt; <span class="number">3</span>)) board[i][j] = <span class="number">10</span>; <span class="comment">// 1-&gt;0</span></span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row; i++) &#123;</span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; col; j++) &#123;</span><br><span class="line">               <span class="keyword">int</span> value = board[i][j];</span><br><span class="line">               <span class="keyword">if</span> (value == <span class="number">101</span>) board[i][j] = <span class="number">1</span>;</span><br><span class="line">               <span class="keyword">if</span> (value == <span class="number">10</span>) board[i][j] = <span class="number">0</span>;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">inArea</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> row, <span class="keyword">int</span> col)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (x &lt; <span class="number">0</span> || x &gt;= row) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">       <span class="keyword">if</span> (y &lt; <span class="number">0</span> || y &gt;= col) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<p>于是，首先会想到Map，将对应的key和响应的值进行映射，加快get的访问速率；此外，考虑不同访问频率的页面需要在O(1)进行找到和替换，那么需要很快找到对应的访问频率最低元素，这里设计一个<strong>{“frequency”:List<key>}</key></strong>映射。将每个访问频率的key缓存到一个优先队列（LinkedList中），新缓存的在队列尾部，时间久的在队列头部。在进行替换的过程中，首先剔除访问频率最小那个队列中，时间最久的key。<br>    在get访问中，对相应元素key进行访问频率升级，迁移到fre+1 队列中操作需要注意的是，put操作对相同key的更新，也需要进行一次get，从而更新访问频率。</p>
+<p>实现算法如下，<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LFUCache</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Item</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> val;</span><br><span class="line">        <span class="keyword">int</span> fre;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Item</span><span class="params">(<span class="keyword">int</span> val, <span class="keyword">int</span> fre)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.val = val;</span><br><span class="line">            <span class="keyword">this</span>.fre = fre;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * Your LFUCache object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment">         * LFUCache obj = new LFUCache(capacity);</span></span><br><span class="line"><span class="comment">         * int param_1 = obj.get(key);</span></span><br><span class="line"><span class="comment">         * obj.put(key,value);</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> capacity;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> minFre; <span class="comment">// 出现的最小频率</span></span><br><span class="line">        <span class="keyword">private</span> HashMap&lt;Integer, Item&gt; map; <span class="comment">//key对value索引</span></span><br><span class="line">        <span class="keyword">private</span> HashMap&lt;Integer, LinkedList&lt;Integer&gt;&gt; fre; <span class="comment">// key出现频率索引</span></span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">LFUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.capacity = capacity;</span><br><span class="line">            <span class="keyword">this</span>.map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">            <span class="keyword">this</span>.fre = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (!map.containsKey(key)) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">            <span class="comment">// 更新频率，返回值</span></span><br><span class="line">            Item item = map.get(key);</span><br><span class="line">            <span class="comment">// 找到频率列表，删除元素</span></span><br><span class="line">            LinkedList&lt;Integer&gt; oldFreList = fre.get(item.fre);</span><br><span class="line">            oldFreList.remove(Integer.valueOf(key));</span><br><span class="line">            <span class="comment">// 对应新的频率列表添加元素</span></span><br><span class="line">            LinkedList&lt;Integer&gt; newFreList = fre.computeIfAbsent(item.fre + <span class="number">1</span>, k -&gt; <span class="keyword">new</span> LinkedList&lt;&gt;());</span><br><span class="line">            newFreList.addLast(key);</span><br><span class="line">            item.fre++;</span><br><span class="line">            <span class="comment">//如果freq中频率为minFreq的list为空，minFreq自增1</span></span><br><span class="line">            <span class="keyword">if</span> (fre.get(minFre) == <span class="keyword">null</span> || fre.get(minFre).size() == <span class="number">0</span>) minFre++;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> item.val;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">             <span class="keyword">if</span> (capacity &lt;= <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">            <span class="keyword">if</span> (map.containsKey(key)) &#123;</span><br><span class="line">                <span class="keyword">if</span> (get(key) != -<span class="number">1</span>) <span class="comment">//更新也算访问一次</span></span><br><span class="line">                    map.get(key).val = value;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (map.size() == capacity) &#123;</span><br><span class="line">                LinkedList&lt;Integer&gt; minList = fre.get(minFre);</span><br><span class="line">                <span class="keyword">int</span> k = minList.removeFirst();</span><br><span class="line">                map.remove(k);</span><br><span class="line">            &#125;</span><br><span class="line">            map.put(key, <span class="keyword">new</span> Item(value, <span class="number">0</span>));</span><br><span class="line">            LinkedList&lt;Integer&gt; minList = fre.computeIfAbsent(<span class="number">0</span>, k -&gt; <span class="keyword">new</span> LinkedList&lt;&gt;());</span><br><span class="line">            minList.addLast(key);</span><br><span class="line">            minFre = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -490,7 +487,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://dpcfury.github.io/leetcode-game-of-life.html/" title="Leetcode[289] Game of Life">https://dpcfury.github.io/leetcode-game-of-life.html/</a>
+    <a href="https://dpcfury.github.io/lfu-cache.html/" title="Leetcode[46] LFU Cache">https://dpcfury.github.io/lfu-cache.html/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -507,9 +504,9 @@
           
             <a href="/tags/leetcode/" rel="tag"><i class="fa fa-tag"></i> leetcode</a>
           
-            <a href="/tags/medium/" rel="tag"><i class="fa fa-tag"></i> medium</a>
+            <a href="/tags/hard/" rel="tag"><i class="fa fa-tag"></i> hard</a>
           
-            <a href="/tags/bit/" rel="tag"><i class="fa fa-tag"></i> bit</a>
+            <a href="/tags/lfu/" rel="tag"><i class="fa fa-tag"></i> lfu</a>
           
         </div>
       
@@ -522,8 +519,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/django-libmysqlclient-error.html/" rel="next" title="django 启动 libmysqlclient_r.so.16找不到">
-                <i class="fa fa-chevron-left"></i> django 启动 libmysqlclient_r.so.16找不到
+              <a href="/trapping-rain-water.html/" rel="next" title="Leetcode[42] Trapping Rain Water">
+                <i class="fa fa-chevron-left"></i> Leetcode[42] Trapping Rain Water
               </a>
             
           </div>
@@ -531,10 +528,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/mac-mysql-python-installation.html/" rel="prev" title="Mac下安装Mysql-Python">
-                Mac下安装Mysql-Python <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
