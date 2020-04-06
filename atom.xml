@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-04-06T02:11:04.651Z</updated>
+  <updated>2020-04-06T12:33:47.730Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode[583] Delete Operation for Two Strings</title>
+    <link href="https://dpcfury.github.io/delete-operation-for-two-strings.html/"/>
+    <id>https://dpcfury.github.io/delete-operation-for-two-strings.html/</id>
+    <published>2020-04-06T12:19:30.000Z</published>
+    <updated>2020-04-06T12:33:47.730Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/delete-operation-for-two-strings/" target="_blank" rel="noopener"> Leetcode 583 Delete Operation for Two Strings</a><br>题目和经典的Edit Distance 属于同一类问题，只是允许的操作变限制为了删除操作，问需要两个单词需要最少的删除操作，能够变为相同的字符串。核心还是如何找到一个问题规模收敛的入口，从而在问题规模缩小的过程中，找到递推的规律，进而推导出表达式，再利用自顶向下或自底向上的方法去实现。</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>给定word1和word2，通过最少的删除操作，使得两个单词最终变为相同的字符串，先从特殊的情况开始考虑，如果某个单词为空串（长度为0），另一个不为空串，则需要的最少操作步骤为不为空的单词长度。从中又可以感受到一点动态规划的味道。<br>继续分析，假设令dp[i][j] 为word1前i个字符串 和word2前j个字符串，变成相同字符串需要的最少删除次数，那么：</p><ul><li>case1:  word1.charAt(i-1) == word2.charAt(j-1)，那么dp[i][j] = dp[i-1][j-1]</li><li>case2:  word1.charAt(i-1) != word2.charAt(j-1)：<ul><li>可能1: dp[i][j] = dp[i-1][j]+1  // 通过word2insert一个字符</li><li>可能2: dp[i][j] = dp[i][j-1] +1 // 通过word1insert一个字符</li></ul></li></ul><h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minDistance</span><span class="params">(String word1, String word2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (word1 == <span class="keyword">null</span> || word2 == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> m = word1.length();</span><br><span class="line">        <span class="keyword">int</span> n = word2.length();</span><br><span class="line">        <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[m + <span class="number">1</span>][n + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= m; i++) &#123;</span><br><span class="line">            dp[i][<span class="number">0</span>] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= n; j++) &#123;</span><br><span class="line">            dp[<span class="number">0</span>][j] = j;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (word1.charAt(i - <span class="number">1</span>) == word2.charAt(j - <span class="number">1</span>))</span><br><span class="line">                    dp[i][j] = dp[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    dp[i][j] = Math.min(dp[i][j - <span class="number">1</span>], dp[i - <span class="number">1</span>][j]) + <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp[m][n];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/delete-operation-for-two-strings/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt; Leetcode 583 Delete Operation for Two Strings&lt;/a&gt;&lt;br&gt;题目和经典的Edit Distance 属于同一类问题，只是允许的操作变限制为了删除操作，问需要两个单词需要最少的删除操作，能够变为相同的字符串。核心还是如何找到一个问题规模收敛的入口，从而在问题规模缩小的过程中，找到递推的规律，进而推导出表达式，再利用自顶向下或自底向上的方法去实现。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
+    
+      <category term="dynamic programming" scheme="https://dpcfury.github.io/tags/dynamic-programming/"/>
+    
+  </entry>
   
   <entry>
     <title>Leetcode[72] Edit DistanceEdit Distance</title>
@@ -525,32 +553,6 @@
       <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
     
       <category term="gcd" scheme="https://dpcfury.github.io/tags/gcd/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode[168] Excel Sheet Column Title</title>
-    <link href="https://dpcfury.github.io/leetcode-excel-sheet-column-title.html/"/>
-    <id>https://dpcfury.github.io/leetcode-excel-sheet-column-title.html/</id>
-    <published>2020-03-27T11:38:32.000Z</published>
-    <updated>2020-03-28T15:43:15.120Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/excel-sheet-column-title/" target="_blank" rel="noopener">Leetcode 168. Excel Sheet Column Title</a><br>题目求数字到Excel sheet编号的转换，其实本质就是进制的转换，但是需要注意的是，这边的A是代表1，z代表的是26，如果直接取余数，会发现结果查一位，这里有个技巧就是，每次将初数-1操作,可以看成逻辑上将A从0开始算。</p></blockquote><a id="more"></a><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">convertToTitle</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        StringBuilder str = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">while</span> (n != <span class="number">0</span>) &#123;</span><br><span class="line">            n--;</span><br><span class="line">            <span class="keyword">int</span> num = n % <span class="number">26</span>;</span><br><span class="line">            str.append((<span class="keyword">char</span>) (num + <span class="number">65</span>));</span><br><span class="line">            n = n / <span class="number">26</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> str.reverse().toString();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/excel-sheet-column-title/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 168. Excel Sheet Column Title&lt;/a&gt;&lt;br&gt;题目求数字到Excel sheet编号的转换，其实本质就是进制的转换，但是需要注意的是，这边的A是代表1，z代表的是26，如果直接取余数，会发现结果查一位，这里有个技巧就是，每次将初数-1操作,可以看成逻辑上将A从0开始算。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
-    
-      <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
     
   </entry>
   

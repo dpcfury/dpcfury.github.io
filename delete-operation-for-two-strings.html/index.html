@@ -88,18 +88,18 @@
 
 
 
-<meta name="description" content="Leetcode 322. Coin Change经典的找零问题，遇到此类问题，首先分析是否可以缩小amount的规模，来找到子问题（最优子结构），然后自顶向下分析，推导出递归表达式，再写出对应的自顶向下或者自底向上代码。">
+<meta name="description" content="Leetcode 583 Delete Operation for Two Strings题目和经典的Edit Distance 属于同一类问题，只是允许的操作变限制为了删除操作，问需要两个单词需要最少的删除操作，能够变为相同的字符串。核心还是如何找到一个问题规模收敛的入口，从而在问题规模缩小的过程中，找到递推的规律，进而推导出表达式，再利用自顶向下或自底向上的方法去实现。">
 <meta name="keywords" content="leetcode,medium,dynamic programming">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Leetcode[322] Coin Change">
-<meta property="og:url" content="https://dpcfury.github.io/leetcode-coin-change.html/index.html">
+<meta property="og:title" content="Leetcode[583] Delete Operation for Two Strings">
+<meta property="og:url" content="https://dpcfury.github.io/delete-operation-for-two-strings.html/index.html">
 <meta property="og:site_name" content="DPC&#39;s Blog">
-<meta property="og:description" content="Leetcode 322. Coin Change经典的找零问题，遇到此类问题，首先分析是否可以缩小amount的规模，来找到子问题（最优子结构），然后自顶向下分析，推导出递归表达式，再写出对应的自顶向下或者自底向上代码。">
+<meta property="og:description" content="Leetcode 583 Delete Operation for Two Strings题目和经典的Edit Distance 属于同一类问题，只是允许的操作变限制为了删除操作，问需要两个单词需要最少的删除操作，能够变为相同的字符串。核心还是如何找到一个问题规模收敛的入口，从而在问题规模缩小的过程中，找到递推的规律，进而推导出表达式，再利用自顶向下或自底向上的方法去实现。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-01T15:16:22.315Z">
+<meta property="og:updated_time" content="2020-04-06T12:33:47.730Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Leetcode[322] Coin Change">
-<meta name="twitter:description" content="Leetcode 322. Coin Change经典的找零问题，遇到此类问题，首先分析是否可以缩小amount的规模，来找到子问题（最优子结构），然后自顶向下分析，推导出递归表达式，再写出对应的自顶向下或者自底向上代码。">
+<meta name="twitter:title" content="Leetcode[583] Delete Operation for Two Strings">
+<meta name="twitter:description" content="Leetcode 583 Delete Operation for Two Strings题目和经典的Edit Distance 属于同一类问题，只是允许的操作变限制为了删除操作，问需要两个单词需要最少的删除操作，能够变为相同的字符串。核心还是如何找到一个问题规模收敛的入口，从而在问题规模缩小的过程中，找到递推的规律，进而推导出表达式，再利用自顶向下或自底向上的方法去实现。">
 
 
 
@@ -129,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="https://dpcfury.github.io/leetcode-coin-change.html/"/>
+  <link rel="canonical" href="https://dpcfury.github.io/delete-operation-for-two-strings.html/"/>
 
 
 
 
 
-  <title>Leetcode[322] Coin Change | DPC's Blog</title>
+  <title>Leetcode[583] Delete Operation for Two Strings | DPC's Blog</title>
   
 
 
@@ -282,7 +282,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://dpcfury.github.io/leetcode-coin-change.html/">
+    <link itemprop="mainEntityOfPage" href="https://dpcfury.github.io/delete-operation-for-two-strings.html/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="杜鹏程">
@@ -299,7 +299,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Leetcode[322] Coin Change</h1>
+          <h1 class="post-title" itemprop="name headline">Leetcode[583] Delete Operation for Two Strings</h1>
         
 
         <div class="post-meta">
@@ -311,8 +311,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-01T23:06:32+08:00">
-                2020-04-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-06T20:19:30+08:00">
+                2020-04-06
               </time>
             
 
@@ -352,8 +352,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/leetcode-coin-change.html/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/leetcode-coin-change.html/" itemprop="commentCount"></span>
+                <a href="/delete-operation-for-two-strings.html/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/delete-operation-for-two-strings.html/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -361,7 +361,7 @@
 
           
           
-             <span id="/leetcode-coin-change.html/" class="leancloud_visitors" data-flag-title="Leetcode[322] Coin Change">
+             <span id="/delete-operation-for-two-strings.html/" class="leancloud_visitors" data-flag-title="Leetcode[583] Delete Operation for Two Strings">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -391,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  211
+                  462
                 </span>
               
 
@@ -407,7 +407,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -429,11 +429,19 @@
 
       
         <blockquote>
-<p><a href="https://leetcode.com/problems/coin-change/" target="_blank" rel="noopener">Leetcode 322. Coin Change</a><br>经典的找零问题，遇到此类问题，首先分析是否可以缩小amount的规模，来找到子问题（最优子结构），然后自顶向下分析，推导出递归表达式，再写出对应的自顶向下或者自底向上代码。</p>
+<p><a href="https://leetcode.com/problems/delete-operation-for-two-strings/" target="_blank" rel="noopener"> Leetcode 583 Delete Operation for Two Strings</a><br>题目和经典的Edit Distance 属于同一类问题，只是允许的操作变限制为了删除操作，问需要两个单词需要最少的删除操作，能够变为相同的字符串。核心还是如何找到一个问题规模收敛的入口，从而在问题规模缩小的过程中，找到递推的规律，进而推导出表达式，再利用自顶向下或自底向上的方法去实现。</p>
 </blockquote>
 <a id="more"></a>
-<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>令F(amount) 为拼凑amount需要的最少硬币数量，那么F(amount) = min(F(amout-coin[i]))中来的，得到这样的一个递归后，就可将问题一步步拆解。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">coinChange</span><span class="params">(<span class="keyword">int</span>[] coins, <span class="keyword">int</span> amount)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[amount + <span class="number">1</span>];</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        Arrays.sort(coins);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= amount; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> min = Integer.MAX_VALUE;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; coins.length; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (coins[j] &lt;= i &amp;&amp; dp[i - coins[j]] != -<span class="number">1</span>)<span class="comment">//之前能满足</span></span><br><span class="line">                    min = Math.min(dp[i - coins[j]] + <span class="number">1</span>, min);</span><br><span class="line">            &#125;</span><br><span class="line">            dp[i] = min == Integer.MAX_VALUE ? -<span class="number">1</span> : min;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[amount];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>给定word1和word2，通过最少的删除操作，使得两个单词最终变为相同的字符串，先从特殊的情况开始考虑，如果某个单词为空串（长度为0），另一个不为空串，则需要的最少操作步骤为不为空的单词长度。从中又可以感受到一点动态规划的味道。<br>继续分析，假设令dp[i][j] 为word1前i个字符串 和word2前j个字符串，变成相同字符串需要的最少删除次数，那么：</p>
+<ul>
+<li>case1:  word1.charAt(i-1) == word2.charAt(j-1)，那么dp[i][j] = dp[i-1][j-1]</li>
+<li>case2:  word1.charAt(i-1) != word2.charAt(j-1)：<ul>
+<li>可能1: dp[i][j] = dp[i-1][j]+1  // 通过word2insert一个字符</li>
+<li>可能2: dp[i][j] = dp[i][j-1] +1 // 通过word1insert一个字符</li>
+</ul>
+</li>
+</ul>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minDistance</span><span class="params">(String word1, String word2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (word1 == <span class="keyword">null</span> || word2 == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> m = word1.length();</span><br><span class="line">        <span class="keyword">int</span> n = word2.length();</span><br><span class="line">        <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[m + <span class="number">1</span>][n + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= m; i++) &#123;</span><br><span class="line">            dp[i][<span class="number">0</span>] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= n; j++) &#123;</span><br><span class="line">            dp[<span class="number">0</span>][j] = j;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (word1.charAt(i - <span class="number">1</span>) == word2.charAt(j - <span class="number">1</span>))</span><br><span class="line">                    dp[i][j] = dp[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    dp[i][j] = Math.min(dp[i][j - <span class="number">1</span>], dp[i - <span class="number">1</span>][j]) + <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp[m][n];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -483,7 +491,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://dpcfury.github.io/leetcode-coin-change.html/" title="Leetcode[322] Coin Change">https://dpcfury.github.io/leetcode-coin-change.html/</a>
+    <a href="https://dpcfury.github.io/delete-operation-for-two-strings.html/" title="Leetcode[583] Delete Operation for Two Strings">https://dpcfury.github.io/delete-operation-for-two-strings.html/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -515,8 +523,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/spring-boot-exception-handling.html/" rel="next" title="Spring Boot统一异常处理实践">
-                <i class="fa fa-chevron-left"></i> Spring Boot统一异常处理实践
+              <a href="/edit-distance.html/" rel="next" title="Leetcode[72] Edit DistanceEdit Distance">
+                <i class="fa fa-chevron-left"></i> Leetcode[72] Edit DistanceEdit Distance
               </a>
             
           </div>
@@ -524,10 +532,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/Maximum-Nesting-Depth-of-Two-Valid-Parentheses-Strings.html/" rel="prev" title="Leetcode[1111] Maximum Nesting Depth of Two Valid Parentheses Strings">
-                Leetcode[1111] Maximum Nesting Depth of Two Valid Parentheses Strings <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -689,7 +693,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路"><span class="nav-number">1.</span> <span class="nav-text">思路</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路"><span class="nav-number">1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现"><span class="nav-number">2.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
             
 
           </div>
