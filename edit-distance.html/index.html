@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="leetcode,dynamic programming,hard," />
 
 
 
@@ -88,16 +88,18 @@
 
 
 
-<meta name="description" content="live life to the fullest">
-<meta property="og:type" content="website">
-<meta property="og:title" content="DPC&#39;s Blog">
-<meta property="og:url" content="https://dpcfury.github.io/archives/2020/page/5/index.html">
+<meta name="description" content="Leetcode 72. Edit Distance经典的动态规划题目，求从一个字符串通过三种操作转换为另一个字符串的短编辑记录（最少的转换步骤），允许的操作包括：1. 插入；2. 删除；3. 替换。这题的核心是还是如何找一个收敛的入口，在问题规模缩小过程中，找到递推的规律，再通过自底向上或自顶向下的方式实现即可。">
+<meta name="keywords" content="leetcode,dynamic programming,hard">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode[72] Edit DistanceEdit Distance">
+<meta property="og:url" content="https://dpcfury.github.io/edit-distance.html/index.html">
 <meta property="og:site_name" content="DPC&#39;s Blog">
-<meta property="og:description" content="live life to the fullest">
+<meta property="og:description" content="Leetcode 72. Edit Distance经典的动态规划题目，求从一个字符串通过三种操作转换为另一个字符串的短编辑记录（最少的转换步骤），允许的操作包括：1. 插入；2. 删除；3. 替换。这题的核心是还是如何找一个收敛的入口，在问题规模缩小过程中，找到递推的规律，再通过自底向上或自顶向下的方式实现即可。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-04-06T02:11:04.651Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DPC&#39;s Blog">
-<meta name="twitter:description" content="live life to the fullest">
+<meta name="twitter:title" content="Leetcode[72] Edit DistanceEdit Distance">
+<meta name="twitter:description" content="Leetcode 72. Edit Distance经典的动态规划题目，求从一个字符串通过三种操作转换为另一个字符串的短编辑记录（最少的转换步骤），允许的操作包括：1. 插入；2. 删除；3. 替换。这题的核心是还是如何找一个收敛的入口，在问题规模缩小过程中，找到递推的规律，再通过自底向上或自顶向下的方式实现即可。">
 
 
 
@@ -127,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="https://dpcfury.github.io/archives/2020/page/5/"/>
+  <link rel="canonical" href="https://dpcfury.github.io/edit-distance.html/"/>
 
 
 
 
 
-  <title>归档 | DPC's Blog</title>
+  <title>Leetcode[72] Edit DistanceEdit Distance | DPC's Blog</title>
   
 
 
@@ -152,7 +154,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -266,225 +268,268 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      <span class="archive-page-counter">
-        
-        
-         
-        
-        OK! 目前共计 50 篇日志。 继续努力。
-      </span>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://dpcfury.github.io/edit-distance.html/">
 
-      
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="杜鹏程">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DPC's Blog">
+    </span>
+
+    
+      <header class="post-header">
 
         
         
+          <h1 class="post-title" itemprop="name headline">Leetcode[72] Edit DistanceEdit Distance</h1>
         
 
-        
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-06T09:50:05+08:00">
+                2020-04-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2020">2020</h1>
-          </div>
-        
-        
 
-        
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/edit-distance.html/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/edit-distance.html/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
+             <span id="/edit-distance.html/" class="leancloud_visitors" data-flag-title="Leetcode[72] Edit DistanceEdit Distance">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/available-captures-for-root.html/" itemprop="url">
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
               
-                <span itemprop="name">Leetcode[999] Available Captures for Rook</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  453
+                </span>
               
-            </a>
-        
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-26T22:37:54+08:00"
-              content="2020-03-26" >
-          03-26
-        </time>
-      </div>
+              
+                <span class="post-meta-divider">|</span>
+              
 
-    </header>
-  </article>
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
 
+          
 
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/leetcode-reverse-linked-list-II.html/" itemprop="url">
-              
-                <span itemprop="name">Leetcode[92] Reverse Linked List II</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-25T21:35:07+08:00"
-              content="2020-03-25" >
-          03-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/leetcode-diameter-of-binary-tree.html/" itemprop="url">
-              
-                <span itemprop="name">Leetcode[543] Diameter of Binary Tree</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-25T19:55:19+08:00"
-              content="2020-03-25" >
-          03-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/leetcode-house-robber.html/" itemprop="url">
-              
-                <span itemprop="name">Leetcode[198] House Robber</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-24T22:10:43+08:00"
-              content="2020-03-24" >
-          03-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+        <blockquote>
+<p><a href="https://leetcode.com/problems/edit-distance/" target="_blank" rel="noopener">Leetcode 72. Edit Distance</a><br>经典的动态规划题目，求从一个字符串通过三种操作转换为另一个字符串的短编辑记录（最少的转换步骤），允许的操作包括：1. 插入；2. 删除；3. 替换。这题的核心是还是如何找一个收敛的入口，在问题规模缩小过程中，找到递推的规律，再通过自底向上或自顶向下的方式实现即可。</p>
+</blockquote>
+<a id="more"></a>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>给定的word1，word2，在极限情况下，假设word2位空字符串（长度为0），那么word1 转换为word2，需要进行word1.length()次删除操作。假设word1为空字符串（长度为0），需要进行word2.length（）次删除操作。这么一看，是不是有点递推边界的味道。<br>继续往下看，假设令dp[i][j] 为从word1的前i个字符转换为word2前j个字符所需的最短编辑记录，那么如何计算dp[i][j]：</p>
+<ul>
+<li>case1:  word1.charAt(i-1) == word2.charAt(j-1)，那么dp[i][j] = dp[i-1][j-1]</li>
+<li>case2:  word1.charAt(i-1) != word2.charAt(j-1)：<ul>
+<li>可能1: dp[i][j] = dp[i-1][j]+1  // 通过remove</li>
+<li>可能2: dp[i][j] = dp[i][j-1] +1 // 通过insert或replace</li>
+<li>可能3: dp[i][j] = dp[i-1][j-1]+1 //通过insert或replace</li>
+</ul>
+</li>
+</ul>
+<h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minDistance</span><span class="params">(String word1, String word2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (word1 == <span class="keyword">null</span> || word2 == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> m = word1.length();</span><br><span class="line">        <span class="keyword">int</span> n = word2.length();</span><br><span class="line">        <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[m + <span class="number">1</span>][n + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++) &#123;</span><br><span class="line">            dp[<span class="number">0</span>][j] = j;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++) &#123;</span><br><span class="line">            dp[i][<span class="number">0</span>] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (word1.charAt(i - <span class="number">1</span>) == word2.charAt(j - <span class="number">1</span>)) &#123;</span><br><span class="line">                    dp[i][j] = dp[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    dp[i][j] = Math.min(Math.min(dp[i - <span class="number">1</span>][j], dp[i - <span class="number">1</span>][j - <span class="number">1</span>]), dp[i][j - <span class="number">1</span>]) + <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[m][n];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/leetcode-middle-of-the-linked-list.html/" itemprop="url">
-              
-                <span itemprop="name">Leetcode[876] Middle of the Linked List</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-23T22:35:01+08:00"
-              content="2020-03-23" >
-          03-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>大佬， 赏一个吧 ~~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="杜鹏程 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="杜鹏程 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    杜鹏程
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://dpcfury.github.io/edit-distance.html/" title="Leetcode[72] Edit DistanceEdit Distance">https://dpcfury.github.io/edit-distance.html/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag"><i class="fa fa-tag"></i> leetcode</a>
+          
+            <a href="/tags/dynamic-programming/" rel="tag"><i class="fa fa-tag"></i> dynamic programming</a>
+          
+            <a href="/tags/hard/" rel="tag"><i class="fa fa-tag"></i> hard</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/lfu-cache.html/" rel="next" title="Leetcode[46] LFU Cache">
+                <i class="fa fa-chevron-left"></i> Leetcode[46] LFU Cache
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2020/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/2020/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2020/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/archives/2020/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2020/page/9/">9</a><a class="extend next" rel="next" href="/archives/2020/page/6/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -492,6 +537,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -512,8 +564,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -600,6 +661,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路"><span class="nav-number">1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法实现"><span class="nav-number">2.</span> <span class="nav-text">算法实现</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -763,6 +840,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
