@@ -99,7 +99,7 @@
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/27/1639fd992859d5f1?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/27/1639fdb27f876e0d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
 <meta property="og:image" content="https://pic4.zhimg.com/80/7fcd81756bdc8b52ade0531402c43e43_720w.jpg">
-<meta property="og:updated_time" content="2020-04-08T11:37:25.326Z">
+<meta property="og:updated_time" content="2020-04-08T11:45:26.494Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DNS解析过程">
 <meta name="twitter:description" content="在日常的开发和问题排查中，难免会遇到DNS解析的问题，尤其是在云计算中，内部组件因为DNS解析问题导致的问题层出不穷。借此，总计一下基本的DNS原理，以及日常生活中，一次DNS解析的过程。">
@@ -395,7 +395,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,860
+                  1,811
                 </span>
               
 
@@ -411,7 +411,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  7
+                  6
                 </span>
               
             </div>
@@ -436,7 +436,7 @@
 <p>在日常的开发和问题排查中，难免会遇到DNS解析的问题，尤其是在云计算中，内部组件因为DNS解析问题导致的问题层出不穷。借此，总计一下基本的DNS原理，以及日常生活中，一次DNS解析的过程。</p>
 </blockquote>
 <a id="more"></a>
-<h4 id="为什么需要DNS解析？"><a href="#为什么需要DNS解析？" class="headerlink" title="为什么需要DNS解析？"></a>为什么需要DNS解析？</h4><p>在互联网通信中，大部分应用基于TCP/IP的，而TCP/IP是基于IP地址的，所以计算机在网络层只能识别”192.168.1.24”之类的IP地址，而不能认识域名。而互联网大量的服务是无法全部通过IP给用户提供服务的，用户无法记住这么多的IP地址，并且固定IP地址也不利于互联网服务的高可用实现吗，域名相对来说用户能够容易记住和使用，www.baidu.com 肯定比61.135.169.125这种地址方便访问，那么为了能够使用域名进行互联网访问，就需要一个翻译器（DNS）讲域名翻译为对应的IP地址。</p>
+<h4 id="为什么需要DNS解析？"><a href="#为什么需要DNS解析？" class="headerlink" title="为什么需要DNS解析？"></a>为什么需要DNS解析？</h4><p>在互联网通信中，大部分应用基于TCP/IP的，而TCP/IP是基于IP地址的，所以计算机在网络层只能识别”192.168.1.24”之类的IP地址，而不能认识域名。而互联网大量的服务是无法全部通过IP给用户提供服务的，用户无法记住这么多的IP地址，并且固定IP地址也不利于互联网服务的高可用实现，域名相对来说用户能够容易记住和使用，<strong>www.baidu.com</strong> 肯定比61.135.169.125这种地址方便访问，那么为了能够使用域名进行互联网访问，就需要一个翻译器（DNS）讲域名翻译为对应的IP地址。</p>
 <h4 id="DNS是什么"><a href="#DNS是什么" class="headerlink" title="DNS是什么"></a>DNS是什么</h4><p>DNS的全称是<strong>（Domain Name System）</strong>，即域名系统。DNS是因特网上作为域名和IP地址相互映射的一个分布式数据库，能够使用户更方便的去访问互联网而不用去记住能够被机器直接读取的IP地址。通过域名，最终得到该域名对应的IP地址的过程则是域名解析的过程。</p>
 <h4 id="DNS如何解析"><a href="#DNS如何解析" class="headerlink" title="DNS如何解析"></a>DNS如何解析</h4><h5 id="1-递归查询"><a href="#1-递归查询" class="headerlink" title="1. 递归查询"></a>1. 递归查询</h5><p>某天，客户端想要访问XXX网站，但是，客户端并不知道XXX网站的IP地址。于是，展开了如下对话</p>
 <ul>
@@ -467,8 +467,7 @@
 <li>客户端：“谢谢B域名服务器大佬，XXX的IP地址是192.168.168.6，我可以和他愉快的通讯了”<br>就这样，客户端在询问了一大圈之后，终于知道了XXX的IP地址了。<br><img src="https://user-gold-cdn.xitu.io/2018/5/27/1639fdb27f876e0d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="dns 迭代查询"></li>
 </ul>
 <h5 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h5><p>实际上，在DNS查询过程中，客户端和服务器也都会加入缓存的机制，这样可以减少查询的次数，加快域名解析过程。</p>
-<h4 id="一次请求的DNS解析过程"><a href="#一次请求的DNS解析过程" class="headerlink" title="一次请求的DNS解析过程"></a>一次请求的DNS解析过程</h4><p>作者：wuxinliulei<br>链接：<a href="https://www.zhihu.com/question/23042131/answer/66571369" target="_blank" rel="noopener">https://www.zhihu.com/question/23042131/answer/66571369</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-<ol>
+<h4 id="一次请求的DNS解析过程"><a href="#一次请求的DNS解析过程" class="headerlink" title="一次请求的DNS解析过程"></a>一次请求的DNS解析过程</h4><ol>
 <li><p>在浏览器中输入<strong>www.baidu.com</strong> 域名，操作系统会先检查自己本地的hosts文件是否有这个网址映射关系，如果有，就先调用这个IP地址映射，完成域名解析。 </p>
 </li>
 <li><p>如果hosts里没有这个域名的映射，则查找本地DNS解析器缓存，是否有这个网址映射关系，如果有，直接返回，完成域名解析。 </p>
