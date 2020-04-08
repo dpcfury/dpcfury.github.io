@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-04-07T16:05:09.685Z</updated>
+  <updated>2020-04-08T11:37:25.326Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>DNS解析过程</title>
+    <link href="https://dpcfury.github.io/dns-resolve.html/"/>
+    <id>https://dpcfury.github.io/dns-resolve.html/</id>
+    <published>2020-04-08T11:01:48.000Z</published>
+    <updated>2020-04-08T11:37:25.326Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>在日常的开发和问题排查中，难免会遇到DNS解析的问题，尤其是在云计算中，内部组件因为DNS解析问题导致的问题层出不穷。借此，总计一下基本的DNS原理，以及日常生活中，一次DNS解析的过程。</p></blockquote><a id="more"></a><h4 id="为什么需要DNS解析？"><a href="#为什么需要DNS解析？" class="headerlink" title="为什么需要DNS解析？"></a>为什么需要DNS解析？</h4><p>在互联网通信中，大部分应用基于TCP/IP的，而TCP/IP是基于IP地址的，所以计算机在网络层只能识别”192.168.1.24”之类的IP地址，而不能认识域名。而互联网大量的服务是无法全部通过IP给用户提供服务的，用户无法记住这么多的IP地址，并且固定IP地址也不利于互联网服务的高可用实现吗，域名相对来说用户能够容易记住和使用，www.baidu.com 肯定比61.135.169.125这种地址方便访问，那么为了能够使用域名进行互联网访问，就需要一个翻译器（DNS）讲域名翻译为对应的IP地址。</p><h4 id="DNS是什么"><a href="#DNS是什么" class="headerlink" title="DNS是什么"></a>DNS是什么</h4><p>DNS的全称是<strong>（Domain Name System）</strong>，即域名系统。DNS是因特网上作为域名和IP地址相互映射的一个分布式数据库，能够使用户更方便的去访问互联网而不用去记住能够被机器直接读取的IP地址。通过域名，最终得到该域名对应的IP地址的过程则是域名解析的过程。</p><h4 id="DNS如何解析"><a href="#DNS如何解析" class="headerlink" title="DNS如何解析"></a>DNS如何解析</h4><h5 id="1-递归查询"><a href="#1-递归查询" class="headerlink" title="1. 递归查询"></a>1. 递归查询</h5><p>某天，客户端想要访问XXX网站，但是，客户端并不知道XXX网站的IP地址。于是，展开了如下对话</p><ul><li>客户端：“本地DNS服务器大佬，求问XXX的IP地址是多少？”</li><li>本地DNS服务器：“不好意思，我不知道，但是根域名服务器可能会知道，我替去问他吧”</li><li>本地DNS服务器：“根域名服务器大佬，求问XXX的IP地址是多少？”</li><li>根域名服务器：“不好意思，我不也知道，但是A顶级域名服务器可能会知道，我替你去问他吧”</li><li>根域名服务器：“A顶级域名服务器，求问XXX的IP地址是多少？”</li><li>A顶级域名服务器：“不好意思，我不也知道，但是B域名服务器可能会知道，我替你去问他吧”</li><li>A顶级域名服务器：“B域名服务器，求问XXX的IP地址是多少？”</li><li>B域名服务器：“A顶级域名服务器，查到XXX的IP地址是192.168.168.6”</li><li>A顶级域名服务器：“根域名服务器，查到XXX的IP地址是192.168.168.6”</li><li>根域名服务器：“本地DNS服务器，查到XXX的IP地址是192.168.168.6”</li><li>本地DNS服务器： “客户端，查到XXX的IP地址是192.168.168.6”</li><li>客户端：“谢谢各位大佬，XXX的IP地址是192.168.168.6，我可以和他愉快的通讯了”<br><img src="https://user-gold-cdn.xitu.io/2018/5/27/1639fd992859d5f1?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="dns 递归查询"></li></ul><h5 id="2-迭代查询"><a href="#2-迭代查询" class="headerlink" title="2. 迭代查询"></a>2. 迭代查询</h5><p>客户端：“本地DNS服务器大佬，求问XXX的IP地址是多少？”</p><ul><li>本地DNS服务器：“不好意思，我不知道，但是根域名服务器可能会知道，你去问他吧”，本地DNS服务器说完，并把根域名服务器地址发给客户端。</li><li>客户端：“根域名服务器大佬，求问XXX的IP地址是多少？”</li><li>根域名服务器：“不好意思，我不也知道，但是A顶级域名服务器可能会知道，你去问他吧”，根域名服务器说完，并把A顶级域名服务器地址发给客户端。</li><li>客户端只能又跑去问A顶级域名服务器了。</li><li>客户端：“A顶级域名服务器大佬，求问XXX的IP地址是多少？”</li><li>A顶级域名服务器：“不好意思，我不也知道，但是B域名服务器可能会知道，你去问他吧”，A顶级域名服务器说完，并把B域名服务器地址发给客户端。</li><li>客户端非常无奈，只能又跑去问B域名服务器了。</li><li>客户端：“B域名服务器大佬，求问XXX的IP地址是多少？”</li><li>B域名服务器：“客户端同学，查到XXX的IP地址是192.168.168.6”。</li><li>客户端：“谢谢B域名服务器大佬，XXX的IP地址是192.168.168.6，我可以和他愉快的通讯了”<br>就这样，客户端在询问了一大圈之后，终于知道了XXX的IP地址了。<br><img src="https://user-gold-cdn.xitu.io/2018/5/27/1639fdb27f876e0d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="dns 迭代查询"></li></ul><h5 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h5><p>实际上，在DNS查询过程中，客户端和服务器也都会加入缓存的机制，这样可以减少查询的次数，加快域名解析过程。</p><h4 id="一次请求的DNS解析过程"><a href="#一次请求的DNS解析过程" class="headerlink" title="一次请求的DNS解析过程"></a>一次请求的DNS解析过程</h4><p>作者：wuxinliulei<br>链接：<a href="https://www.zhihu.com/question/23042131/answer/66571369" target="_blank" rel="noopener">https://www.zhihu.com/question/23042131/answer/66571369</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p><ol><li><p>在浏览器中输入<strong>www.baidu.com</strong> 域名，操作系统会先检查自己本地的hosts文件是否有这个网址映射关系，如果有，就先调用这个IP地址映射，完成域名解析。 </p></li><li><p>如果hosts里没有这个域名的映射，则查找本地DNS解析器缓存，是否有这个网址映射关系，如果有，直接返回，完成域名解析。 </p></li><li><p>如果hosts与本地DNS解析器缓存都没有相应的网址映射关系，首先会找TCP/IP参数中设置的首选DNS服务器，在此我们叫它本地DNS服务器，此服务器收到查询时，如果要查询的域名，包含在本地配置区域资源中，则返回解析结果给客户机，完成域名解析，此解析具有权威性。 </p></li><li><p>如果要查询的域名，不由本地DNS服务器区域解析，但该服务器已缓存了此网址映射关系，则调用这个IP地址映射，完成域名解析，此解析不具有权威性。</p></li><li><p>如果本地DNS服务器本地区域文件与缓存解析都失效，则根据本地DNS服务器的设置（是否设置转发器）进行查询，如果未用转发模式，本地DNS就把请求发至13台根DNS，根DNS服务器收到请求后会判断这个域名(<strong>.com</strong>)是谁来授权管理，并会返回一个负责该顶级域名服务器的一个IP。本地DNS服务器收到IP信息后，将会联系负责.com域的这台服务器。这台负责.com域的服务器收到请求后，如果自己无法解析，它就会找一个管理.com域的下一级DNS服务器地址<strong>qq.com</strong>域服务器，重复上面的动作，进行查询，直至找到<strong>www.baidu.com</strong> </p></li><li><p>如果用的是转发模式，此DNS服务器就会把请求转发至上一级DNS服务器，由上一级服务器进行解析，上一级服务器如果不能解析，或找根DNS或把转请求转至上上级，以此循环。不管是本地DNS服务器用是是转发，还是根提示，最后都是把结果返回给本地DNS服务器，由此DNS服务器再返回给客户机。</p></li></ol><p><strong>TIP</strong>: 从客户端到本地DNS服务器是属于递归查询，而DNS服务器之间就是的交互查询就是迭代查询。<br><img src="https://pic4.zhimg.com/80/7fcd81756bdc8b52ade0531402c43e43_720w.jpg" alt="解析过程"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;在日常的开发和问题排查中，难免会遇到DNS解析的问题，尤其是在云计算中，内部组件因为DNS解析问题导致的问题层出不穷。借此，总计一下基本的DNS原理，以及日常生活中，一次DNS解析的过程。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="network" scheme="https://dpcfury.github.io/categories/network/"/>
+    
+    
+      <category term="dns" scheme="https://dpcfury.github.io/tags/dns/"/>
+    
+  </entry>
   
   <entry>
     <title>Leetcode[1092] Shortest Common Supersequence</title>
@@ -525,32 +549,6 @@
       <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
     
       <category term="dynamic programming" scheme="https://dpcfury.github.io/tags/dynamic-programming/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>力扣中国[62] Joseph Circle Problem</title>
-    <link href="https://dpcfury.github.io/joseph-circle-problem.html/"/>
-    <id>https://dpcfury.github.io/joseph-circle-problem.html/</id>
-    <published>2020-03-30T13:46:19.000Z</published>
-    <updated>2020-03-30T14:00:09.357Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/" target="_blank" rel="noopener">剑指offer Joseph Problem</a><br>题目不用多介绍，经典的约瑟夫环问题，求解的过程主要包含两种。一种是直观的构造循环链表，通过多次多次遍历，求的最终结果，时间复杂度为O(mn),另一种就是通过数学分析，找出递归的规律，然后使用递归或者动归求解。</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>令f(n-1,m) 为n-1个人，报数m，最终留下的胜者坐标，那么f(n,m)的的胜者同样是f(n-1,m)胜者，但是其下坐标遍了，那么上一轮中胜者的坐标对应应该是(f(n-1,m)+m) % n</p><p>即关系式为：f(n,m) = (f(n-1,m)+m) % n</p><p>针对0和1个数的情况，胜者坐标都为0<br>因此解法可写为:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lastRemaining</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> dp = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            dp = (dp + m) % i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp ;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p><blockquote><p>对于这个推到技巧，在知乎看到这么一个总结，感觉比较实用</p></blockquote><p>递归问题分3步走：<br>1、递归收敛：由于m是不变的，所以只能通过n将规模不断缩小<br>2、找出口：当递归收敛到最小单位时，能得到一个出口。即当n=1时，胜者的位置为0<br>3、找规律：分析已知条件，与我们需要结果的关联。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;剑指offer Joseph Problem&lt;/a&gt;&lt;br&gt;题目不用多介绍，经典的约瑟夫环问题，求解的过程主要包含两种。一种是直观的构造循环链表，通过多次多次遍历，求的最终结果，时间复杂度为O(mn),另一种就是通过数学分析，找出递归的规律，然后使用递归或者动归求解。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
-    
-    
-      <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
-    
-      <category term="Math" scheme="https://dpcfury.github.io/tags/Math/"/>
     
   </entry>
   
