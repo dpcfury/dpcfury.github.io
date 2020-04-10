@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-04-09T14:42:47.265Z</updated>
+  <updated>2020-04-10T13:05:45.797Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode [151] Reverse Words in a String</title>
+    <link href="https://dpcfury.github.io/reverse-words-in-a-string.html/"/>
+    <id>https://dpcfury.github.io/reverse-words-in-a-string.html/</id>
+    <published>2020-04-10T13:01:09.000Z</published>
+    <updated>2020-04-10T13:05:45.797Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/reverse-words-in-a-string/" target="_blank" rel="noopener"> Leetcode 151. Reverse Words in a String</a><br>给定一个字符串，逐个翻转字符串中的每个单词。要求是去除前后的空格，并且单词间间隔一个空格，很常规的字符串题目。</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>从字符串的尾部开始便利，遇到空格跳过，遇到非空格，开始遍历合法的单词，并利用substring存入到中间结果集中，最后统一处理拼接字符串，记得去除尾部的空格。</p><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">reverseWords</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        StringBuilder str = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        List&lt;String&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> i = s.length() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s.charAt(i) == <span class="string">' '</span>) &#123;</span><br><span class="line">                i--;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> j = i;</span><br><span class="line">            <span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; s.charAt(j) != <span class="string">' '</span>) j--;</span><br><span class="line">            res.add(s.substring(j + <span class="number">1</span>, i + <span class="number">1</span>));</span><br><span class="line">            i = j;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (String word : res) str.append(word).append(<span class="string">' '</span>);</span><br><span class="line">        <span class="keyword">if</span> (str.length() != <span class="number">0</span>) str.deleteCharAt(str.length() - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> str.toString();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/reverse-words-in-a-string/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt; Leetcode 151. Reverse Words in a String&lt;/a&gt;&lt;br&gt;给定一个字符串，逐个翻转字符串中的每个单词。要求是去除前后的空格，并且单词间间隔一个空格，很常规的字符串题目。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
+    
+      <category term="String" scheme="https://dpcfury.github.io/tags/String/"/>
+    
+  </entry>
   
   <entry>
     <title>Leetcode[22] Generate Parentheses</title>
@@ -523,34 +551,6 @@
       <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
     
       <category term="trick" scheme="https://dpcfury.github.io/tags/trick/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode[322] Coin Change</title>
-    <link href="https://dpcfury.github.io/leetcode-coin-change.html/"/>
-    <id>https://dpcfury.github.io/leetcode-coin-change.html/</id>
-    <published>2020-04-01T15:06:32.000Z</published>
-    <updated>2020-04-01T15:16:22.315Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/coin-change/" target="_blank" rel="noopener">Leetcode 322. Coin Change</a><br>经典的找零问题，遇到此类问题，首先分析是否可以缩小amount的规模，来找到子问题（最优子结构），然后自顶向下分析，推导出递归表达式，再写出对应的自顶向下或者自底向上代码。</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>令F(amount) 为拼凑amount需要的最少硬币数量，那么F(amount) = min(F(amout-coin[i]))中来的，得到这样的一个递归后，就可将问题一步步拆解。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">coinChange</span><span class="params">(<span class="keyword">int</span>[] coins, <span class="keyword">int</span> amount)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[amount + <span class="number">1</span>];</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        Arrays.sort(coins);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= amount; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> min = Integer.MAX_VALUE;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; coins.length; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (coins[j] &lt;= i &amp;&amp; dp[i - coins[j]] != -<span class="number">1</span>)<span class="comment">//之前能满足</span></span><br><span class="line">                    min = Math.min(dp[i - coins[j]] + <span class="number">1</span>, min);</span><br><span class="line">            &#125;</span><br><span class="line">            dp[i] = min == Integer.MAX_VALUE ? -<span class="number">1</span> : min;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[amount];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/coin-change/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 322. Coin Change&lt;/a&gt;&lt;br&gt;经典的找零问题，遇到此类问题，首先分析是否可以缩小amount的规模，来找到子问题（最优子结构），然后自顶向下分析，推导出递归表达式，再写出对应的自顶向下或者自底向上代码。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
-    
-      <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
-    
-      <category term="dynamic programming" scheme="https://dpcfury.github.io/tags/dynamic-programming/"/>
     
   </entry>
   
