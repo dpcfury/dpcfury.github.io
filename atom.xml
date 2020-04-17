@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-04-16T13:24:51.516Z</updated>
+  <updated>2020-04-17T15:17:39.759Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode[55] Jump Game</title>
+    <link href="https://dpcfury.github.io/jump-game.html/"/>
+    <id>https://dpcfury.github.io/jump-game.html/</id>
+    <published>2020-04-17T15:08:22.000Z</published>
+    <updated>2020-04-17T15:17:39.759Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/jump-game/" target="_blank" rel="noopener">Leetcode 55. Jump Game</a><br>经典的动态规划题，解题思路比较容易，按递归式实现即可，基本的算法时间复杂度o(n * 2)，其实可以降低为o(n)，遍历当前的最可达范围，只要能够触及到终点，就可以收敛返回。</p></blockquote><a id="more"></a><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><p>approach1<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canJump</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">int</span> n = nums.length;</span><br><span class="line">        <span class="keyword">boolean</span>[] dp = <span class="keyword">new</span> <span class="keyword">boolean</span>[n];</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (dp[j] &amp;&amp; j + nums[j] &gt;= i) &#123;</span><br><span class="line">                    dp[i] = <span class="keyword">true</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[n - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p><p>approach2<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canJump</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> target = nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (target == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">while</span> (index &lt;= max) &#123;</span><br><span class="line">            max = Math.max(nums[index] + index, max);</span><br><span class="line">            index++;</span><br><span class="line">            <span class="keyword">if</span> (max &gt;= target) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">`</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/jump-game/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 55. Jump Game&lt;/a&gt;&lt;br&gt;经典的动态规划题，解题思路比较容易，按递归式实现即可，基本的算法时间复杂度o(n * 2)，其实可以降低为o(n)，遍历当前的最可达范围，只要能够触及到终点，就可以收敛返回。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="dynamic programming" scheme="https://dpcfury.github.io/tags/dynamic-programming/"/>
+    
+  </entry>
   
   <entry>
     <title>Leetcode[56]. Merge Intervals</title>
@@ -533,30 +559,6 @@
     </summary>
     
       <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
-    
-      <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
-    
-      <category term="dynamic programming" scheme="https://dpcfury.github.io/tags/dynamic-programming/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode[1143] Longest Common Subsequence</title>
-    <link href="https://dpcfury.github.io/longest-common-subsequence.html/"/>
-    <id>https://dpcfury.github.io/longest-common-subsequence.html/</id>
-    <published>2020-04-06T13:02:23.000Z</published>
-    <updated>2020-04-06T13:12:46.053Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://leetcode.com/problems/longest-common-subsequence/" target="_blank" rel="noopener">Leetcode 1143. Longest Common Subsequence</a><br>题目和字符串编辑问题类似，同样属于非常经典的动态规划，只要我们找到其中问题规模的收敛入口，继而推导出递归表达式，通过自底向下的方式进行实现。</p><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>给定两个字符串，text1和text2，求其中最长的公共字符子序列长度。为什么说这道题目一样很经典，子序列的问题，通常我们都能一下找到问题规模缩小的入口，即将字符串的规模缩小，再通过比较指定位置字符的是否相同，将问题规模缩小到子问题的求解过程中。<br>我们令dp[i][j] 为text1前i个字符和text2的前j个字符，其最长公共子序列的长度，那么：</p><ul><li>case1:  text1.charAt(i-1) == text2.charAt(j-1)，那么dp[i][j] = dp[i-1][j-1] + 1</li><li>case2:  text1.charAt(i-1) != word2.text2(j-1)：<ul><li>可能1: dp[i][j] = dp[i-1][j]  // 最长为text1前i-1字符串和text2前j个字符</li><li>可能2: dp[i][j] = dp[i][j-1] // 最长为text1前i字符串和text2前j-1个字符</li><li>可能3: dp[i][j] = dp[i-1][j-1] // 最长为text1前i-1字符串和text2前j-1个字符<br>即 dp[i][j] = max(dp[i][j-1], dp[i-1][j], dp[i-1][j-1])</li></ul></li></ul><h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">longestCommonSubsequence</span><span class="params">(String text1, String text2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (text1 == <span class="keyword">null</span> || text2 == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> m = text1.length();</span><br><span class="line">        <span class="keyword">int</span> n = text2.length();</span><br><span class="line">        <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[m + <span class="number">1</span>][n + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (text1.charAt(i - <span class="number">1</span>) == text2.charAt(j - <span class="number">1</span>))</span><br><span class="line">                    dp[i][j] = dp[i - <span class="number">1</span>][j - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    dp[i][j] = Math.max(Math.max(dp[i - <span class="number">1</span>][j - <span class="number">1</span>], dp[i - <span class="number">1</span>][j]), dp[i][j - <span class="number">1</span>]);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[m][n];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/longest-common-subsequence/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 1143. Longest Common Subsequence&lt;/a&gt;&lt;br&gt;题目和字符串编辑问题类似，同样属于非常经典的动态规划，只要我们找到其中问题规模的收敛入口，继而推导出递归表达式，通过自底向下的方式进行实现。&lt;/p&gt;
-    
-    </summary>
     
     
       <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
