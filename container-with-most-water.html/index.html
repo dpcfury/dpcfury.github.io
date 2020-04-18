@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="DPC&#39;s Blog">
 <meta property="og:description" content="Leetcode 11. Container With Most Water题目是经典的双指针问题，给定一个高度的数组，求能够围成的长方形最大面积，很中规中矩，从这题可以延伸到trapping rain waterh那道题。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-18T01:14:53.542Z">
+<meta property="og:updated_time" content="2020-04-18T01:24:20.818Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode[11] Container With Most Water">
 <meta name="twitter:description" content="Leetcode 11. Container With Most Water题目是经典的双指针问题，给定一个高度的数组，求能够围成的长方形最大面积，很中规中矩，从这题可以延伸到trapping rain waterh那道题。">
@@ -391,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  247
+                  290
                 </span>
               
 
@@ -432,7 +432,7 @@
 <p><a href="https://leetcode.com/problems/container-with-most-water/" target="_blank" rel="noopener">Leetcode 11. Container With Most Water</a><br>题目是经典的双指针问题，给定一个高度的数组，求能够围成的长方形最大面积，很中规中矩，从这题可以延伸到trapping rain waterh那道题。</p>
 </blockquote>
 <a id="more"></a>
-<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>直观上肯定是希望长和高都尽量大，容易得到一个面积更大的长方形，那么是不是外圈的更容易是最终解呢，这不一定，可能内圈的长方形高度很高。因此，结题思路其实是设置两个指针，从外往里遍历求解，如果左侧指针的高度小于右侧，则将左侧指针左移，如果右侧指针高度小于左侧，则将右侧指针左移。</p>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>直观上肯定是希望长和高都尽量大，容易得到一个面积更大的长方形，那么是不是外圈的更容易是最终解呢，这不一定，可能内圈的长方形高度很高。因此，结题思路其实是设置两个指针，从外往里遍历求解，如果左侧指针的高度小于右侧，则将左侧指针左移，如果右侧指针高度小于左侧，则将右侧指针左移,因为当前搜索空间中，这个面积取决于短的那个高度，所以哪个短，就尝试移动哪个获取更大面积的可能。</p>
 <h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = height.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> max = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">            <span class="keyword">int</span> len = right - left;</span><br><span class="line">            <span class="keyword">int</span> h = Math.min(height[left], height[right]);</span><br><span class="line">            max = Math.max(max, len * h);</span><br><span class="line">            <span class="keyword">if</span> (height[left] &lt; height[right]) left++;</span><br><span class="line">            <span class="keyword">else</span> right--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
       
     </div>
