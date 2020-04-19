@@ -279,7 +279,7 @@ custom_logo:
 # Available value:
 #    normal | night | night eighties | night blue | night bright
 # https://github.com/chriskempson/tomorrow-theme
-highlight_theme: night
+highlight_theme: night bright
 
 
 # ---------------------------------------------------------------
@@ -381,11 +381,11 @@ changyan:
 # more info please open https://valine.js.org
 valine:
   enable: true
-  appid:  OKFVMdpRBgmwiwV45Muiamn4-gzGzoHsz
-  appkey: GDDN79LXua3VhpCOIy4jpj9e
+  appid: 0iYQnJWzXNexfJFywVT9g9mA-MdYXbMMI 
+  appkey: vPkvbnWwVUQSfUsU52IeYNf5
   notify: false # mail notifier , https://github.com/xCss/Valine/wiki
   verify: false # Verification code
-  placeholder:  # comment box placeholder
+  placeholder:  来呀快活呀~ #comment box placeholder
   avatar: retro # gravatar style
   guest_info: nick,mail,link # custom comment header
   pageSize: 10 # pagination size
@@ -534,8 +534,8 @@ rating:
 # You can visit https://leancloud.cn get AppID and AppKey.
 leancloud_visitors:
   enable: true
-  app_id: OKFVMdpRBgmwiwV45Muiamn4-gzGzoHsz
-  app_key: GDDN79LXua3VhpCOIy4jpj9e
+  app_id: 0iYQnJWzXNexfJFywVT9g9mA-MdYXbMMI 
+  app_key: vPkvbnWwVUQSfUsU52IeYNf5
 
 # Another tool to show number of visitors to each article.
 # visit https://console.firebase.google.com/u/0/ to get apiKey and projectId

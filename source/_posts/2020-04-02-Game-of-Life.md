@@ -1,5 +1,5 @@
 ---
-title: Leetcode[289] Game of LifeGame of Life
+title: Leetcode[289] Game of Life
 date: 2020-04-02 22:44:34
 urlname: leetcode-game-of-life
 categories:
