@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-04-19T16:14:29.460Z</updated>
+  <updated>2020-04-20T12:53:53.364Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode[695] Max Area of Island</title>
+    <link href="https://dpcfury.github.io/max-area-of-island.html/"/>
+    <id>https://dpcfury.github.io/max-area-of-island.html/</id>
+    <published>2020-04-20T12:49:19.000Z</published>
+    <updated>2020-04-20T12:53:53.364Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="">Leetcode 695. Max Area of Island</a><br>题目和 <strong>Leetcode[200] Num of Islands</strong>属于同一类题目，只是要求得内容为独立小岛最大的面积。将题目定义为dfs类型比backtracking类型更为合适。</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul><li>遍历面板，只要遇到1元素，则开始dfs</li><li>dfs过程：<ul><li>如果坐标超标或元素不为1，返回0</li><li>返回 1+ 四个方向dfs结果</li></ul></li><li>dfs完成更新全局Max值</li></ul><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> max = Integer.MIN_VALUE;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxAreaOfIsland</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (grid == <span class="keyword">null</span> || grid[<span class="number">0</span>].length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> row = grid.length;</span><br><span class="line">        <span class="keyword">int</span> col = grid[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; col; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (grid[i][j] == <span class="number">1</span>)</span><br><span class="line">                    max = Math.max(max, dfs(grid, row, col, i, j));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[][] grid, <span class="keyword">int</span> row, <span class="keyword">int</span> col, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt;= row || j &lt; <span class="number">0</span> || j &gt;= col || grid[i][j] != <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        grid[i][j] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">1</span>;</span><br><span class="line">        res += dfs(grid, row, col, i, j + <span class="number">1</span>);</span><br><span class="line">        res += dfs(grid, row, col, i, j - <span class="number">1</span>);</span><br><span class="line">        res += dfs(grid, row, col, i - <span class="number">1</span>, j);</span><br><span class="line">        res += dfs(grid, row, col, i + <span class="number">1</span>, j);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;&quot;&gt;Leetcode 695. Max Area of Island&lt;/a&gt;&lt;br&gt;题目和 &lt;strong&gt;Leetcode[200] Num of Islands&lt;/strong&gt;属于同一类题目，只是要求得内容为独立小岛最大的面积。将题目定义为dfs类型比backtracking类型更为合适。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
+    
+      <category term="dfs" scheme="https://dpcfury.github.io/tags/dfs/"/>
+    
+  </entry>
   
   <entry>
     <title>Leetcode[200] Num of Islands</title>
@@ -68,9 +96,9 @@
     
       <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
     
-      <category term="backtracking" scheme="https://dpcfury.github.io/tags/backtracking/"/>
-    
       <category term="dynamic programming" scheme="https://dpcfury.github.io/tags/dynamic-programming/"/>
+    
+      <category term="backtracking" scheme="https://dpcfury.github.io/tags/backtracking/"/>
     
       <category term="hard" scheme="https://dpcfury.github.io/tags/hard/"/>
     
@@ -540,34 +568,6 @@
       <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
     
       <category term="backtracking" scheme="https://dpcfury.github.io/tags/backtracking/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode[730] Count Different Palindromic Subsequences</title>
-    <link href="https://dpcfury.github.io/count-different-palindromic-subsequences.html/"/>
-    <id>https://dpcfury.github.io/count-different-palindromic-subsequences.html/</id>
-    <published>2020-04-08T15:11:29.000Z</published>
-    <updated>2020-04-08T15:15:18.138Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/count-different-palindromic-subsequences/" target="_blank" rel="noopener">Leetcode 730. Count Different Palindromic Subsequences</a><br>这题是从Longest Palinromic Subsequence延伸而来，同样属于动态规划问题，但是不同的是在递归式的推导上，由于子问题的回文串数量和前后位置的字符串是有关联的，难点在这个规律的发现。</p></blockquote><a id="more"></a><p>TODO </p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/count-different-palindromic-subsequences/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 730. Count Different Palindromic Subsequences&lt;/a&gt;&lt;br&gt;这题是从Longest Palinromic Subsequence延伸而来，同样属于动态规划问题，但是不同的是在递归式的推导上，由于子问题的回文串数量和前后位置的字符串是有关联的，难点在这个规律的发现。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
-    
-      <category term="dynamic programming" scheme="https://dpcfury.github.io/tags/dynamic-programming/"/>
-    
-      <category term="hard" scheme="https://dpcfury.github.io/tags/hard/"/>
-    
-      <category term="palindromic" scheme="https://dpcfury.github.io/tags/palindromic/"/>
     
   </entry>
   
