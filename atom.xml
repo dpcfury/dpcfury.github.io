@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-04-20T12:53:53.364Z</updated>
+  <updated>2020-04-20T14:46:17.794Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode[121] Best Time to Buy and Sell Stock</title>
+    <link href="https://dpcfury.github.io/best-time-to-buy-and-sell-stock.html/"/>
+    <id>https://dpcfury.github.io/best-time-to-buy-and-sell-stock.html/</id>
+    <published>2020-04-20T13:28:10.000Z</published>
+    <updated>2020-04-20T14:46:17.794Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/" target="_blank" rel="noopener">Leetcode 121 Best Time to Buy and Sell Stock</a><br>抛售股票的最原始题，只能抛售一次，问能够获取的最大利润，这里给出的是一种比较直观的方法，没有使用dp进行求解。</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul><li>记录当前出现的最小元素，用当前元素减去最小元素，如果收益更大，则更新全局最大利润</li><li>如果当前元素比之前出现的最小元素还小，则更新当前最小元素为当前遍历的元素</li></ul><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//7,1,5,3,6,4  -&gt; 5</span></span><br><span class="line">        <span class="comment">// 7,6,4,3,1 -&gt;0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (prices == <span class="keyword">null</span> || prices.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> min = prices[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> maxProfit = Integer.MIN_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; prices.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (prices[i] - min &gt; maxProfit) maxProfit = prices[i] - min;</span><br><span class="line">            <span class="keyword">if</span> (prices[i] &lt; min) min = prices[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> maxProfit;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/best-time-to-buy-and-sell-stock/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 121 Best Time to Buy and Sell Stock&lt;/a&gt;&lt;br&gt;抛售股票的最原始题，只能抛售一次，问能够获取的最大利润，这里给出的是一种比较直观的方法，没有使用dp进行求解。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
+    
+      <category term="dynamic programming" scheme="https://dpcfury.github.io/tags/dynamic-programming/"/>
+    
+  </entry>
   
   <entry>
     <title>Leetcode[695] Max Area of Island</title>
@@ -540,34 +568,6 @@
       <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
     
       <category term="String" scheme="https://dpcfury.github.io/tags/String/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode[22] Generate Parentheses</title>
-    <link href="https://dpcfury.github.io/generate-parentheses.html/"/>
-    <id>https://dpcfury.github.io/generate-parentheses.html/</id>
-    <published>2020-04-09T14:34:06.000Z</published>
-    <updated>2020-04-09T14:42:47.265Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/generate-parentheses/" target="_blank" rel="noopener">Leetcode 22. Generate Parentheses</a><br>这题要求生成指定对数的括号，通常可以直接对应到回溯来做，只要控制好边界，再引入合法括号的判断，基本记得到最终解，如果时间效率优化的话，可以考虑进行剪枝。</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>利用一个temp（StringBuilder）来存放临时的解，如果temp的长度达到了2 * n 并且是合法的括号，那么就把这个临时解存放到结果集中。回溯完成，删除最后一个字符，进行下一轮搜索。</p><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">generateParenthesis</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">0</span>) <span class="keyword">return</span> res;</span><br><span class="line">        backtracking(res, n, <span class="keyword">new</span> StringBuilder());</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">backtracking</span><span class="params">(List&lt;String&gt; res, <span class="keyword">int</span> n, StringBuilder str)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (str.length() == n * <span class="number">2</span> &amp;&amp; validParent(str.toString())) &#123;</span><br><span class="line">            res.add(str.toString());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (str.length() &gt; n * <span class="number">2</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">char</span>[] pat = &#123;<span class="string">'('</span>, <span class="string">')'</span>&#125;;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c : pat) &#123;</span><br><span class="line">            backtracking(res, n, str.append(c));</span><br><span class="line">            str.deleteCharAt(str.length() - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">validParent</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (str == <span class="keyword">null</span> || str.length() == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        Stack&lt;Character&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; str.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (str.charAt(i) == <span class="string">'('</span>) stack.add(<span class="string">'C'</span>);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (str.charAt(i) == <span class="string">')'</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (!stack.isEmpty()) stack.pop();</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> stack.isEmpty();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/generate-parentheses/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 22. Generate Parentheses&lt;/a&gt;&lt;br&gt;这题要求生成指定对数的括号，通常可以直接对应到回溯来做，只要控制好边界，再引入合法括号的判断，基本记得到最终解，如果时间效率优化的话，可以考虑进行剪枝。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
-    
-      <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
-    
-      <category term="backtracking" scheme="https://dpcfury.github.io/tags/backtracking/"/>
     
   </entry>
   
