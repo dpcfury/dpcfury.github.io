@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-04-20T14:46:17.794Z</updated>
+  <updated>2020-04-21T14:18:02.145Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,62 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode [1248] Count Number of Nice Subarrays</title>
+    <link href="https://dpcfury.github.io/count-number-of-nice-subarrays.html/"/>
+    <id>https://dpcfury.github.io/count-number-of-nice-subarrays.html/</id>
+    <published>2020-04-21T14:08:36.000Z</published>
+    <updated>2020-04-21T14:18:02.145Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/count-number-of-nice-subarrays/" target="_blank" rel="noopener">Leetcode 1248. Count Number of Nice Subarrays</a><br>题目要求计算给定数组nums中，满足包含K个奇数元素的子数组的个数，这个题目比较容易想到滑动窗口的思路，关键是对前后偶数元素的计算和边界的控制。</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul><li>首先统计出每个奇数元素在数组中的出现位置，并记录在中间数组oddIndex中</li><li>遍历每组K个奇数组合，即oddIndex[i] 与oddIndex[i+k-1],通过计算左右边界与前后奇数元素的间隔，就能得到前后偶数的个数，相乘就能得到组合的子数组个数</li></ul><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numberOfSubarrays</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> len = nums.length;</span><br><span class="line">       <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">int</span> oddNum = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">int</span>[] oddIndex = <span class="keyword">new</span> <span class="keyword">int</span>[len + <span class="number">2</span>];</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">           <span class="keyword">if</span> (nums[i] % <span class="number">2</span> == <span class="number">1</span>) oddIndex[++oddNum] = i;</span><br><span class="line">       &#125;</span><br><span class="line">       oddIndex[<span class="number">0</span>] = -<span class="number">1</span>; <span class="comment">// 左边界</span></span><br><span class="line">       oddIndex[oddNum + <span class="number">1</span>] = len; <span class="comment">// 右边界</span></span><br><span class="line"></span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i + k &lt;= oddNum + <span class="number">1</span>; i++) &#123;</span><br><span class="line">           count += (oddIndex[i] - oddIndex[i - <span class="number">1</span>]) * (oddIndex[i + k] - oddIndex[i + k - <span class="number">1</span>]);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">return</span> count;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure><p>类似题目：<a href="https://leetcode.com/problems/subarray-sum-equals-k/" target="_blank" rel="noopener">Leetcode 560. Subarray Sum Equals K</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/count-number-of-nice-subarrays/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 1248. Count Number of Nice Subarrays&lt;/a&gt;&lt;br&gt;题目要求计算给定数组nums中，满足包含K个奇数元素的子数组的个数，这个题目比较容易想到滑动窗口的思路，关键是对前后偶数元素的计算和边界的控制。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="array" scheme="https://dpcfury.github.io/tags/array/"/>
+    
+      <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
+    
+      <category term="sliding window" scheme="https://dpcfury.github.io/tags/sliding-window/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>并查集基本概念</title>
+    <link href="https://dpcfury.github.io/union-find.html/"/>
+    <id>https://dpcfury.github.io/union-find.html/</id>
+    <published>2020-04-21T12:30:35.000Z</published>
+    <updated>2020-04-21T12:45:04.677Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>Union Find</p></blockquote><a id="more"></a><h4 id="什么是并查集？"><a href="#什么是并查集？" class="headerlink" title="什么是并查集？"></a>什么是并查集？</h4><ul><li>并查集可以进行集合合并的操作（并）</li><li>并查集可以查找元素在哪个集合中（查）</li><li>并查集维护的是一堆集合（集）</li></ul><h4 id="并查集如何实现"><a href="#并查集如何实现" class="headerlink" title="并查集如何实现"></a>并查集如何实现</h4><h4 id="并查集能干啥"><a href="#并查集能干啥" class="headerlink" title="并查集能干啥"></a>并查集能干啥</h4>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;Union Find&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="algorithm" scheme="https://dpcfury.github.io/categories/algorithm/"/>
+    
+    
+      <category term="union find" scheme="https://dpcfury.github.io/tags/union-find/"/>
+    
+      <category term="concept" scheme="https://dpcfury.github.io/tags/concept/"/>
+    
+  </entry>
   
   <entry>
     <title>Leetcode[121] Best Time to Buy and Sell Stock</title>
@@ -512,62 +568,6 @@
       <category term="hard" scheme="https://dpcfury.github.io/tags/hard/"/>
     
       <category term="binary search" scheme="https://dpcfury.github.io/tags/binary-search/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode[79] Word Search</title>
-    <link href="https://dpcfury.github.io/word-search.html/"/>
-    <id>https://dpcfury.github.io/word-search.html/</id>
-    <published>2020-04-10T13:13:12.000Z</published>
-    <updated>2020-04-10T13:21:37.855Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/word-search/" target="_blank" rel="noopener">Leetcode 79. Word Search</a><br>给定一个二维网格和一个单词，找出该单词是否存在于网格中。单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>利用回溯的方法，递归进行搜索求解，从一个格子（单个字符已经匹配）出发，查看剩余字符是否在上下左右的搜索路径中能够满足。</p><h4 id="approach1-原始写法"><a href="#approach1-原始写法" class="headerlink" title="approach1 原始写法"></a>approach1 原始写法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">exist</span><span class="params">(<span class="keyword">char</span>[][] board, String word)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (board == <span class="keyword">null</span> || board.length == <span class="number">0</span> || word == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">int</span> row = board.length;</span><br><span class="line">        <span class="keyword">int</span> col = board[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">if</span> (word.length() == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">int</span>[][] directions = &#123;&#123;<span class="number">0</span>, <span class="number">1</span>&#125;, &#123;<span class="number">0</span>, -<span class="number">1</span>&#125;, &#123;-<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">1</span>, <span class="number">0</span>&#125;&#125;;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; col; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (board[i][j] == word.charAt(<span class="number">0</span>)) &#123;</span><br><span class="line">                    <span class="keyword">boolean</span>[][] visited = <span class="keyword">new</span> <span class="keyword">boolean</span>[row][col];</span><br><span class="line">                    <span class="keyword">if</span> (traversal(board, word, <span class="number">0</span>, i, j, directions, visited)) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">traversal</span><span class="params">(<span class="keyword">char</span>[][] board, String word,</span></span></span><br><span class="line"><span class="function"><span class="params">                              <span class="keyword">int</span> index, <span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span>[][] directions, <span class="keyword">boolean</span>[][] visited)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (index == word.length()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (index &gt; word.length()) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt;= board.length || j &lt; <span class="number">0</span> || j &gt;= board[<span class="number">0</span>].length) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (visited[i][j] || board[i][j] != word.charAt(index)) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        visited[i][j] = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span>[] dir : directions) &#123;</span><br><span class="line">            <span class="keyword">int</span> curX = i + dir[<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">int</span> curY = j + dir[<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (traversal(board, word, index + <span class="number">1</span>, curX, curY, directions, visited)) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        visited[i][j] = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><h4 id="approach2-优化写法"><a href="#approach2-优化写法" class="headerlink" title="approach2 优化写法"></a>approach2 优化写法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">exist</span><span class="params">(<span class="keyword">char</span>[][] board, String word)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">char</span>[] w = word.toCharArray();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> y=<span class="number">0</span>; y&lt;board.length; y++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> x=<span class="number">0</span>; x&lt;board[y].length; x++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (exist(board, y, x, w, <span class="number">0</span>)) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">exist</span><span class="params">(<span class="keyword">char</span>[][] board, <span class="keyword">int</span> y, <span class="keyword">int</span> x, <span class="keyword">char</span>[] word, <span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (i == word.length) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">if</span> (y&lt;<span class="number">0</span> || x&lt;<span class="number">0</span> || y == board.length || x == board[y].length) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (board[y][x] != word[i]) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        board[y][x] ^= <span class="number">256</span>;</span><br><span class="line">        <span class="keyword">boolean</span> exist = exist(board, y, x+<span class="number">1</span>, word, i+<span class="number">1</span>)</span><br><span class="line">                || exist(board, y, x-<span class="number">1</span>, word, i+<span class="number">1</span>)</span><br><span class="line">                || exist(board, y+<span class="number">1</span>, x, word, i+<span class="number">1</span>)</span><br><span class="line">                || exist(board, y-<span class="number">1</span>, x, word, i+<span class="number">1</span>);</span><br><span class="line">        board[y][x] ^= <span class="number">256</span>;</span><br><span class="line">        <span class="keyword">return</span> exist;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/word-search/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 79. Word Search&lt;/a&gt;&lt;br&gt;给定一个二维网格和一个单词，找出该单词是否存在于网格中。单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
-    
-      <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
-    
-      <category term="backtracking" scheme="https://dpcfury.github.io/tags/backtracking/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode [151] Reverse Words in a String</title>
-    <link href="https://dpcfury.github.io/reverse-words-in-a-string.html/"/>
-    <id>https://dpcfury.github.io/reverse-words-in-a-string.html/</id>
-    <published>2020-04-10T13:01:09.000Z</published>
-    <updated>2020-04-10T13:05:45.797Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/reverse-words-in-a-string/" target="_blank" rel="noopener"> Leetcode 151. Reverse Words in a String</a><br>给定一个字符串，逐个翻转字符串中的每个单词。要求是去除前后的空格，并且单词间间隔一个空格，很常规的字符串题目。</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>从字符串的尾部开始便利，遇到空格跳过，遇到非空格，开始遍历合法的单词，并利用substring存入到中间结果集中，最后统一处理拼接字符串，记得去除尾部的空格。</p><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">reverseWords</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        StringBuilder str = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        List&lt;String&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> i = s.length() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (i &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s.charAt(i) == <span class="string">' '</span>) &#123;</span><br><span class="line">                i--;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> j = i;</span><br><span class="line">            <span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; s.charAt(j) != <span class="string">' '</span>) j--;</span><br><span class="line">            res.add(s.substring(j + <span class="number">1</span>, i + <span class="number">1</span>));</span><br><span class="line">            i = j;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (String word : res) str.append(word).append(<span class="string">' '</span>);</span><br><span class="line">        <span class="keyword">if</span> (str.length() != <span class="number">0</span>) str.deleteCharAt(str.length() - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> str.toString();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/reverse-words-in-a-string/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt; Leetcode 151. Reverse Words in a String&lt;/a&gt;&lt;br&gt;给定一个字符串，逐个翻转字符串中的每个单词。要求是去除前后的空格，并且单词间间隔一个空格，很常规的字符串题目。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
-    
-      <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
-    
-      <category term="String" scheme="https://dpcfury.github.io/tags/String/"/>
     
   </entry>
   
