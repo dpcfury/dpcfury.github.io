@@ -91,7 +91,7 @@
 <meta name="description" content="live life to the fullest">
 <meta property="og:type" content="website">
 <meta property="og:title" content="DPC&#39;s Blog">
-<meta property="og:url" content="https://dpcfury.github.io/tags/BFS/index.html">
+<meta property="og:url" content="https://dpcfury.github.io/tags/bfs/index.html">
 <meta property="og:site_name" content="DPC&#39;s Blog">
 <meta property="og:description" content="live life to the fullest">
 <meta property="og:locale" content="zh-Hans">
@@ -127,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="https://dpcfury.github.io/tags/BFS/"/>
+  <link rel="canonical" href="https://dpcfury.github.io/tags/bfs/"/>
 
 
 
 
 
-  <title>标签: BFS | DPC's Blog</title>
+  <title>标签: bfs | DPC's Blog</title>
   
 
 
@@ -273,7 +273,7 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>BFS<small>标签</small>
+        <h1>bfs<small>标签</small>
         </h1>
       </div>
 
@@ -285,37 +285,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/robot-move-range.html/" itemprop="url">
+            <a class="post-title-link" href="/binary-tree-right-side-view.html/" itemprop="url">
               
-                <span itemprop="name">机器人运动范围</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-04-08T22:24:39+08:00"
-              content="2020-04-08" >
-          04-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/leetcode-as-far-from-land-as-possible.html/" itemprop="url">
-              
-                <span itemprop="name">Leetcode[1162] As Far from Land as Possible</span>
+                <span itemprop="name">Leetcode [199]  Binary Tree Right Side View</span>
               
             </a>
         
@@ -323,9 +295,9 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-29T21:44:36+08:00"
-              content="2020-03-29" >
-          03-29
+              datetime="2020-04-22T21:40:14+08:00"
+              content="2020-04-22" >
+          04-22
         </time>
       </div>
 
@@ -389,7 +361,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">81</span>
+                  <span class="site-state-item-count">82</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -411,7 +383,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">58</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -775,6 +747,46 @@
                 $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
               },
               error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>ror: function(newcounter, error) {
                 console.log('Failed to create');
               }
             });
