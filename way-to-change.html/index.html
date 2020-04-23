@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="DPC&#39;s Blog">
 <meta property="og:description" content="力扣中国 面试题 08.11. 硬币题目：给定数量不限的硬币，币值为25分、10分、5分和1分，编写代码计算n分有几种表示法。(结果可能会很大，你需要将结果模上1000000007)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-23T14:25:07.921Z">
+<meta property="og:updated_time" content="2020-04-23T15:25:11.834Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode.cn 面试题 08.11. 硬币">
 <meta name="twitter:description" content="力扣中国 面试题 08.11. 硬币题目：给定数量不限的硬币，币值为25分、10分、5分和1分，编写代码计算n分有几种表示法。(结果可能会很大，你需要将结果模上1000000007)">
@@ -391,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  242
+                  306
                 </span>
               
 
@@ -433,8 +433,10 @@
 </blockquote>
 <a id="more"></a>
 <h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>一条非常好的题，从问题的思考，到一步一步的优化，对深入理解动态规划、背包问题以及滚动数组有非常大的帮助。思路参照乐扣中国给出的官方分析，非常到位，这里不做重复描述：<a href="https://leetcode-cn.com/problems/coin-lcci/solution/ying-bi-by-leetcode-solution/" target="_blank" rel="noopener">官方解答</a></p>
+<p>这道题本质是完全背包问题，在限定的体积V（题中的n），达到V的最大组合方案数</p>
 <h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">waysToChange</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span>[] coins = &#123;<span class="number">1</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">25</span>&#125;;</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; coins.length; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> coin = coins[i];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = coin; j &lt;= n; j++) &#123;</span><br><span class="line">                dp[j] = dp[j] + dp[j - coin];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[n];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <h4 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h4><p>这题是深入理解背包问题、找零问题的契机，后续关注：<a href="https://leetcode-cn.com/problems/coin-lcci/solution/bei-bao-jiu-jiang-ge-ren-yi-jian-da-jia-fen-xiang-/" target="_blank" rel="noopener">背包问题、非常棒的讲法</a></p>
+<p>ps: B站的大雪菜up主有一期视频就是讲解背包九讲的十分细致，推荐观看。</p>
 
       
     </div>
