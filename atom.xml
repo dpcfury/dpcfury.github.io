@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-04-22T14:28:05.463Z</updated>
+  <updated>2020-04-23T14:25:07.921Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,61 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode.cn 面试题 08.11. 硬币</title>
+    <link href="https://dpcfury.github.io/way-to-change.html/"/>
+    <id>https://dpcfury.github.io/way-to-change.html/</id>
+    <published>2020-04-23T14:17:21.000Z</published>
+    <updated>2020-04-23T14:25:07.921Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode-cn.com/problems/coin-lcci/" target="_blank" rel="noopener">力扣中国 面试题 08.11. 硬币</a><br>题目：给定数量不限的硬币，币值为25分、10分、5分和1分，编写代码计算n分有几种表示法。(结果可能会很大，你需要将结果模上1000000007)</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>一条非常好的题，从问题的思考，到一步一步的优化，对深入理解动态规划、背包问题以及滚动数组有非常大的帮助。思路参照乐扣中国给出的官方分析，非常到位，这里不做重复描述：<a href="https://leetcode-cn.com/problems/coin-lcci/solution/ying-bi-by-leetcode-solution/" target="_blank" rel="noopener">官方解答</a></p><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">waysToChange</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span>[] coins = &#123;<span class="number">1</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">25</span>&#125;;</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; coins.length; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> coin = coins[i];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = coin; j &lt;= n; j++) &#123;</span><br><span class="line">                dp[j] = dp[j] + dp[j - coin];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[n];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><h4 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h4><p>这题是深入理解背包问题、找零问题的契机，后续关注：<a href="https://leetcode-cn.com/problems/coin-lcci/solution/bei-bao-jiu-jiang-ge-ren-yi-jian-da-jia-fen-xiang-/" target="_blank" rel="noopener">背包问题、非常棒的讲法</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/coin-lcci/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;力扣中国 面试题 08.11. 硬币&lt;/a&gt;&lt;br&gt;题目：给定数量不限的硬币，币值为25分、10分、5分和1分，编写代码计算n分有几种表示法。(结果可能会很大，你需要将结果模上1000000007)&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="dynamic programming" scheme="https://dpcfury.github.io/tags/dynamic-programming/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MapStruct使用</title>
+    <link href="https://dpcfury.github.io/mapstruct-intro.html/"/>
+    <id>https://dpcfury.github.io/mapstruct-intro.html/</id>
+    <published>2020-04-22T14:53:27.000Z</published>
+    <updated>2020-04-22T15:01:04.350Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://mapstruct.org/" target="_blank" rel="noopener">MapStruct</a><br>在当前的系统设计中，经常会在PO、VO，DTO之间来回转换，</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://mapstruct.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;MapStruct&lt;/a&gt;&lt;br&gt;在当前的系统设计中，经常会在PO、VO，DTO之间来回转换，&lt;/p&gt;
+&lt;/blockq
+      
+    
+    </summary>
+    
+      <category term="开发" scheme="https://dpcfury.github.io/categories/%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="spring-boot" scheme="https://dpcfury.github.io/tags/spring-boot/"/>
+    
+      <category term="Java" scheme="https://dpcfury.github.io/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Leetcode[560] Subarray Sum Equals K</title>
@@ -244,9 +299,9 @@
     
       <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
     
-      <category term="dynamic programming" scheme="https://dpcfury.github.io/tags/dynamic-programming/"/>
-    
       <category term="backtracking" scheme="https://dpcfury.github.io/tags/backtracking/"/>
+    
+      <category term="dynamic programming" scheme="https://dpcfury.github.io/tags/dynamic-programming/"/>
     
       <category term="hard" scheme="https://dpcfury.github.io/tags/hard/"/>
     
@@ -521,58 +576,6 @@
       <category term="heap" scheme="https://dpcfury.github.io/tags/heap/"/>
     
       <category term="design" scheme="https://dpcfury.github.io/tags/design/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode[106] Construct Binary Tree from Inorder and Postorder Traversal</title>
-    <link href="https://dpcfury.github.io/construct-binary-tree-from-inorder-and-postorder-traversal.html/"/>
-    <id>https://dpcfury.github.io/construct-binary-tree-from-inorder-and-postorder-traversal.html/</id>
-    <published>2020-04-12T04:08:34.000Z</published>
-    <updated>2020-04-12T07:30:34.679Z</updated>
-    
-    <content type="html"><![CDATA[<p><a href="https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/" target="_blank" rel="noopener">Leetcode 106. Construct Binary Tree from Inorder and Postorder Traversal</a><br>题目要求：根据一棵树的中序遍历与后序遍历构造二叉树。ps：树中没有重复的元素，属于很基本的二叉树问题。</p><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>给定二叉树的后序遍历数组和中序遍历数组，可以明确指导后序数组的第一个元素，肯定是当前这颗树的根,随后在中序数组中找到这个根元素，将中序数组就可以切分为左子树和右子树，然后递归去求构造左子树和右子树即可。</p><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">buildTree</span><span class="params">(<span class="keyword">int</span>[] inorder, <span class="keyword">int</span>[] postorder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (inorder == <span class="keyword">null</span> || postorder == <span class="keyword">null</span> || inorder.length == <span class="number">0</span> || postorder.length == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> buildTree(</span><br><span class="line">                    inorder, <span class="number">0</span>, inorder.length - <span class="number">1</span>,</span><br><span class="line">                    postorder, <span class="number">0</span>, postorder.length - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> TreeNode <span class="title">buildTree</span><span class="params">(<span class="keyword">int</span>[] inorder, <span class="keyword">int</span> start1, <span class="keyword">int</span> end1, <span class="keyword">int</span>[] postorder, <span class="keyword">int</span> start2, <span class="keyword">int</span> end2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (start1 &gt; end1) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        TreeNode root = <span class="keyword">new</span> TreeNode(postorder[end2]);</span><br><span class="line">        <span class="keyword">int</span> index = start1;</span><br><span class="line">        <span class="keyword">while</span> (inorder[index] != postorder[end2]) index++;</span><br><span class="line">        root.left = buildTree(inorder, start1, index - <span class="number">1</span>, postorder, start2, start2 + index - start1 - <span class="number">1</span>);</span><br><span class="line">        root.right = buildTree(inorder, index + <span class="number">1</span>, end1, postorder, start2 + index - start1, end2 - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 106. Construct Binary Tree from Inorder and Postorder Traversal&lt;/a&gt;&lt;br&gt;题目要求：根据一棵树的中序遍历与后序遍历构造二叉树。ps：树中没有重复的元素，属于很基本的二叉树问题。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
-    
-      <category term="binary tree" scheme="https://dpcfury.github.io/tags/binary-tree/"/>
-    
-      <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>面试题 16.03. 交点</title>
-    <link href="https://dpcfury.github.io/cross-point.html/"/>
-    <id>https://dpcfury.github.io/cross-point.html/</id>
-    <published>2020-04-12T03:04:31.000Z</published>
-    <updated>2020-04-12T03:13:10.555Z</updated>
-    
-    <content type="html"><![CDATA[<p>题目：给定两条线段（表示为起点start = {X1, Y1}和终点end = {X2, Y2}），如果它们有交点，请计算其交点，没有交点则返回空值。要求浮点型误差不超过10^-6。若有多个交点（线段重叠）则返回 X 值最小的点，X 坐标相同则返回 Y 值最小的点。</p><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>题目是一条完完全全全的数学几何题，需要对线段的函数表示方式非常清楚，并能转化条件，将问题变换成较为清晰的数学求解问题。总的来说，两个线段的交点分为两种情况，第一种是不平行的情况，第二种是平行的情况，需要分别进行考虑，这里引用官网给出的算法实现进行改造，个人想这个问题比较艰难，掉脑细胞严重，容易手足无措。</p><blockquote><p>官网实现：<a href="https://leetcode-cn.com/problems/intersection-lcci/solution/jiao-dian-by-leetcode-solution/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/intersection-lcci/solution/jiao-dian-by-leetcode-solution/</a></p></blockquote><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 判断 (xk, yk) 是否在「线段」(x1, y1)~(x2, y2) 上</span></span><br><span class="line">    <span class="comment">// 这里的前提是 (xk, yk) 一定在「直线」(x1, y1)~(x2, y2) 上</span></span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">inside</span><span class="params">(<span class="keyword">int</span> x1, <span class="keyword">int</span> y1, <span class="keyword">int</span> x2, <span class="keyword">int</span> y2, <span class="keyword">int</span> xk, <span class="keyword">int</span> yk)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 若与 x 轴平行，只需要判断 x 的部分</span></span><br><span class="line">        <span class="comment">// 若与 y 轴平行，只需要判断 y 的部分</span></span><br><span class="line">        <span class="comment">// 若为普通线段，则都要判断</span></span><br><span class="line">        <span class="keyword">return</span> (x1 == x2 || (Math.min(x1, x2) &lt;= xk &amp;&amp; xk &lt;= Math.max(x1, x2)))</span><br><span class="line">                &amp;&amp; (y1 == y2 || (Math.min(y1, y2) &lt;= yk &amp;&amp; yk &lt;= Math.max(y1, y2)));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span>[] update(<span class="keyword">double</span>[] ans, <span class="keyword">double</span> xk, <span class="keyword">double</span> yk) &#123;</span><br><span class="line">        <span class="comment">// 将一个交点与当前 ans 中的结果进行比较</span></span><br><span class="line">        <span class="comment">// 若更优则替换</span></span><br><span class="line">        <span class="keyword">if</span> (ans.length == <span class="number">0</span> || xk &lt; ans[<span class="number">0</span>] || (xk == ans[<span class="number">0</span>] &amp;&amp; yk &lt; ans[<span class="number">1</span>])) &#123;</span><br><span class="line">            ans = <span class="keyword">new</span> <span class="keyword">double</span>[]&#123;xk, yk&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">double</span>[] intersection(<span class="keyword">int</span>[] start1, <span class="keyword">int</span>[] end1, <span class="keyword">int</span>[] start2, <span class="keyword">int</span>[] end2) &#123;</span><br><span class="line">        <span class="keyword">int</span> x1 = start1[<span class="number">0</span>], y1 = start1[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> x2 = end1[<span class="number">0</span>], y2 = end1[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> x3 = start2[<span class="number">0</span>], y3 = start2[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> x4 = end2[<span class="number">0</span>], y4 = end2[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">double</span>[] ans = &#123;&#125;;</span><br><span class="line">        <span class="comment">// 判断 (x1, y1)~(x2, y2) 和 (x3, y3)~(x4, y3) 是否平行</span></span><br><span class="line">        <span class="keyword">if</span> ((y4 - y3) * (x2 - x1) == (y2 - y1) * (x4 - x3)) &#123;</span><br><span class="line">            <span class="comment">// 若平行，则判断 (x3, y3) 是否在「直线」(x1, y1)~(x2, y2) 上</span></span><br><span class="line">            <span class="keyword">if</span> ((y2 - y1) * (x3 - x1) == (y3 - y1) * (x2 - x1)) &#123;</span><br><span class="line">                <span class="comment">// 判断 (x3, y3) 是否在「线段」(x1, y1)~(x2, y2) 上</span></span><br><span class="line">                <span class="keyword">if</span> (inside(x1, y1, x2, y2, x3, y3)) &#123;</span><br><span class="line">                    ans = update(ans, x3, y3);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// 判断 (x4, y4) 是否在「线段」(x1, y1)~(x2, y2) 上</span></span><br><span class="line">                <span class="keyword">if</span> (inside(x1, y1, x2, y2, x4, y4)) &#123;</span><br><span class="line">                    ans = update(ans, x4, y4);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// 判断 (x1, y1) 是否在「线段」(x3, y3)~(x4, y4) 上</span></span><br><span class="line">                <span class="keyword">if</span> (inside(x3, y3, x4, y4, x1, y1)) &#123;</span><br><span class="line">                    ans = update(ans, x1, y1);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// 判断 (x2, y2) 是否在「线段」(x3, y3)~(x4, y4) 上</span></span><br><span class="line">                <span class="keyword">if</span> (inside(x3, y3, x4, y4, x2, y2)) &#123;</span><br><span class="line">                    ans = update(ans, x2, y2);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 在平行时，其余的所有情况都不会有交点</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 联立方程得到 t1 和 t2 的值</span></span><br><span class="line">            <span class="keyword">double</span> t1 = (<span class="keyword">double</span>) (x3 * (y4 - y3) + y1 * (x4 - x3) - y3 * (x4 - x3) - x1 * (y4 - y3)) / ((x2 - x1) * (y4 - y3) - (x4 - x3) * (y2 - y1));</span><br><span class="line">            <span class="keyword">double</span> t2 = (<span class="keyword">double</span>) (x1 * (y2 - y1) + y3 * (x2 - x1) - y1 * (x2 - x1) - x3 * (y2 - y1)) / ((x4 - x3) * (y2 - y1) - (x2 - x1) * (y4 - y3));</span><br><span class="line">            <span class="comment">// 判断 t1 和 t2 是否均在 [0, 1] 之间</span></span><br><span class="line">            <span class="keyword">if</span> (t1 &gt;= <span class="number">0.0</span> &amp;&amp; t1 &lt;= <span class="number">1.0</span> &amp;&amp; t2 &gt;= <span class="number">0.0</span> &amp;&amp; t2 &lt;= <span class="number">1.0</span>) &#123;</span><br><span class="line">                ans = <span class="keyword">new</span> <span class="keyword">double</span>[]&#123;x1 + t1 * (x2 - x1), y1 + t1 * (y2 - y1)&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;题目：给定两条线段（表示为起点start = {X1, Y1}和终点end = {X2, Y2}），如果它们有交点，请计算其交点，没有交点则返回空值。要求浮点型误差不超过10^-6。若有多个交点（线段重叠）则返回 X 值最小的点，X 坐标相同则返回 Y 值最小的点。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
-    
-      <category term="math" scheme="https://dpcfury.github.io/tags/math/"/>
-    
-      <category term="hard" scheme="https://dpcfury.github.io/tags/hard/"/>
     
   </entry>
   
