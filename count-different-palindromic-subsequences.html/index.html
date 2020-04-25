@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="DPC&#39;s Blog">
 <meta property="og:description" content="Leetcode 730. Count Different Palindromic Subsequences这题是从Longest Palinromic Subsequence延伸而来，同样属于动态规划问题，但是不同的是在递归式的推导上，由于子问题的回文串数量和前后位置的字符串是有关联的，难点在这个规律的发现。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-08T15:15:18.138Z">
+<meta property="og:updated_time" content="2020-04-25T15:07:21.602Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode[730] Count Different Palindromic Subsequences">
 <meta name="twitter:description" content="Leetcode 730. Count Different Palindromic Subsequences这题是从Longest Palinromic Subsequence延伸而来，同样属于动态规划问题，但是不同的是在递归式的推导上，由于子问题的回文串数量和前后位置的字符串是有关联的，难点在这个规律的发现。">
@@ -369,7 +369,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  77
+                  194
                 </span>
               
 
@@ -410,8 +410,7 @@
 <p><a href="https://leetcode.com/problems/count-different-palindromic-subsequences/" target="_blank" rel="noopener">Leetcode 730. Count Different Palindromic Subsequences</a><br>这题是从Longest Palinromic Subsequence延伸而来，同样属于动态规划问题，但是不同的是在递归式的推导上，由于子问题的回文串数量和前后位置的字符串是有关联的，难点在这个规律的发现。</p>
 </blockquote>
 <a id="more"></a>
-<p>TODO </p>
-
+<h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countPalindromicSubsequences</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (s == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> n = s.length();</span><br><span class="line">        <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) dp[i][i] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> len = <span class="number">2</span>; len &lt;= n; len++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">                <span class="keyword">int</span> end = i + len - <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span> (end &lt; n) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (s.charAt(i) == s.charAt(end)) &#123;</span><br><span class="line">                        dp[i][end] = dp[i][end - <span class="number">1</span>] + dp[i + <span class="number">1</span>][end] + <span class="number">1</span>;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        dp[i][end] = dp[i][end - <span class="number">1</span>] + dp[i + <span class="number">1</span>][end] - dp[i + <span class="number">1</span>][end - <span class="number">1</span>];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[<span class="number">0</span>][n - <span class="number">1</span>] % <span class="number">1000000007</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -561,8 +560,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -649,6 +657,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#算法实现"><span class="nav-number">1.</span> <span class="nav-text">算法实现</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
