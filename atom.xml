@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-04-25T13:34:05.755Z</updated>
+  <updated>2020-04-26T12:34:00.842Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode[26] Merge k Sorted Lists</title>
+    <link href="https://dpcfury.github.io/merge-k-sorted-list.html/"/>
+    <id>https://dpcfury.github.io/merge-k-sorted-list.html/</id>
+    <published>2020-04-26T12:28:38.000Z</published>
+    <updated>2020-04-26T12:34:00.842Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/merge-k-sorted-lists/" target="_blank" rel="noopener">Leetcode 26. Merge k Sorted Lists</a><br>题目：合并 k 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>将所有链表中的元素遍历存入有限队列中，再通过头插法进行重组链表，时间复杂度O(kN * logkN),空间复杂度O(kN)，其他则可以两两合并，或者分治归并，这里偷懒写的是优先队列的形式。</p><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">mergeKLists</span><span class="params">(ListNode[] lists)</span> </span>&#123;</span><br><span class="line">        ListNode head = <span class="keyword">new</span> ListNode(-<span class="number">1</span>);</span><br><span class="line">        PriorityQueue&lt;ListNode&gt; queue = <span class="keyword">new</span> PriorityQueue&lt;&gt;(<span class="keyword">new</span> Comparator&lt;ListNode&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(ListNode o1, ListNode o2)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> o2.val - o1.val; <span class="comment">// 降序</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (ListNode p : lists) &#123;</span><br><span class="line">            <span class="keyword">while</span> (p != <span class="keyword">null</span>) &#123;</span><br><span class="line">                queue.offer(p);</span><br><span class="line">                p = p.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">            ListNode p = queue.poll();</span><br><span class="line">            p.next = head.next; <span class="comment">// 头插法</span></span><br><span class="line">            head.next = p;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> head.next;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/merge-k-sorted-lists/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 26. Merge k Sorted Lists&lt;/a&gt;&lt;br&gt;题目：合并 k 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="linkedlist" scheme="https://dpcfury.github.io/tags/linkedlist/"/>
+    
+      <category term="hard" scheme="https://dpcfury.github.io/tags/hard/"/>
+    
+  </entry>
   
   <entry>
     <title>力扣中国 面试题51. 数组中的逆序对</title>
@@ -544,34 +572,6 @@
       <category term="dynamic programming" scheme="https://dpcfury.github.io/tags/dynamic-programming/"/>
     
       <category term="matrix" scheme="https://dpcfury.github.io/tags/matrix/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode[415] Add Strings</title>
-    <link href="https://dpcfury.github.io/add-strings.html/"/>
-    <id>https://dpcfury.github.io/add-strings.html/</id>
-    <published>2020-04-14T15:14:03.000Z</published>
-    <updated>2020-04-14T15:50:51.286Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/add-strings/" target="_blank" rel="noopener">Leetcode 415. Add Strings</a><br>题目：给定两个非负的整数（字符串形式），不利用java的BigInteger库，实现两个整数的相加，结果仍以字符串形式表示。</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul><li>翻转字符串</li><li>从地位到高位计算，记住进位</li><li>注意边界情况，两数长短不一致的处理</li></ul><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">addStrings</span><span class="params">(String num1, String num2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> carry = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">    num1 = <span class="keyword">new</span> StringBuilder(num1).reverse().toString();</span><br><span class="line">    num2 = <span class="keyword">new</span> StringBuilder(num2).reverse().toString();</span><br><span class="line">    StringBuilder res = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    <span class="keyword">int</span> min = Math.min(num1.length(), num2.length());</span><br><span class="line">    <span class="keyword">while</span> (index &lt; min) &#123;</span><br><span class="line">        <span class="keyword">int</span> sum = num1.charAt(index) - <span class="string">'0'</span> + num2.charAt(index) - <span class="string">'0'</span> + carry;</span><br><span class="line">        res.append(sum % <span class="number">10</span>);</span><br><span class="line">        carry = sum / <span class="number">10</span>;</span><br><span class="line">        index++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (index &gt;= num2.length() &amp;&amp; index &lt; num1.length()) &#123;</span><br><span class="line">        <span class="keyword">int</span> sum = num1.charAt(index) - <span class="string">'0'</span> + carry;</span><br><span class="line">        res.append(sum % <span class="number">10</span>);</span><br><span class="line">        carry = sum / <span class="number">10</span>;</span><br><span class="line">        index++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (index &gt;= num1.length() &amp;&amp; index &lt; num2.length()) &#123;</span><br><span class="line">        <span class="keyword">int</span> sum = num2.charAt(index) - <span class="string">'0'</span> + carry;</span><br><span class="line">        res.append(sum % <span class="number">10</span>);</span><br><span class="line">        carry = sum / <span class="number">10</span>;</span><br><span class="line">        index++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (carry != <span class="number">0</span>) res.append(carry);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res.reverse().toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/add-strings/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 415. Add Strings&lt;/a&gt;&lt;br&gt;题目：给定两个非负的整数（字符串形式），不利用java的BigInteger库，实现两个整数的相加，结果仍以字符串形式表示。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
-    
-      <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
-    
-      <category term="string" scheme="https://dpcfury.github.io/tags/string/"/>
     
   </entry>
   
