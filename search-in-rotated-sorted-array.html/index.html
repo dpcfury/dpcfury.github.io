@@ -96,7 +96,7 @@
 <meta property="og:site_name" content="DPC&#39;s Blog">
 <meta property="og:description" content="Leetcode 33. Search in Rotated Sorted Array题目：假设按照升序排序的数组在预先未知的某个点上进行了旋转。  ( 例如，数组 [0,1,2,4,5,6,7] 可能变为 [4,5,6,7,0,1,2] )。 搜索一个给定的目标值，如果数组中存在这个目标值，则返回它的索引，否则返回 -1 。 你可以假设数组中不存在重复的元素。 你的算法时间复杂度必须是 O(l">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-27T13:49:31.699Z">
+<meta property="og:updated_time" content="2020-04-27T15:41:01.758Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Leetcode[33]Search in Rotated Sorted Array">
 <meta name="twitter:description" content="Leetcode 33. Search in Rotated Sorted Array题目：假设按照升序排序的数组在预先未知的某个点上进行了旋转。  ( 例如，数组 [0,1,2,4,5,6,7] 可能变为 [4,5,6,7,0,1,2] )。 搜索一个给定的目标值，如果数组中存在这个目标值，则返回它的索引，否则返回 -1 。 你可以假设数组中不存在重复的元素。 你的算法时间复杂度必须是 O(l">
@@ -391,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  349
+                  346
                 </span>
               
 
@@ -436,7 +436,7 @@
 <p>你可以假设数组中不存在重复的元素。</p>
 <p>你的算法时间复杂度必须是 O(log n) 级别。</p>
 <a id="more"></a>
-<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>遇到有序的数组，时间复杂度又是要求logn，自然而然会想到<strong> binary search </strong> ，但是此题不同的是，数组是一半一半的有序，而不是完整的一个有序数组，那么如何在这样的数组上进行二叉搜索呢，核心是判断mid元素是处于前一半的有序数组，还是后一半的有序数组，再分情况去更新搜索的上下边界。</p>
+<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>遇到有序的数组，时间复杂度又是要求logn，自然而然会想到<strong> binary search </strong> ，但是此题不同的是，数组是一半一半的有序，而不是完整的一个有序数组，那么如何在这样的数组上进行二叉搜索呢，核心是判断[start,mid]元素是处于有序状态，还是[mid, end]处于有序状态，再分情况去更新搜索的左右边界。</p>
 <h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> start = <span class="number">0</span>, end = nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (start &lt;= end) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = (start + end) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] == target)</span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (nums[start] &lt;= nums[mid]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (target &lt; nums[mid] &amp;&amp; target &gt;= nums[start])</span><br><span class="line">                    end = mid - <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    start = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &lt;= nums[end]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (target &gt; nums[mid] &amp;&amp; target &lt;= nums[end])</span><br><span class="line">                    start = mid + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    end = mid - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
       
     </div>
