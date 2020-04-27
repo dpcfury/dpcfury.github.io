@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-04-26T12:34:00.842Z</updated>
+  <updated>2020-04-27T13:49:31.699Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode[33]Search in Rotated Sorted Array</title>
+    <link href="https://dpcfury.github.io/search-in-rotated-sorted-array.html/"/>
+    <id>https://dpcfury.github.io/search-in-rotated-sorted-array.html/</id>
+    <published>2020-04-27T13:42:15.000Z</published>
+    <updated>2020-04-27T13:49:31.699Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/search-in-rotated-sorted-array/" target="_blank" rel="noopener">Leetcode 33. Search in Rotated Sorted Array</a><br>题目：假设按照升序排序的数组在预先未知的某个点上进行了旋转。</p></blockquote><p>( 例如，数组 [0,1,2,4,5,6,7] 可能变为 [4,5,6,7,0,1,2] )。</p><p>搜索一个给定的目标值，如果数组中存在这个目标值，则返回它的索引，否则返回 -1 。</p><p>你可以假设数组中不存在重复的元素。</p><p>你的算法时间复杂度必须是 O(log n) 级别。</p><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>遇到有序的数组，时间复杂度又是要求logn，自然而然会想到<strong> binary search </strong> ，但是此题不同的是，数组是一半一半的有序，而不是完整的一个有序数组，那么如何在这样的数组上进行二叉搜索呢，核心是判断mid元素是处于前一半的有序数组，还是后一半的有序数组，再分情况去更新搜索的上下边界。</p><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">search</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> start = <span class="number">0</span>, end = nums.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (start &lt;= end) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = (start + end) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (nums[mid] == target)</span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (nums[start] &lt;= nums[mid]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (target &lt; nums[mid] &amp;&amp; target &gt;= nums[start])</span><br><span class="line">                    end = mid - <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    start = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (nums[mid] &lt;= nums[end]) &#123;</span><br><span class="line">                <span class="keyword">if</span> (target &gt; nums[mid] &amp;&amp; target &lt;= nums[end])</span><br><span class="line">                    start = mid + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    end = mid - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/search-in-rotated-sorted-array/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 33. Search in Rotated Sorted Array&lt;/a&gt;&lt;br&gt;题目：假设按照升序排序的数组在预先未知的某个点上进行了旋转。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;( 例如，数组 [0,1,2,4,5,6,7] 可能变为 [4,5,6,7,0,1,2] )。&lt;/p&gt;
+&lt;p&gt;搜索一个给定的目标值，如果数组中存在这个目标值，则返回它的索引，否则返回 -1 。&lt;/p&gt;
+&lt;p&gt;你可以假设数组中不存在重复的元素。&lt;/p&gt;
+&lt;p&gt;你的算法时间复杂度必须是 O(log n) 级别。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
+    
+      <category term="binary search" scheme="https://dpcfury.github.io/tags/binary-search/"/>
+    
+  </entry>
   
   <entry>
     <title>Leetcode[26] Merge k Sorted Lists</title>
@@ -541,34 +573,6 @@
       <category term="matrix" scheme="https://dpcfury.github.io/tags/matrix/"/>
     
       <category term="trie" scheme="https://dpcfury.github.io/tags/trie/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode[542] 01 Matrix</title>
-    <link href="https://dpcfury.github.io/01-matrix.html/"/>
-    <id>https://dpcfury.github.io/01-matrix.html/</id>
-    <published>2020-04-15T13:58:01.000Z</published>
-    <updated>2020-04-15T15:07:47.212Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/01-matrix/" target="_blank" rel="noopener">Leetcode 542. 01 Matrix</a><br>题目给定一个‘0’和‘1’元素组成的矩阵，要求计算每个元素到最近的‘0’元素的距离。看到矩阵以及距离的问题，很容易想到动态规划，这题只要我们找到切入点，就能列出dp表达式，再注意下边界条件即可。</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul><li>令dp[i][j]表示matrix[i][j]离‘0’元素的最近距离：<ul><li>情况一： matrix[i][j] == 0: dp[i][j]= 0</li><li>情况二：matrix[i][j] == 1: dp[i][j] = min(dp[i-1][j], dp[i][j-1],dp[i+1][j],dp[i][j+1])</li></ul></li><li>那么怎么自低向上计算dp[i][j]呢，我们可以分别进行两次遍历，一次从左往右，从上往下，一次从下往上，从右往左，再进行比较即可得到最终结果。</li></ul><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[][] updateMatrix(<span class="keyword">int</span>[][] matrix) &#123;</span><br><span class="line">        <span class="keyword">if</span> (matrix == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">int</span> row = matrix.length;</span><br><span class="line">        <span class="keyword">int</span> col = matrix[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[row][col];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; col; j++) &#123;</span><br><span class="line">                dp[i][j] = Integer.MAX_VALUE;</span><br><span class="line">                <span class="keyword">if</span> (matrix[i][j] == <span class="number">0</span>) dp[i][j] = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span> (inArea(i - <span class="number">1</span>, j, row, col) &amp;&amp; dp[i - <span class="number">1</span>][j] != Integer.MAX_VALUE) &#123;</span><br><span class="line">                        dp[i][j] = Math.min(dp[i][j], dp[i - <span class="number">1</span>][j] + <span class="number">1</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> (inArea(i, j - <span class="number">1</span>, row, col) &amp;&amp; dp[i][j - <span class="number">1</span>] != Integer.MAX_VALUE) &#123;</span><br><span class="line">                        dp[i][j] = Math.min(dp[i][j], dp[i][j - <span class="number">1</span>] + <span class="number">1</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = row - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = col - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">                <span class="keyword">if</span> (inArea(i, j + <span class="number">1</span>, row, col) &amp;&amp; dp[i][j + <span class="number">1</span>] != Integer.MAX_VALUE) &#123;</span><br><span class="line">                    dp[i][j] = Math.min(dp[i][j], dp[i][j + <span class="number">1</span>] + <span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (inArea(i + <span class="number">1</span>, j, row, col) &amp;&amp; dp[i + <span class="number">1</span>][j] != Integer.MAX_VALUE) &#123;</span><br><span class="line">                    dp[i][j] = Math.min(dp[i][j], dp[i + <span class="number">1</span>][j] + <span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">inArea</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j, <span class="keyword">int</span> row, <span class="keyword">int</span> col)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> i &gt;= <span class="number">0</span> &amp;&amp; i &lt; row &amp;&amp; j &gt;= <span class="number">0</span> &amp;&amp; j &lt; col;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/01-matrix/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 542. 01 Matrix&lt;/a&gt;&lt;br&gt;题目给定一个‘0’和‘1’元素组成的矩阵，要求计算每个元素到最近的‘0’元素的距离。看到矩阵以及距离的问题，很容易想到动态规划，这题只要我们找到切入点，就能列出dp表达式，再注意下边界条件即可。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
-    
-      <category term="dynamic programming" scheme="https://dpcfury.github.io/tags/dynamic-programming/"/>
-    
-      <category term="matrix" scheme="https://dpcfury.github.io/tags/matrix/"/>
     
   </entry>
   
