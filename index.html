@@ -425,16 +425,16 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p><a href="https://leetcode.com/problems/merge-two-sorted-lists/" target="_blank" rel="noopener">Leetcode 21. Merge Two Sorted Lists</a><br>五一轻松一下，题目：和并两个有序的链表，注意细节，争取一把过。</p>
 </blockquote>
-<h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul>
-<li>两头遍历，按小的先插</li>
-<li>注意合并过程中一个插完，一个还剩一部分的情况</li>
-</ul>
-<h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">mergeTwoLists</span><span class="params">(ListNode l1, ListNode l2)</span> </span>&#123;</span><br><span class="line">       ListNode head = <span class="keyword">new</span> ListNode(-<span class="number">1</span>);</span><br><span class="line">       ListNode p = l1;</span><br><span class="line">       ListNode q = l2;</span><br><span class="line">       ListNode node = head;</span><br><span class="line">       <span class="keyword">while</span> (p != <span class="keyword">null</span> &amp;&amp; q != <span class="keyword">null</span>) &#123;</span><br><span class="line">           <span class="keyword">if</span> (p.val &lt; q.val) &#123;</span><br><span class="line">               node.next = p;</span><br><span class="line">               node = p;</span><br><span class="line">               p = p.next;</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               node.next = q;</span><br><span class="line">               node = q;</span><br><span class="line">               q = q.next;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">if</span> (p != <span class="keyword">null</span>) node.next = p;</span><br><span class="line">       <span class="keyword">if</span> (q != <span class="keyword">null</span>) node.next = q;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">return</span> head.next;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/merge-two-sorted-lists.html/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
