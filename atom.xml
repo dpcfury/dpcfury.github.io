@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-05-02T02:52:31.767Z</updated>
+  <updated>2020-05-03T13:06:45.742Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode[53] Maximum Subarray</title>
+    <link href="https://dpcfury.github.io/maximum-subarray.html/"/>
+    <id>https://dpcfury.github.io/maximum-subarray.html/</id>
+    <published>2020-05-03T13:02:19.000Z</published>
+    <updated>2020-05-03T13:06:45.742Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/maximum-subarray/" target="_blank" rel="noopener">Leetcode 53. Maximum Subarray</a><br>题目：给定一个整数数组 <strong> nums </strong> ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul><li>遍历数组，追踪当前能获取的数组和，如果之前的sum已经小于等于0，那么最大的子数组不应该从之前开头，此时更新子数组的开头为当前元素</li><li>持续更新子数组最大的sum记录</li></ul><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> curSum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> max = Integer.MIN_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (curSum &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">                curSum = nums[i];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                curSum += nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">            max = Math.max(max, curSum);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/maximum-subarray/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 53. Maximum Subarray&lt;/a&gt;&lt;br&gt;题目：给定一个整数数组 &lt;strong&gt; nums &lt;/strong&gt; ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
+    
+      <category term="array" scheme="https://dpcfury.github.io/tags/array/"/>
+    
+      <category term="leetcoe" scheme="https://dpcfury.github.io/tags/leetcoe/"/>
+    
+  </entry>
   
   <entry>
     <title>Leetcode[3] Longest Substring Without Repeating Characters</title>
@@ -557,26 +585,6 @@
       <category term="dynamic programming" scheme="https://dpcfury.github.io/tags/dynamic-programming/"/>
     
       <category term="hard" scheme="https://dpcfury.github.io/tags/hard/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode[1339] Maximum Product of Splitted Binary Tree</title>
-    <link href="https://dpcfury.github.io/maximum-product-of-splitted-binary-tree.html/"/>
-    <id>https://dpcfury.github.io/maximum-product-of-splitted-binary-tree.html/</id>
-    <published>2020-04-19T08:37:45.000Z</published>
-    <updated>2020-04-19T08:45:30.946Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/maximum-product-of-splitted-binary-tree/" target="_blank" rel="noopener">Leetcode 1339. Maximum Product of Splitted Binary Tree</a><br>题目给定一课二叉树，选择一个边进行切分，整棵树变成两部分，要求分开的两个字数乘积最大。</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>无论是切分哪条边，整颗树肯定是分为了一颗字子树，以及包含这个边上连父节点的子树，利用dfs的思路，遍历每个节点，都可以计算其子树的和于包含自己的子树和乘积，并更新全局最大。核心是先通过一次遍历求得整个树的整体的综合，减去子树的和，就能得到包含父节点那棵树的和，此外，因为树的规模还不小，乘积大小也较大，考虑double类型，并且最好将子树和进行memorization。</p><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> max = <span class="number">0</span>, totalSum = <span class="number">0</span>;</span><br><span class="line">    HashMap&lt;TreeNode, Double&gt; memo = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProduct</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        totalSum = sum(root);</span><br><span class="line">        memo.put(<span class="keyword">null</span>, <span class="number">0.0</span>);</span><br><span class="line">        dfs(root);</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>) (max % <span class="number">1000000007</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">double</span> leftSum = memo.get(root.left);</span><br><span class="line">        <span class="keyword">double</span> rightSum = memo.get(root.right);</span><br><span class="line">        <span class="keyword">if</span> ((totalSum - leftSum) * leftSum &gt; (totalSum - rightSum) * rightSum) &#123;</span><br><span class="line">            max = Math.max(max, (totalSum - leftSum) * leftSum);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            max = Math.max(max, (totalSum - rightSum) * rightSum);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        dfs(root.left);</span><br><span class="line">        dfs(root.right);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">double</span> <span class="title">sum</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">double</span> leftSum = sum(root.left);</span><br><span class="line">        <span class="keyword">double</span> rightSum = sum(root.right);</span><br><span class="line">        <span class="keyword">double</span> sum = leftSum + rightSum + root.val;</span><br><span class="line">        memo.put(root, sum);</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/maximum-product-of-splitted-binary-tree/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 1339. Maximum Product of Splitted Binary Tree&lt;/a&gt;&lt;br&gt;题目给定一课二叉树，选择一个边进行切分，整棵树变成两部分，要求分开的两个字数乘积最大。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
     
   </entry>
   
