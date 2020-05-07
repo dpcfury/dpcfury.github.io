@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-05-05T12:38:38.886Z</updated>
+  <updated>2020-05-07T15:10:39.874Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,68 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode[572] Subtree of Another Tree</title>
+    <link href="https://dpcfury.github.io/subtree-of-another-tree.html/"/>
+    <id>https://dpcfury.github.io/subtree-of-another-tree.html/</id>
+    <published>2020-05-07T15:03:35.000Z</published>
+    <updated>2020-05-07T15:10:39.874Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/subtree-of-another-tree/" target="_blank" rel="noopener">Leetcode 572. Subtree of Another Tree</a><br>题目：给定两个非空二叉树 s 和 t，检验 s 中是否包含和 t 具有相同结构和节点值的子树。s 的一个子树包括 s 的一个节点和这个节点的所有子孙。s 也可以看做它自身的一棵子树。</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>利用递归的特性</p><ul><li>判断s和t是否是相同的树</li><li>判断t是否是s.left的子树</li><li>判断t是否是s.right的子树</li></ul><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSubtree</span><span class="params">(TreeNode s, TreeNode t)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (s == <span class="keyword">null</span>)</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">       <span class="keyword">if</span> (isSame(s, t))</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">       <span class="keyword">return</span> isSubtree(s.left, t) || isSubtree(s.right, t);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSame</span><span class="params">(TreeNode s, TreeNode t)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (s == <span class="keyword">null</span> &amp;&amp; t == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">       <span class="keyword">if</span> (s == <span class="keyword">null</span> || t == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">return</span> s.val == t.val &amp;&amp; isSame(s.left, t.left) &amp;&amp; isSame(s.right, t.right);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/subtree-of-another-tree/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 572. Subtree of Another Tree&lt;/a&gt;&lt;br&gt;题目：给定两个非空二叉树 s 和 t，检验 s 中是否包含和 t 具有相同结构和节点值的子树。s 的一个子树包括 s 的一个节点和这个节点的所有子孙。s 也可以看做它自身的一棵子树。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
+    
+      <category term="binary tree" scheme="https://dpcfury.github.io/tags/binary-tree/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Leetcode[983] Minimum Cost For Tickets</title>
+    <link href="https://dpcfury.github.io/minimum-cost-for-tickets.html/"/>
+    <id>https://dpcfury.github.io/minimum-cost-for-tickets.html/</id>
+    <published>2020-05-07T14:30:15.000Z</published>
+    <updated>2020-05-07T14:59:43.090Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/minimum-cost-for-tickets/" target="_blank" rel="noopener">Leetcode 983. Minimum Cost For Tickets</a><br>题目：在一个火车旅行很受欢迎的国度，你提前一年计划了一些火车旅行。在接下来的一年里，你要旅行的日子将以一个名为 days 的数组给出。每一项是一个从 1 到 365 的整数。<br>火车票有三种不同的销售方式：</p><ul><li>一张为期一天的通行证售价为 costs[0] 美元；</li><li>一张为期七天的通行证售价为 costs[1] 美元；</li><li>一张为期三十天的通行证售价为 costs[2] 美元。<br>通行证允许数天无限制的旅行。 例如，如果我们在第 2 天获得一张为期 7 天的通行证，那么我们可以连着旅行 7 天：第 2 天、第 3 天、第 4 天、第 5 天、第 6 天、第 7 天和第 8 天。</li></ul></blockquote><p>返回你想要完成在给定的列表 days 中列出的每一天的旅行所需要的最低消费。</p><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul><li>今天不需要出门，不用买票</li><li>今天如果要出门，往后买几天比较划算？</li></ul><p>从后往前动规</p><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><p>引用一个memo的递归写法，其实可以直接从后往前dp写<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] costs;</span><br><span class="line">    Integer[] memo;</span><br><span class="line">    Set&lt;Integer&gt; daySet;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">mincostTickets</span><span class="params">(<span class="keyword">int</span>[] days, <span class="keyword">int</span>[] costs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.costs = costs;</span><br><span class="line">        memo = <span class="keyword">new</span> Integer[<span class="number">366</span>];</span><br><span class="line">        daySet = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> day : days) daySet.add(day);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dp</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (i &gt; <span class="number">365</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (memo[i] != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> memo[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (daySet.contains(i)) &#123;</span><br><span class="line">            memo[i] = Math.min(Math.min(dp(i + <span class="number">1</span>) + costs[<span class="number">0</span>], dp(i + <span class="number">7</span>) + costs[<span class="number">1</span>]), dp(i + <span class="number">30</span>) + costs[<span class="number">2</span>]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            memo[i] = dp(i + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> memo[i];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/minimum-cost-for-tickets/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 983. Minimum Cost For Tickets&lt;/a&gt;&lt;br&gt;题目：在一个火车旅行很受欢迎的国度，你提前一年计划了一些火车旅行。在接下来的一年里，你要旅行的日子将以一个名为 days 的数组给出。每一项是一个从 1 到 365 的整数。&lt;br&gt;火车票有三种不同的销售方式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一张为期一天的通行证售价为 costs[0] 美元；&lt;/li&gt;
+&lt;li&gt;一张为期七天的通行证售价为 costs[1] 美元；&lt;/li&gt;
+&lt;li&gt;一张为期三十天的通行证售价为 costs[2] 美元。&lt;br&gt;通行证允许数天无限制的旅行。 例如，如果我们在第 2 天获得一张为期 7 天的通行证，那么我们可以连着旅行 7 天：第 2 天、第 3 天、第 4 天、第 5 天、第 6 天、第 7 天和第 8 天。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;返回你想要完成在给定的列表 days 中列出的每一天的旅行所需要的最低消费。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
+    
+      <category term="dynamic programming" scheme="https://dpcfury.github.io/tags/dynamic-programming/"/>
+    
+  </entry>
   
   <entry>
     <title>Leetcode[98] Validate Binary Search Tree</title>
@@ -529,62 +591,6 @@
       <category term="union find" scheme="https://dpcfury.github.io/tags/union-find/"/>
     
       <category term="concept" scheme="https://dpcfury.github.io/tags/concept/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode[121] Best Time to Buy and Sell Stock</title>
-    <link href="https://dpcfury.github.io/best-time-to-buy-and-sell-stock.html/"/>
-    <id>https://dpcfury.github.io/best-time-to-buy-and-sell-stock.html/</id>
-    <published>2020-04-20T13:28:10.000Z</published>
-    <updated>2020-04-20T14:46:17.794Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/" target="_blank" rel="noopener">Leetcode 121 Best Time to Buy and Sell Stock</a><br>抛售股票的最原始题，只能抛售一次，问能够获取的最大利润，这里给出的是一种比较直观的方法，没有使用dp进行求解。</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul><li>记录当前出现的最小元素，用当前元素减去最小元素，如果收益更大，则更新全局最大利润</li><li>如果当前元素比之前出现的最小元素还小，则更新当前最小元素为当前遍历的元素</li></ul><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//7,1,5,3,6,4  -&gt; 5</span></span><br><span class="line">        <span class="comment">// 7,6,4,3,1 -&gt;0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (prices == <span class="keyword">null</span> || prices.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> min = prices[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> maxProfit = Integer.MIN_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; prices.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (prices[i] - min &gt; maxProfit) maxProfit = prices[i] - min;</span><br><span class="line">            <span class="keyword">if</span> (prices[i] &lt; min) min = prices[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> maxProfit;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/best-time-to-buy-and-sell-stock/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 121 Best Time to Buy and Sell Stock&lt;/a&gt;&lt;br&gt;抛售股票的最原始题，只能抛售一次，问能够获取的最大利润，这里给出的是一种比较直观的方法，没有使用dp进行求解。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
-    
-      <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
-    
-      <category term="dynamic programming" scheme="https://dpcfury.github.io/tags/dynamic-programming/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode[695] Max Area of Island</title>
-    <link href="https://dpcfury.github.io/max-area-of-island.html/"/>
-    <id>https://dpcfury.github.io/max-area-of-island.html/</id>
-    <published>2020-04-20T12:49:19.000Z</published>
-    <updated>2020-04-20T12:53:53.364Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="">Leetcode 695. Max Area of Island</a><br>题目和 <strong>Leetcode[200] Num of Islands</strong>属于同一类题目，只是要求得内容为独立小岛最大的面积。将题目定义为dfs类型比backtracking类型更为合适。</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul><li>遍历面板，只要遇到1元素，则开始dfs</li><li>dfs过程：<ul><li>如果坐标超标或元素不为1，返回0</li><li>返回 1+ 四个方向dfs结果</li></ul></li><li>dfs完成更新全局Max值</li></ul><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> max = Integer.MIN_VALUE;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxAreaOfIsland</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (grid == <span class="keyword">null</span> || grid[<span class="number">0</span>].length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> row = grid.length;</span><br><span class="line">        <span class="keyword">int</span> col = grid[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; col; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (grid[i][j] == <span class="number">1</span>)</span><br><span class="line">                    max = Math.max(max, dfs(grid, row, col, i, j));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[][] grid, <span class="keyword">int</span> row, <span class="keyword">int</span> col, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; <span class="number">0</span> || i &gt;= row || j &lt; <span class="number">0</span> || j &gt;= col || grid[i][j] != <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        grid[i][j] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">1</span>;</span><br><span class="line">        res += dfs(grid, row, col, i, j + <span class="number">1</span>);</span><br><span class="line">        res += dfs(grid, row, col, i, j - <span class="number">1</span>);</span><br><span class="line">        res += dfs(grid, row, col, i - <span class="number">1</span>, j);</span><br><span class="line">        res += dfs(grid, row, col, i + <span class="number">1</span>, j);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;&quot;&gt;Leetcode 695. Max Area of Island&lt;/a&gt;&lt;br&gt;题目和 &lt;strong&gt;Leetcode[200] Num of Islands&lt;/strong&gt;属于同一类题目，只是要求得内容为独立小岛最大的面积。将题目定义为dfs类型比backtracking类型更为合适。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
-    
-      <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
-    
-      <category term="dfs" scheme="https://dpcfury.github.io/tags/dfs/"/>
     
   </entry>
   
