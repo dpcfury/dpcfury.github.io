@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-05-07T15:10:39.874Z</updated>
+  <updated>2020-05-10T12:55:32.777Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,68 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode[69] Sqrt(x)</title>
+    <link href="https://dpcfury.github.io/sqrt(x).html/"/>
+    <id>https://dpcfury.github.io/sqrt(x).html/</id>
+    <published>2020-05-10T12:46:13.000Z</published>
+    <updated>2020-05-10T12:55:32.777Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/sqrtx/" target="_blank" rel="noopener">Leetcode 69. Sqrt(x)</a><br>题目：实现 int sqrt(int x) 函数。<br>计算并返回 x 的平方根，其中 x 是非负整数。<br>由于返回类型是整数，结果只保留整数的部分，小数部分将被舍去。</p></blockquote><p><strong>示例 1:</strong></p><p>输入: 4<br>输出: 2<br><a id="more"></a></p><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>利用二分查找，比较mid元素与 x / mid 结果的大小，调整搜索的左右边界</p><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">mySqrt</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (x == <span class="number">0</span> || x == <span class="number">1</span>) <span class="keyword">return</span> x;</span><br><span class="line">       <span class="keyword">int</span> low = <span class="number">1</span>, high = x;</span><br><span class="line">       <span class="keyword">while</span> (low &lt;= high) &#123;</span><br><span class="line">           <span class="keyword">int</span> mid = (low + high) &gt;&gt;&gt; <span class="number">1</span>;</span><br><span class="line">           <span class="keyword">int</span> sqrt = x / mid;</span><br><span class="line">           <span class="keyword">if</span> (sqrt == mid) &#123;</span><br><span class="line">               <span class="keyword">return</span> mid;</span><br><span class="line">           &#125; <span class="keyword">else</span> <span class="keyword">if</span> (sqrt &gt; mid) &#123;</span><br><span class="line">               low = mid + <span class="number">1</span>;</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               high = mid - <span class="number">1</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> high;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/sqrtx/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 69. Sqrt(x)&lt;/a&gt;&lt;br&gt;题目：实现 int sqrt(int x) 函数。&lt;br&gt;计算并返回 x 的平方根，其中 x 是非负整数。&lt;br&gt;由于返回类型是整数，结果只保留整数的部分，小数部分将被舍去。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;示例 1:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;输入: 4&lt;br&gt;输出: 2&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
+    
+      <category term="Math" scheme="https://dpcfury.github.io/tags/Math/"/>
+    
+      <category term="binary search" scheme="https://dpcfury.github.io/tags/binary-search/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Leetcode[221] Maximal Square</title>
+    <link href="https://dpcfury.github.io/maximal%20square.html/"/>
+    <id>https://dpcfury.github.io/maximal square.html/</id>
+    <published>2020-05-10T12:23:50.000Z</published>
+    <updated>2020-05-10T12:30:28.853Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/maximal-square/" target="_blank" rel="noopener">Leetcode 221. Maximal Square</a><br>题目：在一个由 0 和 1 组成的二维矩阵内，找到只包含 1 的最大正方形，并返回其面积。</p></blockquote><p>示例:</p><p>输入: </p><p>1 0 1 0 0<br>1 0 1 1 1<br>1 1 1 1 1<br>1 0 0 1 0</p><p>输出: 4</p><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>最大的正方形需要最大的正方向边长实现，令 dp(i, j) 表示以 (i, j)(i,j) 为右下角，且只包含 1 的正方形的边长最大值。如果我们能计算出所有 dp(i, j) 的值，那么其中的最大值即为矩阵中只包含 11的正方形的边长最大值，其平方即为最大正方形的面积。</p><p>则：</p><ul><li><p>如果该位置的值是 0，则 dp(i, j) = 0，因为当前位置不可能在由 11 组成的正方形中；</p></li><li><p>如果该位置的值是 1，则 dp(i, j) 的值由其上方、左方和左上方的三个相邻位置的 dp值决定。具体而言，当前位置的元素值等于三个相邻位置的元素中的最小值加 1，状态转移方程如下：<br>dp(i, j)=min(dp(i−1, j), dp(i−1, j−1), dp(i, j−1))+1</p></li></ul><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maximalSquare</span><span class="params">(<span class="keyword">char</span>[][] matrix)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> row = matrix.length;</span><br><span class="line">        <span class="keyword">int</span> col = matrix.length &gt; <span class="number">0</span> ? matrix[<span class="number">0</span>].length : <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> dp[][] = <span class="keyword">new</span> <span class="keyword">int</span>[row][col];</span><br><span class="line">        <span class="keyword">int</span> maxLen = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; col; i++)</span><br><span class="line">            <span class="keyword">if</span> (matrix[<span class="number">0</span>][i] == <span class="string">'1'</span>) &#123;</span><br><span class="line">                dp[<span class="number">0</span>][i] = <span class="number">1</span>;</span><br><span class="line">                maxLen = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; row; i++)</span><br><span class="line">            <span class="keyword">if</span> (matrix[i][<span class="number">0</span>] == <span class="string">'1'</span>) &#123;</span><br><span class="line">                dp[i][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">                maxLen = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; row; i++)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; col; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (matrix[i][j] == <span class="string">'1'</span>) &#123;</span><br><span class="line">                    dp[i][j] = Math.min(Math.min(dp[i - <span class="number">1</span>][j], dp[i][j - <span class="number">1</span>]), dp[i - <span class="number">1</span>][j - <span class="number">1</span>]) + <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">if</span> (dp[i][j] &gt; maxLen) maxLen = dp[i][j];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">return</span> maxLen * maxLen;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/maximal-square/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 221. Maximal Square&lt;/a&gt;&lt;br&gt;题目：在一个由 0 和 1 组成的二维矩阵内，找到只包含 1 的最大正方形，并返回其面积。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;示例:&lt;/p&gt;
+&lt;p&gt;输入: &lt;/p&gt;
+&lt;p&gt;1 0 1 0 0&lt;br&gt;1 0 1 1 1&lt;br&gt;1 1 1 1 1&lt;br&gt;1 0 0 1 0&lt;/p&gt;
+&lt;p&gt;输出: 4&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="dynamic programming" scheme="https://dpcfury.github.io/tags/dynamic-programming/"/>
+    
+  </entry>
   
   <entry>
     <title>Leetcode[572] Subtree of Another Tree</title>
@@ -535,62 +597,6 @@
       <category term="dfs" scheme="https://dpcfury.github.io/tags/dfs/"/>
     
       <category term="bfs" scheme="https://dpcfury.github.io/tags/bfs/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode [1248] Count Number of Nice Subarrays</title>
-    <link href="https://dpcfury.github.io/count-number-of-nice-subarrays.html/"/>
-    <id>https://dpcfury.github.io/count-number-of-nice-subarrays.html/</id>
-    <published>2020-04-21T14:08:36.000Z</published>
-    <updated>2020-04-21T14:18:02.145Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/count-number-of-nice-subarrays/" target="_blank" rel="noopener">Leetcode 1248. Count Number of Nice Subarrays</a><br>题目要求计算给定数组nums中，满足包含K个奇数元素的子数组的个数，这个题目比较容易想到滑动窗口的思路，关键是对前后偶数元素的计算和边界的控制。</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul><li>首先统计出每个奇数元素在数组中的出现位置，并记录在中间数组oddIndex中</li><li>遍历每组K个奇数组合，即oddIndex[i] 与oddIndex[i+k-1],通过计算左右边界与前后奇数元素的间隔，就能得到前后偶数的个数，相乘就能得到组合的子数组个数</li></ul><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">numberOfSubarrays</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> len = nums.length;</span><br><span class="line">       <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">int</span> oddNum = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">int</span>[] oddIndex = <span class="keyword">new</span> <span class="keyword">int</span>[len + <span class="number">2</span>];</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">           <span class="keyword">if</span> (nums[i] % <span class="number">2</span> == <span class="number">1</span>) oddIndex[++oddNum] = i;</span><br><span class="line">       &#125;</span><br><span class="line">       oddIndex[<span class="number">0</span>] = -<span class="number">1</span>; <span class="comment">// 左边界</span></span><br><span class="line">       oddIndex[oddNum + <span class="number">1</span>] = len; <span class="comment">// 右边界</span></span><br><span class="line"></span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i + k &lt;= oddNum + <span class="number">1</span>; i++) &#123;</span><br><span class="line">           count += (oddIndex[i] - oddIndex[i - <span class="number">1</span>]) * (oddIndex[i + k] - oddIndex[i + k - <span class="number">1</span>]);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">return</span> count;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure><p>类似题目：<a href="https://leetcode.com/problems/subarray-sum-equals-k/" target="_blank" rel="noopener">Leetcode 560. Subarray Sum Equals K</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/count-number-of-nice-subarrays/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 1248. Count Number of Nice Subarrays&lt;/a&gt;&lt;br&gt;题目要求计算给定数组nums中，满足包含K个奇数元素的子数组的个数，这个题目比较容易想到滑动窗口的思路，关键是对前后偶数元素的计算和边界的控制。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
-    
-      <category term="array" scheme="https://dpcfury.github.io/tags/array/"/>
-    
-      <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
-    
-      <category term="sliding window" scheme="https://dpcfury.github.io/tags/sliding-window/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>并查集基本概念</title>
-    <link href="https://dpcfury.github.io/union-find.html/"/>
-    <id>https://dpcfury.github.io/union-find.html/</id>
-    <published>2020-04-21T12:30:35.000Z</published>
-    <updated>2020-04-21T12:45:04.677Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>Union Find</p></blockquote><a id="more"></a><h4 id="什么是并查集？"><a href="#什么是并查集？" class="headerlink" title="什么是并查集？"></a>什么是并查集？</h4><ul><li>并查集可以进行集合合并的操作（并）</li><li>并查集可以查找元素在哪个集合中（查）</li><li>并查集维护的是一堆集合（集）</li></ul><h4 id="并查集如何实现"><a href="#并查集如何实现" class="headerlink" title="并查集如何实现"></a>并查集如何实现</h4><h4 id="并查集能干啥"><a href="#并查集能干啥" class="headerlink" title="并查集能干啥"></a>并查集能干啥</h4>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;Union Find&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="algorithm" scheme="https://dpcfury.github.io/categories/algorithm/"/>
-    
-    
-      <category term="union find" scheme="https://dpcfury.github.io/tags/union-find/"/>
-    
-      <category term="concept" scheme="https://dpcfury.github.io/tags/concept/"/>
     
   </entry>
   
