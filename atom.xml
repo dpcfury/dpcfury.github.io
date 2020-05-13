@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-05-10T12:55:32.777Z</updated>
+  <updated>2020-05-13T15:37:45.865Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,120 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode[102] Binary Tree Level Order Traversal</title>
+    <link href="https://dpcfury.github.io/binary-tree-level-order-traversal.html/"/>
+    <id>https://dpcfury.github.io/binary-tree-level-order-traversal.html/</id>
+    <published>2020-05-13T15:33:14.000Z</published>
+    <updated>2020-05-13T15:37:45.865Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/binary-tree-level-order-traversal/" target="_blank" rel="noopener">Leetcode 102. Binary Tree Level Order Traversal</a><br>题目：二叉树的层次遍历（也即树的BFS）</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul><li>借助于队列，保存每一层的遍历结果</li><li>利用先序遍历，借助辅助的height高度变量</li></ul><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        Queue&lt;TreeNode&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        queue.offer(root);</span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">int</span> len = queue.size();</span><br><span class="line">            List&lt;Integer&gt; temp = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len &amp;&amp; !queue.isEmpty(); i++) &#123;</span><br><span class="line">                TreeNode node = queue.poll();</span><br><span class="line">                <span class="keyword">if</span> (node != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    temp.add(node.val);</span><br><span class="line">                    <span class="keyword">if</span> (node.left != <span class="keyword">null</span>) queue.offer(node.left);</span><br><span class="line">                    <span class="keyword">if</span> (node.right != <span class="keyword">null</span>) queue.offer(node.right);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            res.add(temp);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> result;</span><br><span class="line">        preOrderTraversal(root, result, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">preOrderTraversal</span><span class="params">(TreeNode root, List&lt;List&lt;Integer&gt;&gt; result, <span class="keyword">int</span> height)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span> (result.size() &lt;= height)</span><br><span class="line">            result.add(<span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line">        result.get(height).add(root.val);</span><br><span class="line">        preOrderTraversal(root.left, result, height + <span class="number">1</span>);</span><br><span class="line">        preOrderTraversal(root.right, result, height + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/binary-tree-level-order-traversal/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 102. Binary Tree Level Order Traversal&lt;/a&gt;&lt;br&gt;题目：二叉树的层次遍历（也即树的BFS）&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="tree" scheme="https://dpcfury.github.io/tags/tree/"/>
+    
+      <category term="bfs" scheme="https://dpcfury.github.io/tags/bfs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Leetcode[155] Min Stack</title>
+    <link href="https://dpcfury.github.io/min-stack.html/"/>
+    <id>https://dpcfury.github.io/min-stack.html/</id>
+    <published>2020-05-13T15:27:13.000Z</published>
+    <updated>2020-05-13T15:31:21.149Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/min-stack/" target="_blank" rel="noopener">Leetcode 155. Min Stack</a><br>题目：实现一个栈，但是要求能以常数时间获取当前栈内的最小元素。</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul><li>根据栈的规则，每一次元素进栈后，原有元素必须在当前元素之后出战</li><li>每次进栈的时候，额外保存一个栈，记录对应入栈过程时，压入当前对应的最小元素</li><li>出栈过程中同时弹出一个元素</li></ul><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MinStack</span> </span>&#123;</span><br><span class="line">        Stack&lt;Integer&gt; stack;</span><br><span class="line">        Stack&lt;Integer&gt; minStack;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * initialize your data structure here.</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">MinStack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">            minStack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">            minStack.push(Integer.MAX_VALUE);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">            stack.push(x);</span><br><span class="line">            minStack.push(x &lt; minStack.peek() ? x : minStack.peek());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            stack.pop();</span><br><span class="line">            minStack.pop();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> stack.peek();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getMin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> minStack.peek();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/min-stack/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 155. Min Stack&lt;/a&gt;&lt;br&gt;题目：实现一个栈，但是要求能以常数时间获取当前栈内的最小元素。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
+    
+      <category term="stack" scheme="https://dpcfury.github.io/tags/stack/"/>
+    
+      <category term="design" scheme="https://dpcfury.github.io/tags/design/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Leetcode[50] Pow(x, n)</title>
+    <link href="https://dpcfury.github.io/pow-x-n.html/"/>
+    <id>https://dpcfury.github.io/pow-x-n.html/</id>
+    <published>2020-05-13T15:18:32.000Z</published>
+    <updated>2020-05-13T15:22:46.608Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/powx-n/" target="_blank" rel="noopener">Leetcode 50. Pow(x, n)</a><br>题目：实现 pow(x, n) ，即计算 x 的 n 次幂函数。</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul><li>利用二分，将n次幂尽量变为 n/2 * n/2</li><li>注意边界的奇数次幂需要多✖️一次</li></ul><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">pow</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (N == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1.0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">double</span> y = pow(x, N / <span class="number">2</span>);</span><br><span class="line">        <span class="keyword">return</span> N % <span class="number">2</span> == <span class="number">0</span> ? y * y : y * y * x;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">myPow</span><span class="params">(<span class="keyword">double</span> x, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> N = n;</span><br><span class="line">        <span class="keyword">return</span> N &gt;= <span class="number">0</span> ? pow(x, N) : <span class="number">1.0</span> / pow(x, -N);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/powx-n/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 50. Pow(x, n)&lt;/a&gt;&lt;br&gt;题目：实现 pow(x, n) ，即计算 x 的 n 次幂函数。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
+    
+      <category term="math" scheme="https://dpcfury.github.io/tags/math/"/>
+    
+      <category term="binary search" scheme="https://dpcfury.github.io/tags/binary-search/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LeetcodLowest Common Ancestor of a Binary Tree</title>
+    <link href="https://dpcfury.github.io/lowest-common-ancestor-of-a-binary-tree.html/"/>
+    <id>https://dpcfury.github.io/lowest-common-ancestor-of-a-binary-tree.html/</id>
+    <published>2020-05-13T15:05:35.000Z</published>
+    <updated>2020-05-13T15:15:26.989Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/" target="_blank" rel="noopener">Leetcode 236. Lowest Common Ancestor of a Binary Tree</a><br>题目：给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。<br>百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”<br>例如，给定如下二叉树:  root = [3,5,1,6,2,0,8,null,null,7,4]</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>对于当前节点而言，如果在dfs过程中，本身就是p或者q本身，直接返回当前节点为包含p或q的最底节点<br>否则：</p><ul><li>要么p、q分别再左右侧能找到，当前节点也肯定是最底公共父节点</li><li>要么就是左子树或右子树中最底的公共父节点作为最终解</li></ul><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (root == <span class="keyword">null</span> || root == p || root == q) <span class="keyword">return</span> root;</span><br><span class="line">       TreeNode left = lowestCommonAncestor(root.left, p, q);</span><br><span class="line">       TreeNode right = lowestCommonAncestor(root.right, p, q);</span><br><span class="line">       <span class="keyword">if</span> (left != <span class="keyword">null</span> &amp;&amp; right != <span class="keyword">null</span>) <span class="keyword">return</span> root;</span><br><span class="line">       <span class="keyword">return</span> left != <span class="keyword">null</span> ? left : right;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 236. Lowest Common Ancestor of a Binary Tree&lt;/a&gt;&lt;br&gt;题目：给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。&lt;br&gt;百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”&lt;br&gt;例如，给定如下二叉树:  root = [3,5,1,6,2,0,8,null,null,7,4]&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="binary tree" scheme="https://dpcfury.github.io/tags/binary-tree/"/>
+    
+      <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
+    
+      <category term="dfs" scheme="https://dpcfury.github.io/tags/dfs/"/>
+    
+  </entry>
   
   <entry>
     <title>Leetcode[69] Sqrt(x)</title>
@@ -481,122 +595,6 @@
       <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
     
       <category term="backtracking" scheme="https://dpcfury.github.io/tags/backtracking/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode.cn 面试题 08.11. 硬币</title>
-    <link href="https://dpcfury.github.io/way-to-change.html/"/>
-    <id>https://dpcfury.github.io/way-to-change.html/</id>
-    <published>2020-04-23T14:17:21.000Z</published>
-    <updated>2020-04-23T15:25:11.834Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode-cn.com/problems/coin-lcci/" target="_blank" rel="noopener">力扣中国 面试题 08.11. 硬币</a><br>题目：给定数量不限的硬币，币值为25分、10分、5分和1分，编写代码计算n分有几种表示法。(结果可能会很大，你需要将结果模上1000000007)</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>一条非常好的题，从问题的思考，到一步一步的优化，对深入理解动态规划、背包问题以及滚动数组有非常大的帮助。思路参照乐扣中国给出的官方分析，非常到位，这里不做重复描述：<a href="https://leetcode-cn.com/problems/coin-lcci/solution/ying-bi-by-leetcode-solution/" target="_blank" rel="noopener">官方解答</a></p><p>这道题本质是完全背包问题，在限定的体积V（题中的n），达到V的最大组合方案数</p><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">waysToChange</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span>[] coins = &#123;<span class="number">1</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">25</span>&#125;;</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; coins.length; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> coin = coins[i];</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = coin; j &lt;= n; j++) &#123;</span><br><span class="line">                dp[j] = dp[j] + dp[j - coin];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[n];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><h4 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h4><p>这题是深入理解背包问题、找零问题的契机，后续关注：<a href="https://leetcode-cn.com/problems/coin-lcci/solution/bei-bao-jiu-jiang-ge-ren-yi-jian-da-jia-fen-xiang-/" target="_blank" rel="noopener">背包问题、非常棒的讲法</a></p><p>ps: B站的大雪菜up主有一期视频就是讲解背包九讲的十分细致，推荐观看。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/coin-lcci/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;力扣中国 面试题 08.11. 硬币&lt;/a&gt;&lt;br&gt;题目：给定数量不限的硬币，币值为25分、10分、5分和1分，编写代码计算n分有几种表示法。(结果可能会很大，你需要将结果模上1000000007)&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
-    
-      <category term="dynamic programming" scheme="https://dpcfury.github.io/tags/dynamic-programming/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MapStruct使用</title>
-    <link href="https://dpcfury.github.io/mapstruct-intro.html/"/>
-    <id>https://dpcfury.github.io/mapstruct-intro.html/</id>
-    <published>2020-04-22T14:53:27.000Z</published>
-    <updated>2020-04-26T12:50:24.889Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://mapstruct.org/" target="_blank" rel="noopener">MapStruct</a><br>在当前的系统设计中，经常会在PO、VO，DTO之间来回转换，为了在业务代码中尽量不让set、get打断代码逻辑，方便阅读理解代码，需要提供对象之间灵活转换的解决方案，而MapStruct正是今天介绍的一种映射库。只需要定义一个 Mapper 接口，MapStruct 就会自动实现这个映射接口，避免了复杂繁琐的映射实现。</p></blockquote><a id="more"></a><h4 id="依赖引入"><a href="#依赖引入" class="headerlink" title="依赖引入"></a>依赖引入</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.mapstruct&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;mapstruct&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;1.3.1.Final&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;org.mapstruct&lt;/groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;mapstruct-processor&lt;/artifactId&gt;</span><br><span class="line">            &lt;version&gt;1.3.1.Final&lt;/version&gt;</span><br><span class="line">        &lt;/dependency&gt;</span><br></pre></td></tr></table></figure><blockquote><p>ps: springboot没有提供默认的mapstruct版本，所以在boot中引用需要手动指定对应的版本号，目前的稳定版本是<strong> 1.3.1.Final</strong></p></blockquote><h4 id="接口编写"><a href="#接口编写" class="headerlink" title="接口编写"></a>接口编写</h4><p>假设我们需要转换Host（机器实体）到HostDTO（rpc、http传输对象），只需要编写下面的接口<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Mapper</span>(componentModel = <span class="string">"spring"</span>) <span class="comment">// 利用spring注入</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">HostMapper</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Mappings</span>(&#123;</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"sn"</span>, target = <span class="string">"sn"</span>),</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"hostName"</span>, target = <span class="string">"hostName"</span>),</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"iloMac"</span>, target = <span class="string">"iloMac"</span>),</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"mac1"</span>, target = <span class="string">"mac1"</span>),</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"cpu"</span>, target = <span class="string">"cpu"</span>),</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"memory"</span>, target = <span class="string">"memory"</span>),</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"hardDisk"</span>, target = <span class="string">"hardDisk"</span>),</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"ssd"</span>, target = <span class="string">"ssd"</span>),</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"model"</span>, target = <span class="string">"model"</span>),</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"manufacturer"</span>, target = <span class="string">"manufacturer"</span>),</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"os"</span>, target = <span class="string">"os"</span>),</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"description"</span>, target = <span class="string">"description"</span>),</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"arrivedTime"</span>, target = <span class="string">"arrivedTime"</span>),</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"extraInfo"</span>, target = <span class="string">"extraInfo"</span>),</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"suit"</span>, target = <span class="string">"suit"</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Host <span class="title">from</span><span class="params">(HostDTO hostDTO)</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Mappings</span>(&#123;</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"sn"</span>, target = <span class="string">"sn"</span>),</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"hostName"</span>, target = <span class="string">"hostName"</span>),</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"iloMac"</span>, target = <span class="string">"iloMac"</span>),</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"mac1"</span>, target = <span class="string">"mac1"</span>),</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"cpu"</span>, target = <span class="string">"cpu"</span>),</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"memory"</span>, target = <span class="string">"memory"</span>),</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"hardDisk"</span>, target = <span class="string">"hardDisk"</span>),</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"ssd"</span>, target = <span class="string">"ssd"</span>),</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"model"</span>, target = <span class="string">"model"</span>),</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"manufacturer"</span>, target = <span class="string">"manufacturer"</span>),</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"os"</span>, target = <span class="string">"os"</span>),</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"description"</span>, target = <span class="string">"description"</span>),</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"arrivedTime"</span>, target = <span class="string">"arrivedTime"</span>),</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"extraInfo"</span>, target = <span class="string">"extraInfo"</span>),</span><br><span class="line">            <span class="meta">@Mapping</span>(source= <span class="string">"suit"</span>, target = <span class="string">"suit"</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> HostDTO <span class="title">from</span><span class="params">(Host host)</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><p>我们在Junit中尝试使用这个mapper进行对象的转换：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestMapper</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Resource</span></span><br><span class="line">    <span class="keyword">private</span> HostMapper hostMapper; <span class="comment">// IOC 依赖注入</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testHostMapper</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        HostDTO hostDTO = <span class="keyword">new</span> HostDTO();</span><br><span class="line">        hostDTO.setSn(<span class="string">"host01"</span>);</span><br><span class="line">        hostDTO.setHostName(<span class="string">"host01.maas"</span>);</span><br><span class="line">        hostDTO.setIloMac(<span class="string">"weqweqweqw"</span>);</span><br><span class="line">        hostDTO.setMac1(<span class="string">"sdasdasdsa"</span>);</span><br><span class="line">        hostDTO.setCpu(<span class="string">"core 24"</span>);</span><br><span class="line">        hostDTO.setMemory(<span class="string">"512GB"</span>);</span><br><span class="line">        hostDTO.setHardDisk(<span class="string">"8600GB"</span>);</span><br><span class="line">        hostDTO.setSsd(<span class="string">"6x480"</span>);</span><br><span class="line">        hostDTO.setModel(<span class="string">"xxxx"</span>);</span><br><span class="line">        hostDTO.setManufacturer(<span class="string">"H3C"</span>);</span><br><span class="line">        hostDTO.setArrivedTime(<span class="keyword">new</span> Date(System.currentTimeMillis()));</span><br><span class="line">        hostDTO.setSuit(<span class="string">"Y32-X14"</span>);</span><br><span class="line"></span><br><span class="line">        Host host = hostMapper.from(hostDTO);</span><br><span class="line"></span><br><span class="line">        System.out.println(host);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://mapstruct.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;MapStruct&lt;/a&gt;&lt;br&gt;在当前的系统设计中，经常会在PO、VO，DTO之间来回转换，为了在业务代码中尽量不让set、get打断代码逻辑，方便阅读理解代码，需要提供对象之间灵活转换的解决方案，而MapStruct正是今天介绍的一种映射库。只需要定义一个 Mapper 接口，MapStruct 就会自动实现这个映射接口，避免了复杂繁琐的映射实现。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="开发" scheme="https://dpcfury.github.io/categories/%E5%BC%80%E5%8F%91/"/>
-    
-    
-      <category term="spring-boot" scheme="https://dpcfury.github.io/tags/spring-boot/"/>
-    
-      <category term="Java" scheme="https://dpcfury.github.io/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode[560] Subarray Sum Equals K</title>
-    <link href="https://dpcfury.github.io/subarray-sum-equals-k.html/"/>
-    <id>https://dpcfury.github.io/subarray-sum-equals-k.html/</id>
-    <published>2020-04-22T14:16:46.000Z</published>
-    <updated>2020-04-22T14:28:05.463Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/subarray-sum-equals-k/" target="_blank" rel="noopener">Leetcode 560. Subarray Sum Equals K</a><br>给定一个整数数组和一个整数 k，你需要找到该数组中和为 k 的连续的子数组的个数。这题是比较典型的前缀和应用类问题，最粗暴的就是O(n^3)的暴力求解。</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>approach1 优化求子数组和过程</p><ul><li>令sum(i) 为遍历到nums第i个元素的前缀和，那么计算 子数组nums[j]-&gt; nusm[k]的和直接等于 nums[k]-nums[i]</li><li>遍历所有可能的j、k组合，统计所有符合的子数组</li></ul><p>approach2 利用map存储<br>在一次遍历的过程中，记录出现前缀和sum的次数，如果map.containsKey(sum-k)：</p><ul><li>说明前面出现了nums[i]-nums[j]=k的情况，则可以累加这个sum-k出现的次数</li></ul><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">subarraySum</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 关键思路， sum(i) sum(j) sum(i-j)之间的关系</span></span><br><span class="line">        <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        HashMap&lt;Integer, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        map.put(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            sum += nums[i];</span><br><span class="line">            <span class="keyword">if</span> (map.containsKey(sum - k)) &#123;</span><br><span class="line">                count += map.get(sum - k);</span><br><span class="line">            &#125;</span><br><span class="line">            map.put(sum, map.getOrDefault(sum, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/subarray-sum-equals-k/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 560. Subarray Sum Equals K&lt;/a&gt;&lt;br&gt;给定一个整数数组和一个整数 k，你需要找到该数组中和为 k 的连续的子数组的个数。这题是比较典型的前缀和应用类问题，最粗暴的就是O(n^3)的暴力求解。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
-    
-      <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
-    
-      <category term="prefix sum" scheme="https://dpcfury.github.io/tags/prefix-sum/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode [199]  Binary Tree Right Side View</title>
-    <link href="https://dpcfury.github.io/binary-tree-right-side-view.html/"/>
-    <id>https://dpcfury.github.io/binary-tree-right-side-view.html/</id>
-    <published>2020-04-22T13:40:14.000Z</published>
-    <updated>2020-04-22T13:49:14.614Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/binary-tree-right-side-view/" target="_blank" rel="noopener">Leetcode 199. Binary Tree Right Side View</a><br>求从右侧看一颗二叉树，所能看到的元素列表: 例如下面的二叉树，对应输出为[1, 3, 5]</p></blockquote><pre><code>   1            &lt;--- /   \2     3         &lt;--- \     \  5     4       &lt;---</code></pre><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul><li>DFS，先遍历右子树</li><li>BDF，每一层的最后一个元素</li></ul><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">rightSideView</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        List&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span> res;</span><br><span class="line">        LinkedList&lt;TreeNode&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        queue.add(root);</span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">            res.add(queue.getLast().val);</span><br><span class="line">            List&lt;TreeNode&gt; temp = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">            <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">                TreeNode node = queue.poll();</span><br><span class="line">                <span class="keyword">if</span> (node.left != <span class="keyword">null</span>) temp.add(node.left);</span><br><span class="line">                <span class="keyword">if</span> (node.right != <span class="keyword">null</span>) temp.add(node.right);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (TreeNode node : temp) queue.add(node);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/binary-tree-right-side-view/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 199. Binary Tree Right Side View&lt;/a&gt;&lt;br&gt;求从右侧看一颗二叉树，所能看到的元素列表: 例如下面的二叉树，对应输出为[1, 3, 5]&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;pre&gt;&lt;code&gt;   1            &amp;lt;---
- /   \
-2     3         &amp;lt;---
- \     \
-  5     4       &amp;lt;---
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
-    
-      <category term="binary tree" scheme="https://dpcfury.github.io/tags/binary-tree/"/>
-    
-      <category term="dfs" scheme="https://dpcfury.github.io/tags/dfs/"/>
-    
-      <category term="bfs" scheme="https://dpcfury.github.io/tags/bfs/"/>
     
   </entry>
   
