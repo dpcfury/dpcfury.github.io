@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-05-16T06:25:39.036Z</updated>
+  <updated>2020-05-17T14:44:26.481Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode[210] Course Schedule II</title>
+    <link href="https://dpcfury.github.io/course-schedule-II.html/"/>
+    <id>https://dpcfury.github.io/course-schedule-II.html/</id>
+    <published>2020-05-17T14:33:57.000Z</published>
+    <updated>2020-05-17T14:44:26.481Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/course-schedule-ii/" target="_blank" rel="noopener">Leetcode 210. Course Schedule II</a><br>题目：现在你总共有 n 门课需要选，记为 0 到 n-1。<br>在选修某些课程之前需要一些先修课程。 例如，想要学习课程 0 ，你需要先完成课程 1 ，我们用一个匹配来表示他们: [0,1]<br>给定课程总量以及它们的先决条件，返回你为了学完所有课程所安排的学习顺序。<br>可能会有多个正确的顺序，你只要返回一种就可以了。如果不可能完成所有课程，返回一个空数组。<br><strong>示例</strong> 1:</p></blockquote><p>输入: 2, [[1,0]]<br>输出: [0,1]<br>解释: 总共有 2 门课程。要学习课程 1，你需要先完成课程 0。因此，正确的课程顺序为 [0,1] 。</p><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>这类选课问题和工程上的关键节点问题都属于拓扑排序（Topological Sorting）问题，每次选取入度为零的节点，并删除其出去的边，最终生成一个图的序列，如果存在循环，则无法获取这样的序列。具体解法：</p><ul><li>dfs，每次遍历的最后一个没有出边的节点，就是在路径中课程必须先选的节点</li><li>bfs，每次挑选入度（inDegree）为零的节点，作为最后学的课程，同样压入栈</li></ul><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] findOrder(<span class="keyword">int</span> numCourses, <span class="keyword">int</span>[][] prerequisites) &#123;</span><br><span class="line">        <span class="keyword">int</span>[] fanIn = <span class="keyword">new</span> <span class="keyword">int</span>[numCourses];</span><br><span class="line">        Map&lt;Integer, List&lt;Integer&gt;&gt; adjacentList = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span>[] edge : prerequisites) &#123;</span><br><span class="line">            fanIn[edge[<span class="number">1</span>]]++;</span><br><span class="line">            <span class="keyword">if</span> (!adjacentList.containsKey(edge[<span class="number">0</span>])) &#123;</span><br><span class="line">                adjacentList.put(edge[<span class="number">0</span>], <span class="keyword">new</span> ArrayList&lt;&gt;());</span><br><span class="line">            &#125;</span><br><span class="line">            adjacentList.get(edge[<span class="number">0</span>]).add(edge[<span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Queue&lt;Integer&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numCourses; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (fanIn[i] == <span class="number">0</span>) queue.offer(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        List&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">int</span> vertex = queue.poll();</span><br><span class="line">            res.add(vertex);</span><br><span class="line">            <span class="keyword">if</span> (adjacentList.get(vertex) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> vertexTo : adjacentList.get(vertex)) &#123;</span><br><span class="line">                    fanIn[vertexTo]--;</span><br><span class="line">                    <span class="keyword">if</span> (fanIn[vertexTo] == <span class="number">0</span>) queue.offer(vertexTo);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (res.size() != numCourses) <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;&#125;;</span><br><span class="line">        Collections.reverse(res);</span><br><span class="line">        <span class="keyword">int</span>[] finalRes = <span class="keyword">new</span> <span class="keyword">int</span>[numCourses];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numCourses; i++) &#123;</span><br><span class="line">            finalRes[i] = res.get(i);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> finalRes;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/course-schedule-ii/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 210. Course Schedule II&lt;/a&gt;&lt;br&gt;题目：现在你总共有 n 门课需要选，记为 0 到 n-1。&lt;br&gt;在选修某些课程之前需要一些先修课程。 例如，想要学习课程 0 ，你需要先完成课程 1 ，我们用一个匹配来表示他们: [0,1]&lt;br&gt;给定课程总量以及它们的先决条件，返回你为了学完所有课程所安排的学习顺序。&lt;br&gt;可能会有多个正确的顺序，你只要返回一种就可以了。如果不可能完成所有课程，返回一个空数组。&lt;br&gt;&lt;strong&gt;示例&lt;/strong&gt; 1:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;输入: 2, [[1,0]]&lt;br&gt;输出: [0,1]&lt;br&gt;解释: 总共有 2 门课程。要学习课程 1，你需要先完成课程 0。因此，正确的课程顺序为 [0,1] 。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="dfs" scheme="https://dpcfury.github.io/tags/dfs/"/>
+    
+      <category term="bfs" scheme="https://dpcfury.github.io/tags/bfs/"/>
+    
+      <category term="topological sort" scheme="https://dpcfury.github.io/tags/topological-sort/"/>
+    
+      <category term="graph" scheme="https://dpcfury.github.io/tags/graph/"/>
+    
+  </entry>
   
   <entry>
     <title>Leetcode[25] Reverse Nodes in k-Group</title>
@@ -571,34 +604,6 @@
       <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
     
       <category term="binary search" scheme="https://dpcfury.github.io/tags/binary-search/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode[26] Merge k Sorted Lists</title>
-    <link href="https://dpcfury.github.io/merge-k-sorted-list.html/"/>
-    <id>https://dpcfury.github.io/merge-k-sorted-list.html/</id>
-    <published>2020-04-26T12:28:38.000Z</published>
-    <updated>2020-04-26T12:34:00.842Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/merge-k-sorted-lists/" target="_blank" rel="noopener">Leetcode 26. Merge k Sorted Lists</a><br>题目：合并 k 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>将所有链表中的元素遍历存入有限队列中，再通过头插法进行重组链表，时间复杂度O(kN * logkN),空间复杂度O(kN)，其他则可以两两合并，或者分治归并，这里偷懒写的是优先队列的形式。</p><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ListNode <span class="title">mergeKLists</span><span class="params">(ListNode[] lists)</span> </span>&#123;</span><br><span class="line">        ListNode head = <span class="keyword">new</span> ListNode(-<span class="number">1</span>);</span><br><span class="line">        PriorityQueue&lt;ListNode&gt; queue = <span class="keyword">new</span> PriorityQueue&lt;&gt;(<span class="keyword">new</span> Comparator&lt;ListNode&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(ListNode o1, ListNode o2)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> o2.val - o1.val; <span class="comment">// 降序</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (ListNode p : lists) &#123;</span><br><span class="line">            <span class="keyword">while</span> (p != <span class="keyword">null</span>) &#123;</span><br><span class="line">                queue.offer(p);</span><br><span class="line">                p = p.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">            ListNode p = queue.poll();</span><br><span class="line">            p.next = head.next; <span class="comment">// 头插法</span></span><br><span class="line">            head.next = p;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> head.next;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/merge-k-sorted-lists/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 26. Merge k Sorted Lists&lt;/a&gt;&lt;br&gt;题目：合并 k 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
-    
-      <category term="linkedlist" scheme="https://dpcfury.github.io/tags/linkedlist/"/>
-    
-      <category term="hard" scheme="https://dpcfury.github.io/tags/hard/"/>
     
   </entry>
   
