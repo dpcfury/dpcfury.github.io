@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-05-24T11:50:57.750Z</updated>
+  <updated>2020-05-25T16:00:08.864Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode[146] LRU Cache</title>
+    <link href="https://dpcfury.github.io/lRU-cache.html/"/>
+    <id>https://dpcfury.github.io/lRU-cache.html/</id>
+    <published>2020-05-25T15:54:51.000Z</published>
+    <updated>2020-05-25T16:00:08.864Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/lru-cache/" target="_blank" rel="noopener">Leetcode 146. LRU Cache</a><br>题目：运用你所掌握的数据结构，设计和实现一个  LRU (最近最少使用) 缓存机制。它应该支持以下操作： 获取数据 get 和 写入数据 put 。<br>获取数据 get(key) - 如果密钥 (key) 存在于缓存中，则获取密钥的值（总是正数），否则返回 -1。<br>写入数据 put(key, value) - 如果密钥已经存在，则变更其数据值；如果密钥不存在，则插入该组「密钥/数据值」。当缓存容量达到上限时，它应该在写入新数据之前删除最久未使用的数据值，从而为新的数据值留出空间。</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>不同于LFU cache，LRU相对简单，指的是从当前向后看，访问时间越近的越在前，淘汰的时候也最后考虑，这里考虑维护一个双向链表，将表尾元素定义为最近最少访问元素，表头为最近访问元素，每次访问，更新元素在队列中的顺序到表头。</p><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> capacity;</span><br><span class="line">        HashMap&lt;Integer, Integer&gt; map;</span><br><span class="line">        LinkedList&lt;Integer&gt; freq;</span><br><span class="line">        HashMap&lt;Integer, Integer&gt; freqMap;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.capacity = capacity;</span><br><span class="line">            map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">            freq = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">            freqMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (!map.containsKey(key)) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> (freqMap.containsKey(key)) &#123;</span><br><span class="line">                Integer fq = freqMap.get(key);</span><br><span class="line">                freq.remove(fq);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            Integer newFreq = key;</span><br><span class="line">            freq.addFirst(key);</span><br><span class="line">            freqMap.put(key, newFreq);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> map.get(key);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (map.size() == capacity &amp;&amp; !map.containsKey(key)) &#123;</span><br><span class="line">                Integer fq = freq.getLast();</span><br><span class="line">                freq.remove(fq);</span><br><span class="line">                map.remove(fq);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            map.put(key, value);</span><br><span class="line">            get(key);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/lru-cache/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 146. LRU Cache&lt;/a&gt;&lt;br&gt;题目：运用你所掌握的数据结构，设计和实现一个  LRU (最近最少使用) 缓存机制。它应该支持以下操作： 获取数据 get 和 写入数据 put 。&lt;br&gt;获取数据 get(key) - 如果密钥 (key) 存在于缓存中，则获取密钥的值（总是正数），否则返回 -1。&lt;br&gt;写入数据 put(key, value) - 如果密钥已经存在，则变更其数据值；如果密钥不存在，则插入该组「密钥/数据值」。当缓存容量达到上限时，它应该在写入新数据之前删除最久未使用的数据值，从而为新的数据值留出空间。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
+    
+      <category term="linkedlist" scheme="https://dpcfury.github.io/tags/linkedlist/"/>
+    
+      <category term="design" scheme="https://dpcfury.github.io/tags/design/"/>
+    
+  </entry>
   
   <entry>
     <title>Leetcode[4] Median of Two Sorted Arrays</title>
@@ -579,34 +609,6 @@
       <category term="hard" scheme="https://dpcfury.github.io/tags/hard/"/>
     
       <category term="greedy" scheme="https://dpcfury.github.io/tags/greedy/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode[53] Maximum Subarray</title>
-    <link href="https://dpcfury.github.io/maximum-subarray.html/"/>
-    <id>https://dpcfury.github.io/maximum-subarray.html/</id>
-    <published>2020-05-03T13:02:19.000Z</published>
-    <updated>2020-05-04T13:55:16.404Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/maximum-subarray/" target="_blank" rel="noopener">Leetcode 53. Maximum Subarray</a><br>题目：给定一个整数数组 <strong> nums </strong> ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p></blockquote><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul><li>遍历数组，追踪当前能获取的数组和，如果之前的sum已经小于等于0，那么最大的子数组不应该从之前开头，此时更新子数组的开头为当前元素</li><li>持续更新子数组最大的sum记录</li></ul><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><p>approach1：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> curSum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> max = Integer.MIN_VALUE;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (curSum &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">                curSum = nums[i];</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                curSum += nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">            max = Math.max(max, curSum);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p><p>类似滚动数组的实现方法：<a href="https://leetcode-cn.com/problems/maximum-subarray/solution/zui-da-zi-xu-he-by-leetcode-solution/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/maximum-subarray/solution/zui-da-zi-xu-he-by-leetcode-solution/</a><br><figure class="highlight golang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">maxSubArray</span><span class="params">(nums []<span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    max := nums[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">1</span>; i &lt; <span class="built_in">len</span>(nums); i++ &#123;</span><br><span class="line">        <span class="keyword">if</span> nums[i] + nums[i<span class="number">-1</span>] &gt; nums[i] &#123;</span><br><span class="line">            nums[i] += nums[i<span class="number">-1</span>]</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> nums[i] &gt; max &#123;</span><br><span class="line">            max = nums[i]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> max</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>approach2：<br>线段数的解法 TODO，了解线段树的作用</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/maximum-subarray/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 53. Maximum Subarray&lt;/a&gt;&lt;br&gt;题目：给定一个整数数组 &lt;strong&gt; nums &lt;/strong&gt; ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
-    
-    
-      <category term="easy" scheme="https://dpcfury.github.io/tags/easy/"/>
-    
-      <category term="array" scheme="https://dpcfury.github.io/tags/array/"/>
-    
-      <category term="leetcoe" scheme="https://dpcfury.github.io/tags/leetcoe/"/>
     
   </entry>
   
