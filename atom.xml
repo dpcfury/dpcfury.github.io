@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dpcfury.github.io/"/>
-  <updated>2020-05-25T16:00:08.864Z</updated>
+  <updated>2020-05-26T14:52:04.170Z</updated>
   <id>https://dpcfury.github.io/</id>
   
   <author>
@@ -15,6 +15,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Leetcode[287] Find the Duplicate Number</title>
+    <link href="https://dpcfury.github.io/find-the-duplicate-number.html/"/>
+    <id>https://dpcfury.github.io/find-the-duplicate-number.html/</id>
+    <published>2020-05-26T14:36:34.000Z</published>
+    <updated>2020-05-26T14:52:04.170Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/find-the-duplicate-number/" target="_blank" rel="noopener">Leetcode 287. Find the Duplicate Number</a><br>题目：给定一个包含 n + 1 个整数的数组 nums，其数字都在 1 到 n 之间（包括 1 和 n），可知至少存在一个重复的整数。假设只有一个重复的整数，找出这个重复的数。</p></blockquote><p>示例 1:</p><p>输入: [1,3,4,2,2]<br>输出: 2<br>示例 2:</p><p>输入: [3,1,3,4,2]<br>输出: 3</p><a id="more"></a><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul><li>原地排序 nlogn</li><li>二分搜索 nlogn</li><li>循环搜索 n</li></ul><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><ul><li><p>approach1 排序</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findDuplicate</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123; <span class="comment">// nlogn</span></span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] == nums[i - <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">return</span> nums[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li><li><p>快慢指针</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findDuplicate</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> slow = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">int</span> fast = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            slow = nums[slow];</span><br><span class="line">            fast = nums[nums[fast]];</span><br><span class="line">        &#125; <span class="keyword">while</span> (slow != fast);</span><br><span class="line"></span><br><span class="line">        slow = nums[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">while</span> (slow != fast) &#123;</span><br><span class="line">            slow = nums[slow];</span><br><span class="line">            fast = nums[fast];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> slow;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li><li><p>二分搜索</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findDuplicate</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.length;</span><br><span class="line">        <span class="keyword">int</span> start = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> end = n;</span><br><span class="line">        <span class="keyword">while</span> (start &lt;= end) &#123;</span><br><span class="line">            <span class="keyword">int</span> mid = (start + end) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">int</span> count = countRange(nums, start, end);</span><br><span class="line">            <span class="keyword">if</span> (start == end) &#123;</span><br><span class="line">                <span class="keyword">if</span> (count &gt; <span class="number">1</span>) <span class="keyword">return</span> start;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (count &gt; (mid - start) + <span class="number">1</span>)</span><br><span class="line">                end = mid;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                start = mid + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countRange</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] &gt;= start &amp;&amp; nums[i] &lt;= end)</span><br><span class="line">                count++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/find-the-duplicate-number/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 287. Find the Duplicate Number&lt;/a&gt;&lt;br&gt;题目：给定一个包含 n + 1 个整数的数组 nums，其数字都在 1 到 n 之间（包括 1 和 n），可知至少存在一个重复的整数。假设只有一个重复的整数，找出这个重复的数。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;示例 1:&lt;/p&gt;
+&lt;p&gt;输入: [1,3,4,2,2]&lt;br&gt;输出: 2&lt;br&gt;示例 2:&lt;/p&gt;
+&lt;p&gt;输入: [3,1,3,4,2]&lt;br&gt;输出: 3&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
+    
+    
+      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
+    
+      <category term="array" scheme="https://dpcfury.github.io/tags/array/"/>
+    
+      <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
+    
+      <category term="binary search" scheme="https://dpcfury.github.io/tags/binary-search/"/>
+    
+      <category term="cycle" scheme="https://dpcfury.github.io/tags/cycle/"/>
+    
+  </entry>
   
   <entry>
     <title>Leetcode[146] LRU Cache</title>
@@ -580,35 +615,6 @@
       <category term="medium" scheme="https://dpcfury.github.io/tags/medium/"/>
     
       <category term="binary search tree" scheme="https://dpcfury.github.io/tags/binary-search-tree/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Leetcode[45] Jump Game II</title>
-    <link href="https://dpcfury.github.io/jump-gameII.html/"/>
-    <id>https://dpcfury.github.io/jump-gameII.html/</id>
-    <published>2020-05-04T09:15:14.000Z</published>
-    <updated>2020-05-04T09:27:10.132Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p><a href="https://leetcode.com/problems/jump-game-ii/" target="_blank" rel="noopener">Leetcode 45. Jump Game II</a><br>题目：<br>给定一个非负整数数组，你最初位于数组的第一个位置。<br>数组中的每个元素代表你在该位置可以跳跃的最大长度。<br>你的目标是使用最少的跳跃次数到达数组的最后一个位置。<br>示例:</p></blockquote><p>输入: [2,3,1,1,4]<br>输出: 2<br>解释: 跳到最后一个位置的最小跳跃数是 2。<br>     从下标为 0 跳到下标为 1 的位置，跳 1 步，然后跳 3 步到达数组的最后一个位置。<br><a id="more"></a></p><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ul><li>利用动态规划，算法时间复杂度为O(n^2)</li><li>利用贪心算法，更新遍历每步能走到的最远距离</li></ul><h4 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h4><p>approach1: 动态规划<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">jump</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123; <span class="comment">//dp 超时</span></span><br><span class="line">        <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">        Arrays.fill(dp, Integer.MAX_VALUE);</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; i; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (j + nums[j] &gt;= i) &#123;</span><br><span class="line">                    dp[i] = Math.min(dp[i], dp[j] + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[nums.length - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p><p>approach2：贪心<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">jump1</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123; <span class="comment">// greedy</span></span><br><span class="line">       <span class="keyword">int</span> n = nums.length;</span><br><span class="line">       <span class="keyword">int</span> step = n == <span class="number">1</span> ? <span class="number">0</span> : <span class="number">1</span>;</span><br><span class="line">       <span class="keyword">int</span> max = nums[<span class="number">0</span>];</span><br><span class="line">       <span class="keyword">int</span> start = <span class="number">1</span>;</span><br><span class="line">       <span class="keyword">while</span> (max &lt; n - <span class="number">1</span>) &#123;</span><br><span class="line">           <span class="keyword">int</span> curMax = max;</span><br><span class="line">           <span class="keyword">while</span> (start &lt;= curMax) &#123;</span><br><span class="line">               <span class="keyword">if</span> (start + nums[start] &gt; max) max = start + nums[start];</span><br><span class="line">               start++;</span><br><span class="line">           &#125;</span><br><span class="line">           start = curMax + <span class="number">1</span>;</span><br><span class="line">           step++;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> step;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;a href=&quot;https://leetcode.com/problems/jump-game-ii/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Leetcode 45. Jump Game II&lt;/a&gt;&lt;br&gt;题目：&lt;br&gt;给定一个非负整数数组，你最初位于数组的第一个位置。&lt;br&gt;数组中的每个元素代表你在该位置可以跳跃的最大长度。&lt;br&gt;你的目标是使用最少的跳跃次数到达数组的最后一个位置。&lt;br&gt;示例:&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;输入: [2,3,1,1,4]&lt;br&gt;输出: 2&lt;br&gt;解释: 跳到最后一个位置的最小跳跃数是 2。&lt;br&gt;     从下标为 0 跳到下标为 1 的位置，跳 1 步，然后跳 3 步到达数组的最后一个位置。&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/categories/leetcode/"/>
-    
-    
-      <category term="leetcode" scheme="https://dpcfury.github.io/tags/leetcode/"/>
-    
-      <category term="hard" scheme="https://dpcfury.github.io/tags/hard/"/>
-    
-      <category term="greedy" scheme="https://dpcfury.github.io/tags/greedy/"/>
     
   </entry>
   
